@@ -1,0 +1,153 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="text-left"><i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;&nbsp;Properties</h4>
+  </div>
+  <div class="panel-body">
+    <div *ngIf="selectedIndex[0]>=0">
+      <!--General Properties-->
+      <div class="row">
+        <div class="col-6 form-group">
+          <label>Field Placement</label>
+          <select [(ngModel)]="fieldPlacement" class="form-control" style="height: inherit" (change)="fieldPlacementChanged()">
+            <option value="">Select Position</option>
+            <ng-container *ngFor="let fp of fieldPlacements">
+              <option [value]="fp.value">{{fp.text}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div *ngIf="fieldPlacement!='' && fieldPlacement!='LAST_ROW'" class="col-6 form-group">
+          <label>  </label>
+          <select class="form-control" style="height: inherit;margin-top: 5px;"
+            [(ngModel)]="fieldPlacementRow" 
+            (change)="fieldPlacementChanged()">
+            <option value="-1">Select Control</option>
+            <ng-container *ngFor="let control of controls; let ctlIdx = index">
+              <option *ngIf="ctlIdx!=selectedIndex[0]" [value]="ctlIdx">{{control[0].fieldName}}</option>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 form-group">
+          <label>Field Name</label>
+          <input class="form-control" type="text" [(ngModel)]="controls[selectedIndex[0]][selectedIndex[1]].fieldName"
+          (ngModelChange)="setCamelCaseToAttributeName($event)"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 form-group">
+          <label>Tooltip</label>
+          <input class="form-control" type="text" [(ngModel)]="controls[selectedIndex[0]][selectedIndex[1]].tooltip"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 form-group">
+          <label>Attribute Name</label>
+          <input class="form-control" type="text" [(ngModel)]="controls[selectedIndex[0]][selectedIndex[1]].attributeName"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 form-check">
+          <label><input class="form-check-input" type="checkbox" [checked]="controls[selectedIndex[0]][selectedIndex[1]].phi"
+          (change)="controls[selectedIndex[0]][selectedIndex[1]].phi = !controls[selectedIndex[0]][selectedIndex[1]].phi"/> PHI
+          </label>
+        </div>
+        <div class="col-6 form-check">
+          <label><input class="form-check-input" type="checkbox" [checked]="controls[selectedIndex[0]][selectedIndex[1]].mandatory"
+          (change)="controls[selectedIndex[0]][selectedIndex[1]].mandatory = !controls[selectedIndex[0]][selectedIndex[1]].mandatory"/> Mandatory
+          </label>
+        </div>
+      </div>
+      
+      <div [ngSwitch]="controls[selectedIndex[0]][selectedIndex[1]].type">
+        <!--Textbox Properties-->
+        <div *ngSwitchCase="'textbox'">
+          <div class="row">
+            <div class="col-12 form-group">
+              <label>Default Value</label>
+              <input class="form-control" type="text" [(ngModel)]="controls[selectedIndex[0]][selectedIndex[1]].defaultValue"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 form-group">
+              <label>Width</label>
+              <input class="form-control" type="text" [(ngModel)]="controls[selectedIndex[0]][selectedIndex[1]].width"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 form-check">
+              <label><input class="form-check-input" type="checkbox" [checked]="controls[selectedIndex[0]][selectedIndex[1]].showInGrid"
+              (change)="controls[selectedIndex[0]][selectedIndex[1]].showInGrid = !controls[selectedIndex[0]][selectedIndex[1]].showInGrid"/> Show In Grid
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!--Radio Button Properties-->
+        <div *ngSwitchCase="'radio'">
+          <div class="row">
+            <div class="col-12 form-group">
+              <label>Options Per Row</label>
+              <input class="form-control" type="number" [(ngModel)]="controls[selectedIndex[0]][selectedIndex[1]].optionsPerRow"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 form-check">
+              <label><input class="form-check-input" type="checkbox" [checked]="controls[selectedIndex[0]][selectedIndex[1]].showInGrid"
+              (change)="controls[selectedIndex[0]][selectedIndex[1]].showInGrid = !controls[selectedIndex[0]][selectedIndex[1]].showInGrid"/> Show In Grid
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 form-group">
+              <label>Datatype</label>
+              <select [(ngModel)]="controls[selectedIndex[0]][selectedIndex[1]].datatype" class="form-control" style="height: inherit">
+                <option value="">Select Datatype</option>
+                <ng-container *ngFor="let datatype of datatypes">
+                  <option [value]="datatype">{{datatype}}</option>
+                </ng-container>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 form-group">
+              <label>Permissible Values Ordering</label>
+              <ng-container *ngFor="let pvOrdering of pvOrderings">
+                <div class="radio">
+                  <label><input type="radio" [checked]="controls[selectedIndex[0]][selectedIndex[1]].pvOrdering === pvOrdering.value"
+                  (change)="controls[selectedIndex[0]][selectedIndex[1]].pvOrdering=pvOrdering.value" name="pvOrdering" [value]="pvOrdering.value">{{pvOrdering.text}}
+                  </label>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 form-group">
+              <label>
+                Permissible Values <button type="button" class="btn btn-primary btn-sm"
+                (click)="controls[selectedIndex[0]][selectedIndex[1]].permissibleValues.push('')"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;Add</button>
+              </label>
+              <div class="col-sm-12" style="padding-left: 0px;padding-right: 0px;padding-top: 5px;">
+                <div class="row" *ngFor="let pv of controls[selectedIndex[0]][selectedIndex[1]].permissibleValues; let pvIdx = index">
+                  <div class="col-sm-1">
+                    <div class="radio">
+                      <label><input type="radio" name="defaultPv" [value]="pvIdx"
+                      [checked]="controls[selectedIndex[0]][selectedIndex[1]].defaultPvIndex === pvIdx"
+                      (change)="controls[selectedIndex[0]][selectedIndex[1]].defaultPvIndex=pvIdx">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-8" style="padding-left: 0px;padding-right: 0px;"><input class="form-control" type="text" [(ngModel)]="controls[selectedIndex[0]][selectedIndex[1]].permissibleValues[pvIdx]"/></div>
+                  <div class="col-sm-2" style="padding-left: 0px;padding-right: 0px;">
+                    <button type="button" class="btn btn-primary btn-sm"
+                    (click)="controls[selectedIndex[0]][selectedIndex[1]].permissibleValues.splice(pvIdx, 1);">X</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+.page-wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.panel-container {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.page-wrapper, .page-wrapper>.row {
+    height: 100%;
+}

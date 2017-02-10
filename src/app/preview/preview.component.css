@@ -1,0 +1,8 @@
+.active {
+    border: dashed 2px #337ab7;
+    background-color: #eee;
+}
+
+.panel-body > .row > .col {
+    padding-top: 5px;
+}
