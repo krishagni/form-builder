@@ -1,22 +1,17 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h4 class="text-left"><i class="fa fa-search-plus" aria-hidden="true"></i>&nbsp;&nbsp;Preview</h4>
+    <h4 class="col-sm-4 text-left">
+      <i class="fa fa-search-plus" aria-hidden="true">
+      </i>
+      <span class="spaces-after-icon">
+        Preview
+      </span>
+    </h4>
   </div>
   <div class="panel-body">
     <div class="row" *ngFor="let controlRow of controls; let idx = index">
-      <div class="col" *ngFor="let control of controlRow; let subIdx = index" [class.active]="isSelected(idx, subIdx)" (click)="changeSelectedControlIndex(idx, subIdx)">
-        <label>{{control.fieldName}}</label>
-        <div [ngSwitch]="control.type" class="form-group">
-          <!--Textbox-->
-          <input *ngSwitchCase="'textbox'" class="form-control" [id]="control.attributeName" [type]="text" [value]="control.defaultValue">
-          <!--Radio Button-->
-          <div *ngSwitchCase="'radio'">
-            <label class="radio-inline" *ngFor="let pv of control.permissibleValues; let pvIdx = index">
-                <input type="radio" [name]="control.attributeName" [checked]="pvIdx === control.defaultPvIndex">
-                {{ pv }}
-              </label>
-          </div>
-        </div>
+      <div class="col" *ngFor="let control of controlRow; let subIdx = index" [innerHTML]="control.getPreview() | sanitizeHtml"
+        [class.active]="isSelected(idx, subIdx)" (click)="changeSelectedControlIndex(idx, subIdx)">
       </div>
     </div>
   </div>
