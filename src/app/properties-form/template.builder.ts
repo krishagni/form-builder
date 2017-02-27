@@ -11,10 +11,11 @@ export class TemplateBuilder {
       template = template + properties[i].property.getPreview();
     }
     template = template +
-      `<button type="submit" class="btn btn-primary" [disabled] ="propertiesForm.invalid">
+      `<button type="submit" class="btn btn-primary" [disabled] 
+        ="propertiesForm.invalid">
         Save
-        </button>
-      </form>`;
+      </button>
+    </form>`;
     return template;
   }
 }

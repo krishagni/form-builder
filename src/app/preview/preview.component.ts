@@ -28,6 +28,7 @@ export class PreviewComponent implements OnInit {
   }
 
   isSelected(row, column): boolean {
-    return (this.selectedRow === row && this.selectedColumn === column) ? true : false;
+    return (this.selectedRow === row && this.selectedColumn === column) ? true
+      : false;
   }
 }

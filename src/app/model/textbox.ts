@@ -35,8 +35,9 @@ export class Textbox extends Control {
   public getPreview(): string {
     return `<div class="form-group">
       <label>` + this.caption + `</label>
-      <input class="form-control" type="text" title="` + this.toolTip + `"    attr.maxlength= "` + this.width + `" id="` + this.name + `" 
-      value="` + this.defaultValue + `" formControlName="` + this.name + `"/>
+      <input class="form-control" type="text" title="` + this.toolTip + `"
+        attr.maxlength= "` + this.width + `" id="` + this.name + `" 
+        value="` + this.defaultValue + `" formControlName="` + this.name + `"/>
       </div>`;
   }
 

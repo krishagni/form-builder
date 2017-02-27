@@ -32,7 +32,9 @@ export class AppComponent implements OnInit {
   }
 
   addControlToForm() {
-    this.controls.push([this.selectedPaletteControl.clone()]);
+    if (this.selectedPaletteControl) {
+      this.controls.push([this.selectedPaletteControl.clone()]);
+    }
   }
 
   onSelectedRowChange(row) {

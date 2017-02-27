@@ -51,7 +51,8 @@ export class RadioButton extends Control {
       preview = preview +
         `<label class="radio-inline" title="` + this.toolTip + `">
           <input type="radio" name="` + this.name + `" 
-          [checked]="` + i + ` == ` + this.defaultPvIndex + `"/>` + this.permissibleValues[i] +
+          [checked]="` + i + ` == ` + this.defaultPvIndex + `"/>`
+            + this.permissibleValues[i] +
         `</label>`;
       if (this.optionsPerRow > 0 && (i + 1) % this.optionsPerRow == 0) {
         preview = preview + `<br>`;

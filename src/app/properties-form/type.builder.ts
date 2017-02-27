@@ -1,5 +1,6 @@
-import { Component, ComponentFactory, NgModule, Input, Output, EventEmitter, Injectable } from '@angular/core';
-import { JitCompiler } from '@angular/compiler';
+import { Component, ComponentFactory, NgModule, Input, Output, EventEmitter, 
+  Injectable, Compiler } from '@angular/core';
+import { JitCompilerFactory } from '@angular/compiler';
 import * as _ from "lodash";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,8 +11,13 @@ export interface IHaveDynamicData {
 
 @Injectable()
 export class TypeBuilder {
-  constructor(protected compiler: JitCompiler) { }
-  private cacheOfFactories: { [templateKey: string]: ComponentFactory<IHaveDynamicData> } = {};
+  private compiler: Compiler = new JitCompilerFactory([{
+    useDebug: false,
+    useJit: true
+  }]).createCompiler();
+  constructor() { }
+  private cacheOfFactories: { [templateKey: string]: 
+    ComponentFactory<IHaveDynamicData> } = {};
 
   public createComponentFactory(template: string)
     : Promise<ComponentFactory<IHaveDynamicData>> {
@@ -24,8 +30,11 @@ export class TypeBuilder {
     let type = this.createNewComponent(template);
     let module = this.createComponentModule(type);
     return new Promise((resolve) => {
-      this.compiler.compileModuleAndAllComponentsAsync(module).then((moduleWithFactories) => {
-        factory = _.find(moduleWithFactories.componentFactories, { componentType: type });
+      this.compiler.compileModuleAndAllComponentsAsync(module).then(
+        (moduleWithFactories) => {
+          factory = _.find(moduleWithFactories.componentFactories, {
+            componentType: type
+          });
         this.cacheOfFactories[template] = factory;
         resolve(factory);
       });
@@ -48,7 +57,8 @@ export class TypeBuilder {
       ngOnInit() {
         let group: any = {};
         this.selectedControl.getProperties().forEach(property => {
-          group[property.property.name] = new FormControl(property.property.defaultValue || '', property.validations);
+          group[property.property.name] = new FormControl
+          (property.property.defaultValue || '', property.validations);
         });
         this.propertiesForm = new FormGroup(group);
       }

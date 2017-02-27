@@ -12,7 +12,8 @@ import { Control } from '../model/control';
     </div>
     `,
 })
-export class PropertiesForm implements AfterViewInit, OnChanges, OnDestroy, OnInit {
+export class PropertiesForm implements AfterViewInit, OnChanges, OnDestroy,
+  OnInit {
   @ViewChild('propertiesFormPlaceHolder', { read: ViewContainerRef })
   protected dynamicComponentTarget: ViewContainerRef;
   protected componentRef: ComponentRef<IHaveDynamicData>;
@@ -31,7 +32,8 @@ export class PropertiesForm implements AfterViewInit, OnChanges, OnDestroy, OnIn
       this.componentRef.destroy();
     }
     var template = this.templateBuilder.prepareTemplate(this.selectedControl);
-    this.typeBuilder.createComponentFactory(template).then((factory: ComponentFactory<IHaveDynamicData>) => {
+    this.typeBuilder.createComponentFactory(template).then((factory:
+      ComponentFactory<IHaveDynamicData>) => {
       this.componentRef = this.dynamicComponentTarget
         .createComponent(factory);
       let component = this.componentRef.instance;

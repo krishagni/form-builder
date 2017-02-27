@@ -19,12 +19,12 @@ export class Config {
   }
 
   public getDefaultConfig(): Observable<any> {
-    return this.http.get("app/config/defaultConfig.json")
+    return this.http.get("assets/defaultConfig.json")
       .map((res: any) => res.json());
   }
 
   public getCustomConfig(): Observable<any> {
-    return this.http.get("app/config/customConfig.json")
+    return this.http.get("assets/customConfig.json")
       .map((res: any) => res.json());
   }
 
@@ -35,24 +35,14 @@ export class Config {
         data => {
           this.customConfig = data;
           if (this.customConfig && Object.keys(this.customConfig).length != 0) {
-            for (var key in this.customConfig) {
-              if (!this.allPaletteControls.hasOwnProperty(this.customConfig[key])) {
-                console.log("Custom Config json file contains invalid key =>" + this.customConfig[key]);
-              }
-              paletteControls.push(this.allPaletteControls[this.customConfig[key]]);
-            }
+            paletteControls = this.getPaletteControlsAsPerConfig(this.customConfig);
             observer.next(paletteControls);
             observer.complete();
           } else {
             this.getDefaultConfig().subscribe(
               data => {
                 this.defaultConfig = data;
-                for (var key in this.defaultConfig) {
-                  if (!this.allPaletteControls.hasOwnProperty(this.defaultConfig[key])) {
-                    console.log("Default Config json file contains invalid key =>" + this.defaultConfig[key]);
-                  }
-                  paletteControls.push(this.allPaletteControls[this.defaultConfig[key]]);
-                }
+                paletteControls = this.getPaletteControlsAsPerConfig(this.defaultConfig);
                 observer.next(paletteControls);
                 observer.complete();
               },
@@ -66,10 +56,33 @@ export class Config {
         },
         error => {
           console.log("Error parsing Custom Config json file =>" + error);
-          observer.next(paletteControls);
-          observer.complete();
+          this.getDefaultConfig().subscribe(
+            data => {
+              this.defaultConfig = data;
+              paletteControls = this.getPaletteControlsAsPerConfig(this.defaultConfig);
+              observer.next(paletteControls);
+              observer.complete();
+            },
+            error => {
+              console.log("Error parsing Default Config json file =>" + error);
+              observer.next(paletteControls);
+              observer.complete();
+            }
+          );
         }
       );
     });
+  }
+
+  getPaletteControlsAsPerConfig(config) {
+    var paletteControls: any[] = [];
+    for (var key in config) {
+      if (!this.allPaletteControls.hasOwnProperty(config[key])) {
+        console.log("Config json file contains invalid key =>" + config[key]);
+        break;
+      }
+      paletteControls.push(this.allPaletteControls[config[key]]);
+    }
+    return paletteControls;
   }
 }

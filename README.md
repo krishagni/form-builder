@@ -1,9 +1,9 @@
-# Form Builder
+# DynamicForms
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
+This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-rc.0.
 
 ## Prerequisites
-Before running this project, you must have Node.js 4.0.0 and npm 3.0.0 or higher installed on your system.
+Before running this project, you must have Node.js 6.9.0 or higher, together with NPM 3 or higher installed on your system.
 
 You can download the latest version of Node.js for your Operating System and consult the latest installation instructions on the official [Node.js website](https://nodejs.org).
 
@@ -15,7 +15,9 @@ You can verify their version by running
 
 To install Angular CLI, run:
 
-`npm install -g angular-cli`
+`npm install -g @angular/cli`
+
+To update previous angluar CLI follow below link [Updating Angular CLI](https://github.com/angular/angular-cli#updating-angular-cli)
 
 To verify whether your installation completed successfully, you can run:
 

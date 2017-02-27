@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h4 class="col-sm-8" style="padding-left: 0px;">
+    <h4>
       <i class="fa fa-th" aria-hidden="true">
       </i>
       <span class="spaces-after-icon">
@@ -9,8 +9,10 @@
     </h4>
   </div>
   <div class="panel-body">
-    <ng-container *ngFor="let paletteControl of paletteControls; let idx = index">
-      <div class="col-12" (click)="onControlSelectionChange(paletteControl)" [class.active]="isSelected(paletteControl)">
+    <ng-container *ngFor="let paletteControl of paletteControls; let idx = 
+      index">
+      <div class="col-12" (click)="onControlSelectionChange(paletteControl)" 
+        [class.active]="isSelected(paletteControl)">
         <label title="Please click on Add button">
           <i [class]="paletteControl.iconClass" aria-hidden="true">
           </i>
