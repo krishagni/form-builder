@@ -56,6 +56,17 @@ export abstract class Control {
     ];
   }
 
+  public abstract getCustomProperties(): any[];
+
+  public getProperties(): any[] {
+    var properties = this.getGeneralProperties();
+    var customProperties = this.getCustomProperties();
+    customProperties.forEach(customProperty => {
+      properties.push(customProperty);
+    });
+    return properties;
+  }
+
   public abstract serialize(type): any;
 
   public abstract deserialize(type): any;

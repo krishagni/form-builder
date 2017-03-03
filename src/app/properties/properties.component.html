@@ -10,9 +10,19 @@
   </div>
   <div class="panel-body">
     <div *ngIf="selectedControl">
-      <properties-form [selectedControl]="selectedControl" 
-        (onSelectedControlChange)="onSelectedControlChange($event)">
-      </properties-form>
+      <form [formGroup]="propertiesForm" (ngSubmit)="onSubmit()">
+        <div class="row" *ngFor="let property of properties; let idx = index">
+          <div class="col">
+            <fb-control [control]="property.property" [type]="componentTypes
+              [property.property.type]" [parentGroup]="propertiesForm">
+            </fb-control>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled] 
+          ="propertiesForm.invalid">
+          Save
+        </button>
+      </form>
     </div>
   </div>
 </div>

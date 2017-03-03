@@ -13,18 +13,6 @@ export class Textbox extends Control {
     this.showInGrid = !!textbox.showInGrid;
   }
 
-  public clone(): Textbox {
-    ++this.counter;
-    return new Textbox({
-      label: "Textbox",
-      iconClass: "fa fa-list",
-      type: "textbox",
-      name: "textbox" + this.counter,
-      caption: "Textbox Label",
-      udn: "textboxLabel" + this.counter
-    });
-  }
-
   public static getPalette() {
     return new Textbox({
       label: "Textbox",
@@ -32,18 +20,20 @@ export class Textbox extends Control {
     });
   }
 
-  public getPreview(): string {
-    return `<div class="form-group">
-      <label>` + this.caption + `</label>
-      <input class="form-control" type="text" title="` + this.toolTip + `"
-        attr.maxlength= "` + this.width + `" id="` + this.name + `" 
-        value="` + this.defaultValue + `" formControlName="` + this.name + `"/>
-      </div>`;
+  public clone(): Textbox {
+    ++this.counter;
+    return new Textbox({
+      label: "Textbox",
+      iconClass: "fa fa-list",
+      type: "textbox",
+      name: "textbox" + this.counter,
+      caption: "Textbox Label " + this.counter,
+      udn: "textboxLabel" + this.counter
+    });
   }
 
-  public getProperties(): any[] {
-    var properties = this.getGeneralProperties();
-    properties.push(
+  public getCustomProperties(): any[] {
+    return [
       {
         property: new Textbox({
           type: "textbox",
@@ -61,9 +51,8 @@ export class Textbox extends Control {
           defaultValue: this.width
         }),
         validations: []
-      },
-    );
-    return properties;
+      }
+    ];
   }
 
   public serialize(type): any {

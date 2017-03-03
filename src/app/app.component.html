@@ -16,15 +16,14 @@
       </fb-palette>
     </div>
     <div class="col-lg-7 panel-container">
-      <fb-preview [controls]="controls" [selectedRow]="selectedRow" 
-        [selectedColumn]="selectedColumn" (onSelectedRowChange)
-        ="onSelectedRowChange($event)"
+      <fb-preview [controls]="controls" [componentTypes]="componentTypes"
+        (onSelectedRowChange)="onSelectedRowChange($event)"
         (onSelectedColumnChange)="onSelectedColumnChange($event)">
       </fb-preview>
     </div>
     <div class="col-lg-3 panel-container">
-      <fb-properties [selectedControl]="selectedControl" (onPropertiesChange)
-        ="onPropertiesChange($event)">
+      <fb-properties [selectedControl]="selectedControl" [componentTypes]
+        ="componentTypes" (onPropertiesChange)="onPropertiesChange($event)">
       </fb-properties>
     </div>
   </div>

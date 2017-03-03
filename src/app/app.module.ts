@@ -1,15 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { PaletteComponent } from './palette/palette.component';
 import { PreviewComponent } from './preview/preview.component';
 import { PropertiesComponent } from './properties/properties.component';
-import { SanitizeHtmlPipe } from './sanitize-html.pipe';
-import { PropertiesFormModule } from './properties-form/properties-form-module';
 import { Config } from './config/config';
+import { TextboxComponent } from './textbox/textbox.component';
+import { ControlComponent } from './control/control.component';
+import { RadioButtonComponent } from './radio-button/radio-button.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +18,20 @@ import { Config } from './config/config';
     PaletteComponent,
     PreviewComponent,
     PropertiesComponent,
-    SanitizeHtmlPipe
+    TextboxComponent,
+    ControlComponent,
+    RadioButtonComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    PropertiesFormModule.forRoot()
+    ReactiveFormsModule
+  ],
+  entryComponents: [
+    ControlComponent,
+    TextboxComponent,
+    RadioButtonComponent
   ],
   providers: [
     Config

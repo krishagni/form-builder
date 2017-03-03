@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Control } from './model/control';
 import { Config } from './config/config';
+import { TextboxComponent } from './textbox/textbox.component';
+import { RadioButtonComponent } from './radio-button/radio-button.component';
 
 @Component({
   selector: 'fb-root',
@@ -9,6 +11,10 @@ import { Config } from './config/config';
 })
 export class AppComponent implements OnInit {
   constructor(private config: Config) { }
+  componentTypes: any = {
+    textbox: TextboxComponent,
+    radioButton: RadioButtonComponent
+  };
   paletteControls: any[];
   controls: any[] = [];
   selectedPaletteControl: any;

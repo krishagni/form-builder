@@ -19,14 +19,21 @@ export class RadioButton extends Control {
     this.pvOrdering = radioButton.pvOrdering || "NONE";
   }
 
-  clone(): RadioButton {
+  public static getPalette() {
+    return new RadioButton({
+      label: "Radio Button",
+      iconClass: "fa fa-list"
+    });
+  }
+
+  public clone(): RadioButton {
     ++this.counter;
     return new RadioButton({
       label: "Radio Button",
       iconClass: "fa fa-list",
-      type: "radio",
-      name: "radio" + this.counter,
-      caption: "Radio Button Label",
+      type: "radioButton",
+      name: "radioButton" + this.counter,
+      caption: "Radio Button Label " + this.counter,
       udn: "radioButtonLabel" + this.counter,
       dataType: "STRING",
       permissibleValues: ["Option 1", "Option 2"],
@@ -36,35 +43,8 @@ export class RadioButton extends Control {
     });
   }
 
-  public static getPalette() {
-    return new RadioButton({
-      label: "Radio Button",
-      iconClass: "fa fa-list"
-    });
-  }
-
-  getPreview(): string {
-    var preview: string = `<div class="form-group">
-      <label>` + this.caption + `</label>
-      <div>`;
-    for (var i = 0; i < this.permissibleValues.length; i++) {
-      preview = preview +
-        `<label class="radio-inline" title="` + this.toolTip + `">
-          <input type="radio" name="` + this.name + `" 
-          [checked]="` + i + ` == ` + this.defaultPvIndex + `"/>`
-            + this.permissibleValues[i] +
-        `</label>`;
-      if (this.optionsPerRow > 0 && (i + 1) % this.optionsPerRow == 0) {
-        preview = preview + `<br>`;
-      }
-    }
-    preview = preview + `</div></div>`;
-    return preview;
-  }
-
-  public getProperties(): any[] {
-    var properties = this.getGeneralProperties();
-    return properties;
+  public getCustomProperties(): any[] {
+    return [];
   }
 
   public serialize(type): any {

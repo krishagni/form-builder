@@ -9,12 +9,18 @@
     </h4>
   </div>
   <div class="panel-body">
-    <div class="row" *ngFor="let controlRow of controls; let idx = index">
-      <div class="col" *ngFor="let control of controlRow; let subIdx = index" 
-        [innerHTML]="control.getPreview() | sanitizeHtml"
-        [class.active]="isSelected(idx, subIdx)" (click)
-        ="changeSelectedControlIndex(idx, subIdx)">
-      </div>
-    </div>
+    <ng-container *ngFor="let controlRow of controls; let idx = index">
+      <form [formGroup]="mainForm">
+        <div class="row">
+          <div class="col" *ngFor="let control of controlRow; let subIdx = 
+            index" [class.active]="isSelected(idx, subIdx)" (click)
+            ="changeSelectedControlIndex(idx, subIdx)">
+            <fb-control [control]="control" [type]="componentTypes[control.type]
+            " [parentGroup]="mainForm">
+            </fb-control>
+          </div>
+        </div>
+      </form>
+    </ng-container>
   </div>
 </div>
