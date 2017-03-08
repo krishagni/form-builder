@@ -1,6 +1,5 @@
-import { Component, OnInit, Compiler, ComponentRef, ComponentFactoryResolver,
-ViewChild, ViewContainerRef, Input, Output, EventEmitter, Type } from 
-'@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy, Compiler, ComponentRef, ComponentFactoryResolver, 
+  ViewChild, ViewContainerRef, Input, Output, EventEmitter, Type } from '@angular/core';
 import { Control } from '../model/control';
 import { IControlData } from './control-data';
 
@@ -9,17 +8,21 @@ import { IControlData } from './control-data';
   templateUrl: './control.component.html',
   styleUrls: ['./control.component.css']
 })
-export class ControlComponent implements IControlData {
+export class ControlComponent implements OnInit, OnDestroy {
 
   @ViewChild('target', { read: ViewContainerRef }) target: ViewContainerRef;
+
   @Input() control: Control;
-  @Input() type: Type<Component>;
+
   @Input() parentGroup: any;
+
   componentRef: ComponentRef<Component>;
+  
   private isViewInitialized: boolean = false;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
-    private compiler: Compiler) { }
+    private compiler: Compiler) {
+  }
 
   updateComponent() {
     if (!this.isViewInitialized) {
@@ -29,15 +32,11 @@ export class ControlComponent implements IControlData {
       this.componentRef.destroy();
     }
     let factory = this.componentFactoryResolver.resolveComponentFactory
-      (this.type);
-    this.componentRef = this.target.createComponent(factory)
-    let component = this.componentRef.instance;
-    (<IControlData>component).control = this.control;
-    (<IControlData>component).parentGroup = this.parentGroup;
-  }
-
-  ngOnChanges() {
-    this.updateComponent();
+      (this.control.componentType);
+    this.componentRef = this.target.createComponent(factory);
+    let component = (<IControlData>this.componentRef.instance);
+    component.control = this.control;
+    component.parentGroup = this.parentGroup;
   }
 
   ngOnInit() {

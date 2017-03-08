@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Control } from './model/control';
 import { Config } from './config/config';
-import { TextboxComponent } from './textbox/textbox.component';
-import { RadioButtonComponent } from './radio-button/radio-button.component';
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'fb-root',
@@ -10,17 +9,21 @@ import { RadioButtonComponent } from './radio-button/radio-button.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private config: Config) { }
-  componentTypes: any = {
-    textbox: TextboxComponent,
-    radioButton: RadioButtonComponent
-  };
+
   paletteControls: any[];
-  controls: any[] = [];
+
   selectedPaletteControl: any;
-  selectedRow: number = -1;
-  selectedColumn: number = -1;
+
+  controls: any = {};
+
+  controlOffsets: any[] = [];
+
   selectedControl: Control;
+
+  selectedControlUUID: string;
+
+  constructor(private config: Config) {
+  }
 
   ngOnInit() {
     this.config.getPaletteControls().subscribe(
@@ -39,22 +42,20 @@ export class AppComponent implements OnInit {
 
   addControlToForm() {
     if (this.selectedPaletteControl) {
-      this.controls.push([this.selectedPaletteControl.clone()]);
+      let uuid = UUID.UUID();
+      this.controls[uuid] = this.selectedPaletteControl.clone();
+      this.controlOffsets.push([uuid]);
     }
   }
 
-  onSelectedRowChange(row) {
-    this.selectedRow = row;
-  }
-
-  onSelectedColumnChange(column) {
-    this.selectedColumn = column;
-    this.selectedControl = this.controls[this.selectedRow][this.selectedColumn];
+  onSelectedControlChange(selectedControlUUID) {
+    this.selectedControlUUID = selectedControlUUID;
+    this.selectedControl = this.controls[this.selectedControlUUID];
   }
 
   onPropertiesChange(selectedControl) {
     this.selectedControl = selectedControl;
-    this.controls[this.selectedRow][this.selectedColumn] = selectedControl;
+    this.controls[this.selectedControlUUID] = selectedControl;
   }
 
   writeForm(type): any {
@@ -71,4 +72,5 @@ export class AppComponent implements OnInit {
       Here received json will be parsed & controls array will be constructed.
     */
   }
+  
 }

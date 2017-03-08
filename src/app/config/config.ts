@@ -8,11 +8,14 @@ import { RadioButton } from '../model/radio-button';
 
 @Injectable()
 export class Config {
+
   private allPaletteControls: any = {
     "textbox": Textbox.getPalette(),
     "radioButton": RadioButton.getPalette()
   };
+
   private defaultConfig: any;
+
   private customConfig: any;
 
   constructor(private http: Http) {
@@ -85,4 +88,5 @@ export class Config {
     }
     return paletteControls;
   }
+  
 }

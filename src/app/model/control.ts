@@ -1,10 +1,11 @@
-import { Validators } from '@angular/forms';
-import { Textbox } from './textbox';
+import { GeneralProperties } from './general-properties';
 
 export abstract class Control {
+
   label: string;
   iconClass: string;
   type: string;
+  componentType: any;
   name: string;
   caption: string;
   toolTip: string;
@@ -16,6 +17,7 @@ export abstract class Control {
     this.label = control.label || '';
     this.iconClass = control.iconClass || '';
     this.type = control.type || '';
+    this.componentType = control.componentType;
     this.name = control.name || '';
     this.caption = control.caption || '';
     this.toolTip = control.toolTip || '';
@@ -24,42 +26,10 @@ export abstract class Control {
     this.mandatory = !!control.mandatory;
   }
 
-  public getGeneralProperties(): any[] {
-    return [
-      {
-        property: new Textbox({
-          type: "textbox",
-          name: "caption",
-          caption: "Field Name",
-          defaultValue: this.caption
-        }),
-        validations: [Validators.required]
-      },
-      {
-        property: new Textbox({
-          type: "textbox",
-          name: "toolTip",
-          caption: "ToolTip",
-          defaultValue: this.toolTip
-        }),
-        validations: []
-      },
-      {
-        property: new Textbox({
-          type: "textbox",
-          name: "udn",
-          caption: "Attribute Name",
-          defaultValue: this.udn
-        }),
-        validations: [Validators.required]
-      }
-    ];
-  }
-
   public abstract getCustomProperties(): any[];
 
   public getProperties(): any[] {
-    var properties = this.getGeneralProperties();
+    var properties = GeneralProperties.getGeneralProperties(this);
     var customProperties = this.getCustomProperties();
     customProperties.forEach(customProperty => {
       properties.push(customProperty);
@@ -70,4 +40,5 @@ export abstract class Control {
   public abstract serialize(type): any;
 
   public abstract deserialize(type): any;
+  
 }

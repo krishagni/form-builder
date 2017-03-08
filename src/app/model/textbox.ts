@@ -1,6 +1,8 @@
 import { Control } from './control';
+import { TextboxComponent } from '../controls/textbox/textbox.component';
 
 export class Textbox extends Control {
+
   counter: number = 0;
   defaultValue: string;
   width: number;
@@ -26,6 +28,7 @@ export class Textbox extends Control {
       label: "Textbox",
       iconClass: "fa fa-list",
       type: "textbox",
+      componentType: TextboxComponent,
       name: "textbox" + this.counter,
       caption: "Textbox Label " + this.counter,
       udn: "textboxLabel" + this.counter
@@ -37,6 +40,7 @@ export class Textbox extends Control {
       {
         property: new Textbox({
           type: "textbox",
+          componentType: TextboxComponent,
           name: "defaultValue",
           caption: "Default Value",
           defaultValue: this.defaultValue
@@ -46,6 +50,7 @@ export class Textbox extends Control {
       {
         property: new Textbox({
           type: "textbox",
+          componentType: TextboxComponent,
           name: "width",
           caption: "Width",
           defaultValue: this.width
@@ -60,4 +65,5 @@ export class Textbox extends Control {
 
   public deserialize(type): any {
   }
+  
 }

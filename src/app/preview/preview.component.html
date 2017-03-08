@@ -3,24 +3,23 @@
     <h4>
       <i class="fa fa-search-plus" aria-hidden="true">
       </i>
-      <span class="spaces-after-icon">
+      <span>
         Preview
       </span>
     </h4>
   </div>
   <div class="panel-body">
-    <ng-container *ngFor="let controlRow of controls; let idx = index">
-      <form [formGroup]="mainForm">
+    <form [formGroup]="mainForm">
+      <ng-container *ngFor="let controlOffsetRow of controlOffsets; let row = index">
         <div class="row">
-          <div class="col" *ngFor="let control of controlRow; let subIdx = 
-            index" [class.active]="isSelected(idx, subIdx)" (click)
-            ="changeSelectedControlIndex(idx, subIdx)">
-            <fb-control [control]="control" [type]="componentTypes[control.type]
-            " [parentGroup]="mainForm">
+          <div class="col" *ngFor="let uuid of controlOffsetRow; let col = index"
+            (click)="changeSelectedControlIndex(row, col)"
+            [ngClass]="{'active' : selectedRow === row && selectedColumn === col}">
+            <fb-control [control]="controls[uuid]" [parentGroup]="mainForm">
             </fb-control>
           </div>
         </div>
-      </form>
-    </ng-container>
+      </ng-container>
+    </form>
   </div>
 </div>

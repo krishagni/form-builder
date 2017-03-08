@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Control } from '../model/control';
+import { Control } from '../../model/control';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule }
   from '@angular/forms';
 
@@ -11,6 +11,7 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule }
 export class RadioButtonComponent implements OnInit {
 
   @Input() control: Control;
+  
   @Input() parentGroup: FormGroup;
 
   constructor() {

@@ -16,6 +16,6 @@ html, body, .panel {
     overflow: auto;
 }
 
-.spaces-after-icon {
-    padding-left: 5px !important;
+i {
+    margin-right: 5px !important;
 }

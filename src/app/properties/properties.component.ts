@@ -9,10 +9,13 @@ import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule }
   styleUrls: ['./properties.component.css']
 })
 export class PropertiesComponent implements OnInit, OnChanges {
+
   @Input() selectedControl: any;
-  @Input() componentTypes: any;
+
   @Output() selectedControlChange = new EventEmitter<any>();
+
   properties: any[] = [];
+
   propertiesForm: FormGroup;
 
   constructor() {
@@ -44,4 +47,5 @@ export class PropertiesComponent implements OnInit, OnChanges {
       this.selectedControl[key] = this.propertiesForm.controls[key].value;
     }
   }
+  
 }

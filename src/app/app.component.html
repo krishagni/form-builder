@@ -1,10 +1,9 @@
 <div class="page-wrapper">
   <div class="col-12">
-    <button class="col-sm-4" type="button" class="btn btn-primary" (click)
-      ="addControlToForm()">
+    <button class="col-sm-4" type="button" class="btn btn-primary" (click)="addControlToForm()">
       <i class="fa fa-plus-circle" aria-hidden="true">
       </i>
-      <span class="spaces-after-icon">
+      <span>
         Add Control
       </span>
     </button>
@@ -16,14 +15,13 @@
       </fb-palette>
     </div>
     <div class="col-lg-7 panel-container">
-      <fb-preview [controls]="controls" [componentTypes]="componentTypes"
-        (onSelectedRowChange)="onSelectedRowChange($event)"
-        (onSelectedColumnChange)="onSelectedColumnChange($event)">
+      <fb-preview [controls]="controls" [controlOffsets]="controlOffsets"
+        (onSelectedControlChange)="onSelectedControlChange($event)">
       </fb-preview>
     </div>
     <div class="col-lg-3 panel-container">
-      <fb-properties [selectedControl]="selectedControl" [componentTypes]
-        ="componentTypes" (onPropertiesChange)="onPropertiesChange($event)">
+      <fb-properties [selectedControl]="selectedControl"
+        (onPropertiesChange)="onPropertiesChange($event)">
       </fb-properties>
     </div>
   </div>

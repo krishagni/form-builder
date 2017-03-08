@@ -8,9 +8,9 @@ import { PaletteComponent } from './palette/palette.component';
 import { PreviewComponent } from './preview/preview.component';
 import { PropertiesComponent } from './properties/properties.component';
 import { Config } from './config/config';
-import { TextboxComponent } from './textbox/textbox.component';
-import { ControlComponent } from './control/control.component';
-import { RadioButtonComponent } from './radio-button/radio-button.component';
+import { TextboxComponent } from './controls/textbox/textbox.component';
+import { ControlComponent } from './controls/control.component';
+import { RadioButtonComponent } from './controls/radio-button/radio-button.component';
 
 @NgModule({
   declarations: [

@@ -3,20 +3,19 @@
     <h4>
       <i class="fa fa-th" aria-hidden="true">
       </i>
-      <span class="spaces-after-icon">
+      <span>
         Palette
       </span>
     </h4>
   </div>
   <div class="panel-body">
-    <ng-container *ngFor="let paletteControl of paletteControls; let idx = 
-      index">
+    <ng-container *ngFor="let paletteControl of paletteControls; let idx = index">
       <div class="col-12" (click)="onControlSelectionChange(paletteControl)" 
-        [class.active]="isSelected(paletteControl)">
+        [ngClass]="{'active' : selectedControl && selectedControl.label === paletteControl.label}">
         <label title="Please click on Add button">
           <i [class]="paletteControl.iconClass" aria-hidden="true">
           </i>
-          <span class="spaces-after-icon">
+          <span>
             {{ paletteControl.label }}
           </span>
         </label>

@@ -9,8 +9,11 @@ import { RadioButton } from '../model/radio-button';
   styleUrls: ['./palette.component.css']
 })
 export class PaletteComponent implements OnInit {
+
   @Input() paletteControls: any[];
+
   @Output() onSelectedControlFromPalette = new EventEmitter<any>();
+
   selectedControl;
 
   constructor() {
@@ -23,11 +26,5 @@ export class PaletteComponent implements OnInit {
     this.selectedControl = paletteControl;
     this.onSelectedControlFromPalette.emit(paletteControl);
   }
-
-  isSelected(paletteControl): boolean {
-    if (!this.selectedControl) {
-      return false;
-    }
-    return this.selectedControl.label === paletteControl.label ? true : false;
-  }
+  
 }
