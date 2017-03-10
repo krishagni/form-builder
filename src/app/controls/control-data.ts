@@ -1,7 +1,11 @@
+import { FormControl, FormGroup } from '@angular/forms';
+
+import { Control } from '../model/control';
+
 export interface IControlData {
 
-  control: any;
+  control: Control;
 
-  parentGroup: any;
+  parentGroup: FormGroup;
   
 }

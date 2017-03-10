@@ -1,5 +1,7 @@
-import { Component, OnInit, OnChanges, OnDestroy, Compiler, ComponentRef, ComponentFactoryResolver, 
-  ViewChild, ViewContainerRef, Input, Output, EventEmitter, Type } from '@angular/core';
+import { Component, OnInit, OnDestroy, Compiler, ComponentRef, ViewChild,
+  ComponentFactoryResolver, ViewContainerRef, Input } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+
 import { Control } from '../model/control';
 import { IControlData } from './control-data';
 
@@ -14,7 +16,7 @@ export class ControlComponent implements OnInit, OnDestroy {
 
   @Input() control: Control;
 
-  @Input() parentGroup: any;
+  @Input() parentGroup: FormGroup;
 
   componentRef: ComponentRef<Component>;
   

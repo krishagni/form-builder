@@ -10,16 +10,14 @@
   </div>
   <div class="panel-body">
     <form [formGroup]="mainForm">
-      <ng-container *ngFor="let controlOffsetRow of controlOffsets; let row = index">
-        <div class="row">
-          <div class="col" *ngFor="let uuid of controlOffsetRow; let col = index"
-            (click)="changeSelectedControlIndex(row, col)"
-            [ngClass]="{'active' : selectedRow === row && selectedColumn === col}">
-            <fb-control [control]="controls[uuid]" [parentGroup]="mainForm">
-            </fb-control>
-          </div>
-        </div>
-      </ng-container>
+      <div class="row" *ngFor="let controlsRow of controls;">
+        <a class="col" *ngFor="let control of controlsRow;"
+          (click)="changeSelectedControl(control)"
+          [class.active]="selectedControl == control">
+          <fb-control [control]="control" [parentGroup]="mainForm">
+          </fb-control>
+        </a>
+      </div>
     </form>
   </div>
 </div>

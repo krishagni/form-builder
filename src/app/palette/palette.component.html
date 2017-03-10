@@ -9,17 +9,17 @@
     </h4>
   </div>
   <div class="panel-body">
-    <ng-container *ngFor="let paletteControl of paletteControls; let idx = index">
-      <div class="col-12" (click)="onControlSelectionChange(paletteControl)" 
-        [ngClass]="{'active' : selectedControl && selectedControl.label === paletteControl.label}">
-        <label title="Please click on Add button">
+    <div class="row" *ngFor="let paletteControl of paletteControls;">
+      <a class="col" (click)="changeSelectedControl(paletteControl)" 
+        [class.active]="selectedControl == paletteControl">
+        <label>
           <i [class]="paletteControl.iconClass" aria-hidden="true">
           </i>
           <span>
             {{ paletteControl.label }}
           </span>
         </label>
-      </div>
-    </ng-container>
+      </a>
+    </div>
   </div>
 </div>

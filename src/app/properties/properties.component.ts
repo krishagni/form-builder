@@ -1,7 +1,7 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from
-  '@angular/core';
-import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule }
-  from '@angular/forms';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+
+import { Control } from '../model/control';
 
 @Component({
   selector: 'fb-properties',
@@ -10,9 +10,7 @@ import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule }
 })
 export class PropertiesComponent implements OnInit, OnChanges {
 
-  @Input() selectedControl: any;
-
-  @Output() selectedControlChange = new EventEmitter<any>();
+  @Input() selectedControl: Control;
 
   properties: any[] = [];
 
@@ -21,31 +19,32 @@ export class PropertiesComponent implements OnInit, OnChanges {
   constructor() {
   }
 
-  getProperties() {
-    this.properties = this.selectedControl.getProperties();
+  initForm() {
     this.propertiesForm = new FormGroup({});
-    for (var i = 0; i < this.properties.length; i++) {
-      this.propertiesForm.addControl(this.properties[i].property.name, new FormControl(this.properties[i].property.defaultValue, this.properties[i]
-      .validations));
+    if (this.selectedControl) {
+      this.properties = this.selectedControl.getProperties();
+      this.properties.forEach(property => {
+        this.propertiesForm.addControl(
+          property.property.name,
+          new FormControl(
+            property.property.value,
+            property.validations
+          )
+        );
+      });
     }
   }
 
   ngOnInit() {
-    if (this.selectedControl) {
-      this.getProperties();
-    }
+    this.initForm();
   }
 
   ngOnChanges() {
-    if (this.selectedControl) {
-      this.getProperties();
-    }
+    this.initForm();
   }
 
   onSubmit() {
-    for (var key in this.propertiesForm.controls) {
-      this.selectedControl[key] = this.propertiesForm.controls[key].value;
-    }
+    Object.assign(this.selectedControl, this.propertiesForm.value);
   }
   
 }

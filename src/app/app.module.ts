@@ -8,8 +8,8 @@ import { PaletteComponent } from './palette/palette.component';
 import { PreviewComponent } from './preview/preview.component';
 import { PropertiesComponent } from './properties/properties.component';
 import { Config } from './config/config';
-import { TextboxComponent } from './controls/textbox/textbox.component';
 import { ControlComponent } from './controls/control.component';
+import { TextboxComponent } from './controls/textbox/textbox.component';
 import { RadioButtonComponent } from './controls/radio-button/radio-button.component';
 
 @NgModule({
@@ -18,8 +18,8 @@ import { RadioButtonComponent } from './controls/radio-button/radio-button.compo
     PaletteComponent,
     PreviewComponent,
     PropertiesComponent,
-    TextboxComponent,
     ControlComponent,
+    TextboxComponent,
     RadioButtonComponent
   ],
   imports: [

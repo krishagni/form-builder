@@ -11,17 +11,15 @@
   <div class="row">
     <div class="col-lg-2 panel-container">
       <fb-palette [paletteControls]="paletteControls" 
-        (onSelectedControlFromPalette)="onSelectedControlFromPalette($event)">
+        (onControlSelect)="onPaletteControlSelect($event)">
       </fb-palette>
     </div>
     <div class="col-lg-7 panel-container">
-      <fb-preview [controls]="controls" [controlOffsets]="controlOffsets"
-        (onSelectedControlChange)="onSelectedControlChange($event)">
+      <fb-preview [controls]="controls" (onControlSelect)="onControlSelect($event)">
       </fb-preview>
     </div>
     <div class="col-lg-3 panel-container">
-      <fb-properties [selectedControl]="selectedControl"
-        (onPropertiesChange)="onPropertiesChange($event)">
+      <fb-properties [selectedControl]="selectedControl">
       </fb-properties>
     </div>
   </div>

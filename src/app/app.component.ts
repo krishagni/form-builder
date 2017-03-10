@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Control } from './model/control';
 import { Config } from './config/config';
-import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'fb-root',
@@ -14,13 +14,9 @@ export class AppComponent implements OnInit {
 
   selectedPaletteControl: any;
 
-  controls: any = {};
-
-  controlOffsets: any[] = [];
+  controls: any[] = [];
 
   selectedControl: Control;
-
-  selectedControlUUID: string;
 
   constructor(private config: Config) {
   }
@@ -36,26 +32,20 @@ export class AppComponent implements OnInit {
     );
   }
 
-  onSelectedControlFromPalette(selectedPaletteControl) {
+  onPaletteControlSelect(selectedPaletteControl) {
     this.selectedPaletteControl = selectedPaletteControl;
   }
 
   addControlToForm() {
     if (this.selectedPaletteControl) {
-      let uuid = UUID.UUID();
-      this.controls[uuid] = this.selectedPaletteControl.clone();
-      this.controlOffsets.push([uuid]);
+      this.controls = this.controls.concat(
+        [[this.selectedPaletteControl.modelClass.getInstance()]]
+      );
     }
   }
 
-  onSelectedControlChange(selectedControlUUID) {
-    this.selectedControlUUID = selectedControlUUID;
-    this.selectedControl = this.controls[this.selectedControlUUID];
-  }
-
-  onPropertiesChange(selectedControl) {
+  onControlSelect(selectedControl) {
     this.selectedControl = selectedControl;
-    this.controls[this.selectedControlUUID] = selectedControl;
   }
 
   writeForm(type): any {

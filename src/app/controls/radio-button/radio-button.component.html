@@ -5,9 +5,9 @@
   <div>
     <label *ngFor="let pv of control.permissibleValues; let pvIdx = index" 
       [title]="control.toolTip" [ngStyle]="{'width': 100/control.optionsPerRow + '%'}">
-      <input type="radio" [name]="control.name" [checked]="pvIdx === control.defaultPvIndex"
-        [formControlName]="control.name"/>
-      {{ pv }}
+      <input type="radio" [name]="control.name" [formControlName]="control.name"
+        [value]="pv.value"/>
+      {{ pv.value }}
     </label>
   </div>
 </div>

@@ -1,46 +1,43 @@
 import { Control } from './control';
 import { RadioButtonComponent } from '../controls/radio-button/radio-button.component';
+import { ControlCounter } from '../config/control-counter';
 
 export class RadioButton extends Control {
 
-  counter: number = 0;
   optionsPerRow: number;
-  showInGrid: boolean;
+
   dataType: string;
-  permissibleValues: string[];
-  defaultPvIndex: number;
+
+  permissibleValues: any[];
+  
   pvOrdering: string;
 
   constructor(radioButton) {
     super(radioButton);
     this.optionsPerRow = radioButton.optionsPerRow || 2;
-    this.showInGrid = !!radioButton.showInGrid;
     this.dataType = radioButton.dataType || '';
     this.permissibleValues = radioButton.permissibleValues || [];
-    this.defaultPvIndex = radioButton.defaultPvIndex || 0;
     this.pvOrdering = radioButton.pvOrdering || "NONE";
   }
 
-  public static getPalette() {
+  public static getInstance(): RadioButton {
+    var counter = ControlCounter.getCounter();
+    // TODO: integrate i18n
     return new RadioButton({
-      label: "Radio Button",
-      iconClass: "fa fa-list"
-    });
-  }
-
-  public clone(): RadioButton {
-    ++this.counter;
-    return new RadioButton({
-      label: "Radio Button",
-      iconClass: "fa fa-list",
       type: "radioButton",
       componentType: RadioButtonComponent,
-      name: "radioButton" + this.counter,
-      caption: "Radio Button Label " + this.counter,
-      udn: "radioButtonLabel" + this.counter,
+      name: "radioButton" + counter,
+      caption: "Radio Button Label",
+      udn: "radioButtonLabel" + counter,
       dataType: "STRING",
-      permissibleValues: ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"],
-      defaultPvIndex: 0,
+      permissibleValues: [
+        {"value": "Option 1"},
+        {"value": "Option 2"},
+        {"value": "Option 3"},
+        {"value": "Option 4"},
+        {"value": "Option 5"}
+      ],
+      value: "Option 3",
       optionsPerRow: 2,
       pvOrdering: "NONE"
     });

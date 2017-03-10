@@ -1,4 +1,5 @@
 import { Validators } from '@angular/forms';
+
 import { Textbox } from './textbox';
 import { TextboxComponent } from '../controls/textbox/textbox.component';
 
@@ -12,7 +13,7 @@ export class GeneralProperties {
           componentType: TextboxComponent,
           name: "caption",
           caption: "Field Name",
-          defaultValue: control.caption
+          value: control.caption
         }),
         validations: [Validators.required]
       },
@@ -22,7 +23,7 @@ export class GeneralProperties {
           componentType: TextboxComponent,
           name: "toolTip",
           caption: "ToolTip",
-          defaultValue: control.toolTip
+          value: control.toolTip
         }),
         validations: []
       },
@@ -32,9 +33,19 @@ export class GeneralProperties {
           componentType: TextboxComponent,
           name: "udn",
           caption: "Attribute Name",
-          defaultValue: control.udn
+          value: control.udn
         }),
         validations: [Validators.required]
+      },
+      {
+        property: new Textbox({
+          type: "textbox",
+          componentType: TextboxComponent,
+          name: "width",
+          caption: "Width",
+          value: control.width
+        }),
+        validations: []
       }
     ];
   }

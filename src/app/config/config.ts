@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+
 import { Textbox } from '../model/textbox';
 import { RadioButton } from '../model/radio-button';
 
@@ -10,8 +11,16 @@ import { RadioButton } from '../model/radio-button';
 export class Config {
 
   private allPaletteControls: any = {
-    "textbox": Textbox.getPalette(),
-    "radioButton": RadioButton.getPalette()
+    "textbox": {
+      modelClass: Textbox,
+      label: "Textbox",
+      iconClass: "fa fa-text-width"
+    },
+    "radioButton": {
+      modelClass: RadioButton,
+      label: "Radio Button",
+      iconClass: "fa fa-list"
+    }
   };
 
   private defaultConfig: any;

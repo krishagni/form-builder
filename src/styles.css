@@ -19,3 +19,8 @@ html, body, .panel {
 i {
     margin-right: 5px !important;
 }
+
+a {
+    cursor: pointer !important;
+    border: solid 2px white;
+}

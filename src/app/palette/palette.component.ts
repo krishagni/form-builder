@@ -1,7 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Control } from '../model/control';
-import { Textbox } from '../model/textbox';
-import { RadioButton } from '../model/radio-button';
 
 @Component({
   selector: 'fb-palette',
@@ -12,9 +9,9 @@ export class PaletteComponent implements OnInit {
 
   @Input() paletteControls: any[];
 
-  @Output() onSelectedControlFromPalette = new EventEmitter<any>();
+  @Output() onControlSelect = new EventEmitter<any>();
 
-  selectedControl;
+  selectedControl: any;
 
   constructor() {
   }
@@ -22,9 +19,9 @@ export class PaletteComponent implements OnInit {
   ngOnInit() {
   }
 
-  onControlSelectionChange(paletteControl) {
-    this.selectedControl = paletteControl;
-    this.onSelectedControlFromPalette.emit(paletteControl);
+  changeSelectedControl(selectedControl) {
+    this.selectedControl = selectedControl;
+    this.onControlSelect.emit(this.selectedControl);
   }
   
 }
