@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Control } from './model/control';
-import { Config } from './config/config';
+import { RegistryService } from './config/registry.service';
 
 @Component({
   selector: 'fb-root',
@@ -18,18 +18,11 @@ export class AppComponent implements OnInit {
 
   selectedControl: Control;
 
-  constructor(private config: Config) {
+  constructor(private registryService: RegistryService) {
   }
 
   ngOnInit() {
-    this.config.getPaletteControls().subscribe(
-      data => {
-        this.paletteControls = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    this.paletteControls = this.registryService.getPaletteControls();
   }
 
   onPaletteControlSelect(selectedPaletteControl) {
