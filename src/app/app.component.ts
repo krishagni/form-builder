@@ -10,11 +10,16 @@ import { RegistryService } from './config/registry.service';
 })
 export class AppComponent implements OnInit {
 
+  form = {
+    counter: 0,
+    caption: "",
+    name: "",
+    controls: []
+  };
+
   paletteControls: any[];
 
   selectedPaletteControl: any;
-
-  controls: any[] = [];
 
   selectedControl: Control;
 
@@ -25,23 +30,24 @@ export class AppComponent implements OnInit {
     this.paletteControls = this.registryService.getPaletteControls();
   }
 
-  onPaletteControlSelect(selectedPaletteControl) {
+  private onPaletteControlSelect(selectedPaletteControl) {
     this.selectedPaletteControl = selectedPaletteControl;
   }
 
-  addControlToForm() {
+  private addControlToForm() {
     if (this.selectedPaletteControl) {
-      this.controls = this.controls.concat(
-        [[this.selectedPaletteControl.modelClass.getInstance()]]
+      this.form.controls = this.form.controls.concat(
+        [[this.selectedPaletteControl.modelClass.getInstance(++this.form.counter)]]
       );
     }
   }
 
-  onControlSelect(selectedControl) {
+  private onControlSelect(selectedControl) {
     this.selectedControl = selectedControl;
   }
 
-  writeForm(type): any {
+  private writeForm(type): any {
+    //TODO
     /*
       Here controls array will be iterated and on each control its
       serialize method will be called to get its json or xml representation.
@@ -50,9 +56,12 @@ export class AppComponent implements OnInit {
     */
   }
 
-  constructForm(type): any {
+  private constructForm(type): any {
+    // TODO
     /*
-      Here received json will be parsed & controls array will be constructed.
+      Here received form object will parsed to set name, caption & controls of the form.
+      While parsing each form control, names of controls will be parsed to get max count 
+      value, this max count will be counter for the form builder app
     */
   }
   

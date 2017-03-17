@@ -2,15 +2,16 @@ import { Component, OnInit, OnDestroy, Compiler, ComponentRef, ViewChild,
   ComponentFactoryResolver, ViewContainerRef, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { Control } from '../model/control';
-import { IControlData } from './control-data';
+import { Control } from '../../model/control';
+import { IControlPreviewData } from './control-preview-data';
+import { RegistryService } from '../../config/registry.service';
 
 @Component({
-  selector: 'fb-control',
-  templateUrl: './control.component.html',
-  styleUrls: ['./control.component.css']
+  selector: 'fb-control-preview',
+  templateUrl: './control-preview.component.html',
+  styleUrls: ['./control-preview.component.css']
 })
-export class ControlComponent implements OnInit, OnDestroy {
+export class ControlPreviewComponent implements OnInit, OnDestroy {
 
   @ViewChild('target', { read: ViewContainerRef }) target: ViewContainerRef;
 
@@ -20,13 +21,13 @@ export class ControlComponent implements OnInit, OnDestroy {
 
   componentRef: ComponentRef<Component>;
   
-  private isViewInitialized: boolean = false;
+  isViewInitialized: boolean = false;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
-    private compiler: Compiler) {
+    private compiler: Compiler, private registryService: RegistryService) {
   }
 
-  updateComponent() {
+  private updateComponent() {
     if (!this.isViewInitialized) {
       return;
     }
@@ -34,9 +35,9 @@ export class ControlComponent implements OnInit, OnDestroy {
       this.componentRef.destroy();
     }
     let factory = this.componentFactoryResolver.resolveComponentFactory
-      (this.control.componentType);
+      (this.registryService.getPreviewComponent(this.control.type));
     this.componentRef = this.target.createComponent(factory);
-    let component = (<IControlData>this.componentRef.instance);
+    let component = (<IControlPreviewData>this.componentRef.instance);
     component.control = this.control;
     component.parentGroup = this.parentGroup;
   }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ControlComponent } from './control.component';
+import { ControlPreviewComponent } from './control-preview.component';
 
 describe('ControlComponent', () => {
-  let component: ControlComponent;
-  let fixture: ComponentFixture<ControlComponent>;
+  let component: ControlPreviewComponent;
+  let fixture: ComponentFixture<ControlPreviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ControlComponent ]
+      declarations: [ ControlPreviewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ControlComponent);
+    fixture = TestBed.createComponent(ControlPreviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

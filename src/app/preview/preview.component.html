@@ -14,8 +14,8 @@
         <a class="col" *ngFor="let control of controlsRow;"
           (click)="changeSelectedControl(control)"
           [class.active]="selectedControl == control">
-          <fb-control [control]="control" [parentGroup]="mainForm">
-          </fb-control>
+          <fb-control-preview [control]="control" [parentGroup]="mainForm">
+          </fb-control-preview>
         </a>
       </div>
     </form>

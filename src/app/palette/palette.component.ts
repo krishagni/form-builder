@@ -19,7 +19,7 @@ export class PaletteComponent implements OnInit {
   ngOnInit() {
   }
 
-  changeSelectedControl(selectedControl) {
+  private changeSelectedControl(selectedControl) {
     this.selectedControl = selectedControl;
     this.onControlSelect.emit(this.selectedControl);
   }

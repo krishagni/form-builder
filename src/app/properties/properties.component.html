@@ -9,18 +9,9 @@
     </h4>
   </div>
   <div class="panel-body">
-    <div *ngIf="selectedControl">
-      <form [formGroup]="propertiesForm" (ngSubmit)="onSubmit()">
-        <div class="row" *ngFor="let property of properties; let idx = index">
-          <div class="col">
-            <fb-control [control]="property.property" [parentGroup]="propertiesForm">
-            </fb-control>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary" [disabled]="propertiesForm.invalid">
-          Save
-        </button>
-      </form>
+    <div *ngIf="control">
+      <fb-control-properties [control]="control">
+      </fb-control-properties>
     </div>
   </div>
 </div>

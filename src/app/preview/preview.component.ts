@@ -21,7 +21,7 @@ export class PreviewComponent implements OnInit, OnChanges {
   constructor() {
   }
 
-  initForm() {
+  private initForm() {
     this.mainForm = new FormGroup({});
     if(this.controls) {
       this.controls.forEach(controlsRow => {
@@ -43,7 +43,7 @@ export class PreviewComponent implements OnInit, OnChanges {
     this.initForm();
   }
 
-  changeSelectedControl(selectedControl) {
+  private changeSelectedControl(selectedControl) {
     if (this.selectedControl != selectedControl) {
       this.selectedControl = selectedControl;
       this.onControlSelect.emit(this.selectedControl);

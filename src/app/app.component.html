@@ -1,25 +1,58 @@
 <div class="page-wrapper">
-  <div class="col-12">
-    <button class="col-sm-4" type="button" class="btn btn-primary" (click)="addControlToForm()">
-      <i class="fa fa-plus-circle" aria-hidden="true">
-      </i>
-      <span>
-        Add Control
-      </span>
-    </button>
+  <div class="fb-header">
+    <div class="row">
+      <div class="col-7 offset-2">
+        <div class="row">
+          <div class="col form-group">
+            <label>
+              Display Name
+            </label>
+            <input class="form-control" type="text" [value]="form.caption"/>
+          </div>
+          <div class="col form-group">
+            <label>
+              Form Name
+            </label>
+            <input class="form-control" type="text" [value]="form.name"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-7 offset-2">
+        <div class="row justify-content-between">
+          <div class="col-4">
+            <button type="button" class="btn btn-primary" (click)="addControlToForm()">
+              <i class="fa fa-plus-circle" aria-hidden="true">
+              </i>
+              <span>
+                Add Control
+              </span>
+            </button>
+          </div>
+          <div class="col-4">
+            <button type="button" class="btn btn-primary">
+              <span>
+                Save Form
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="row">
-    <div class="col-lg-2 panel-container">
+  <div class="row fb-body">
+    <div class="col-2 panel-container">
       <fb-palette [paletteControls]="paletteControls" 
         (onControlSelect)="onPaletteControlSelect($event)">
       </fb-palette>
     </div>
-    <div class="col-lg-7 panel-container">
-      <fb-preview [controls]="controls" (onControlSelect)="onControlSelect($event)">
+    <div class="col-7 panel-container">
+      <fb-preview [controls]="form.controls" (onControlSelect)="onControlSelect($event)">
       </fb-preview>
     </div>
-    <div class="col-lg-3 panel-container">
-      <fb-properties [selectedControl]="selectedControl">
+    <div class="col-3 panel-container">
+      <fb-properties [control]="selectedControl">
       </fb-properties>
     </div>
   </div>

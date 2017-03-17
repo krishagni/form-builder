@@ -8,6 +8,14 @@
     padding-right: 0px;
 }
 
-.page-wrapper, .page-wrapper>.row {
+.page-wrapper {
     height: 100%;
+}
+
+.fb-header {
+    height: 15%;
+}
+
+.fb-body {
+    height: 85%;
 }

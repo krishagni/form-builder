@@ -1,0 +1,25 @@
+<div *ngIf="properties">
+  <form [formGroup]="propertiesForm" (ngSubmit)="onSubmit()">
+    <fb-general-properties [properties]="properties" [propertiesForm]="propertiesForm">
+    </fb-general-properties>
+    <div class="row">
+      <div class="col">
+        <fb-textbox-preview [control]="properties.value.model" [parentGroup]="propertiesForm">
+        </fb-textbox-preview>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <fb-textbox-preview [control]="properties.minLength.model" [parentGroup]="propertiesForm">
+        </fb-textbox-preview>
+      </div>
+      <div class="col">
+        <fb-textbox-preview [control]="properties.maxLength.model" [parentGroup]="propertiesForm">
+        </fb-textbox-preview>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="propertiesForm.invalid">
+      Save
+    </button>
+  </form>
+</div>

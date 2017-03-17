@@ -4,8 +4,6 @@ export abstract class Control {
 
   type: string;
 
-  componentType: any;
-
   name: string;
 
   caption: string;
@@ -26,7 +24,6 @@ export abstract class Control {
 
   constructor(control) {
     this.type = control.type || '';
-    this.componentType = control.componentType;
     this.name = control.name || '';
     this.caption = control.caption || '';
     this.toolTip = control.toolTip || '';
@@ -38,12 +35,15 @@ export abstract class Control {
     this.showInGrid = !!control.showInGrid;
   }
 
-  public abstract getCustomProperties(): any[];
+  public abstract getCustomProperties(): any;
 
-  public getProperties(): any[] {
-    var generalProperties = GeneralProperties.getGeneralProperties(this);
+  public getProperties(): any {
+    var properties = GeneralProperties.getGeneralProperties(this);
     var customProperties = this.getCustomProperties();
-    return generalProperties.concat(customProperties);
+    for (var key in customProperties) {
+      properties[key] = customProperties[key];
+    }
+    return properties;
   }
 
   public abstract serialize(type): any;

@@ -1,6 +1,4 @@
 import { Control } from './control';
-import { RadioButtonComponent } from '../controls/radio-button/radio-button.component';
-import { ControlCounter } from '../config/control-counter';
 
 export class RadioButton extends Control {
 
@@ -20,12 +18,10 @@ export class RadioButton extends Control {
     this.pvOrdering = radioButton.pvOrdering || "NONE";
   }
 
-  public static getInstance(): RadioButton {
-    var counter = ControlCounter.getCounter();
+  public static getInstance(counter): RadioButton {
     // TODO: integrate i18n
     return new RadioButton({
       type: "radioButton",
-      componentType: RadioButtonComponent,
       name: "radioButton" + counter,
       caption: "Radio Button Label",
       udn: "radioButtonLabel" + counter,
@@ -43,8 +39,8 @@ export class RadioButton extends Control {
     });
   }
 
-  public getCustomProperties(): any[] {
-    return [];
+  public getCustomProperties(): any {
+    return {};
   }
 
   public serialize(type): any {

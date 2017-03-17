@@ -1,7 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Type, Component } from '@angular/core';
 
 import { Textbox } from '../model/textbox';
+import { TextboxPreviewComponent } from '../controls/textbox/preview/textbox-preview.component';
+import { TextboxPropertiesComponent } from 
+'../controls/textbox/properties/textbox-properties.component';
 import { RadioButton } from '../model/radio-button';
+import { RadioButtonPreviewComponent } from 
+'../controls/radio-button/preview/radio-button-preview.component';
+import { RadioButtonPropertiesComponent } from 
+'../controls/radio-button/properties/radio-button-properties.component';
 
 @Injectable()
 export class RegistryService {
@@ -11,16 +18,20 @@ export class RegistryService {
     You can add new controls or remove any controls by
     using register & deregister methods of this service.
   */
-  private paletteControls: any = {
+  paletteControls: any = {
     "textbox": {
       modelClass: Textbox,
       label: "Textbox",
-      iconClass: "fa fa-text-width"
+      iconClass: "fa fa-text-width",
+      previewComponent: TextboxPreviewComponent,
+      propertiesComponent: TextboxPropertiesComponent
     },
     "radioButton": {
       modelClass: RadioButton,
       label: "Radio Button",
-      iconClass: "fa fa-list"
+      iconClass: "fa fa-list",
+      previewComponent: RadioButtonPreviewComponent,
+      propertiesComponent: RadioButtonPropertiesComponent
     }
   };
 
@@ -42,6 +53,18 @@ export class RegistryService {
       paletteControls.push(this.paletteControls[key]);
     }
     return paletteControls;
+  }
+
+  public getPreviewComponent(type): Type<Component>{
+    if (this.paletteControls.hasOwnProperty(type)) {
+      return this.paletteControls[type].previewComponent;
+    }
+  }
+
+  public getPropertiesComponent(type): Type<Component>{
+    if (this.paletteControls.hasOwnProperty(type)) {
+      return this.paletteControls[type].propertiesComponent;
+    }
   }
 
 }
