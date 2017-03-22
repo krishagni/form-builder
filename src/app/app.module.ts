@@ -7,19 +7,11 @@ import { AppComponent } from './app.component';
 import { PaletteComponent } from './palette/palette.component';
 import { PreviewComponent } from './preview/preview.component';
 import { PropertiesComponent } from './properties/properties.component';
-import { RegistryService } from './config/registry.service';
-import { ControlPreviewComponent } from './controls/control-preview/control-preview.component';
-import { TextboxPreviewComponent } from './controls/textbox/preview/textbox-preview.component';
-import { RadioButtonPreviewComponent } from 
-'./controls/radio-button/preview/radio-button-preview.component';
-import { GeneralPropertiesComponent } from 
-'./controls/general-properties/general-properties.component';
-import { ControlPropertiesComponent } from 
-'./controls/control-properties/control-properties.component';
-import { TextboxPropertiesComponent } from 
-'./controls/textbox/properties/textbox-properties.component';
-import { RadioButtonPropertiesComponent } from 
-'./controls/radio-button/properties/radio-button-properties.component';
+import { RegistryService, UtilService } from './providers';
+import { ControlComponent, ControlPropsComponent, GeneralPropsComponent } from './controls';
+import { TextboxComponent, TextboxPropsComponent } from './controls/textbox';
+import { RadioButtonComponent, RadioButtonPropsComponent } from './controls/radio-button';
+import { NumberComponent, NumberPropsComponent } from './controls/number';
 
 @NgModule({
   
@@ -28,13 +20,15 @@ import { RadioButtonPropertiesComponent } from
     PaletteComponent,
     PreviewComponent,
     PropertiesComponent,
-    ControlPreviewComponent,
-    TextboxPreviewComponent,
-    RadioButtonPreviewComponent,
-    GeneralPropertiesComponent,
-    ControlPropertiesComponent,
-    TextboxPropertiesComponent,
-    RadioButtonPropertiesComponent
+    ControlComponent,
+    ControlPropsComponent,
+    GeneralPropsComponent,
+    TextboxComponent,
+    TextboxPropsComponent,
+    RadioButtonComponent,
+    RadioButtonPropsComponent,
+    NumberComponent,
+    NumberPropsComponent
   ],
 
   imports: [
@@ -45,17 +39,20 @@ import { RadioButtonPropertiesComponent } from
   ],
 
   entryComponents: [
-    ControlPreviewComponent,
-    TextboxPreviewComponent,
-    RadioButtonPreviewComponent,
-    GeneralPropertiesComponent,
-    ControlPropertiesComponent,
-    TextboxPropertiesComponent,
-    RadioButtonPropertiesComponent
+    ControlComponent,
+    ControlPropsComponent,
+    GeneralPropsComponent,
+    TextboxComponent,
+    TextboxPropsComponent,
+    RadioButtonComponent,
+    RadioButtonPropsComponent,
+    NumberComponent,
+    NumberPropsComponent
   ],
 
   providers: [
-    RegistryService
+    RegistryService,
+    UtilService
   ],
 
   bootstrap: [AppComponent]

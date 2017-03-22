@@ -1,0 +1,13 @@
+<form [formGroup]="propsForm" (ngSubmit)="onSubmit()">
+  <fb-general-props [props]="props" [propsForm]="propsForm">
+  </fb-general-props>
+  <div #target>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button type="submit" class="btn btn-primary" [disabled]="propsForm.invalid">
+        Save
+      </button>
+    </div>
+  </div>
+</form>

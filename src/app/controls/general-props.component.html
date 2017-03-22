@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col">
+    <fb-textbox [control]="props.caption.model" [parentGroup]="propsForm">
+    </fb-textbox>
+    <div *ngFor="let errorKey of props.caption.errorKeys;">
+      <div class="error" *ngIf="propsForm.get('caption').hasError(errorKey)">
+        {{ props.caption.errorMessages[errorKey] }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <fb-textbox [control]="props.toolTip.model" [parentGroup]="propsForm">
+    </fb-textbox>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <fb-textbox [control]="props.udn.model" [parentGroup]="propsForm">
+    </fb-textbox>
+    <div *ngFor="let errorKey of props.udn.errorKeys;">
+      <div class="error" *ngIf="propsForm.get('udn').hasError(errorKey)">
+        {{ props.udn.errorMessages[errorKey] }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <fb-textbox [control]="props.width.model" [parentGroup]="propsForm">
+    </fb-textbox>
+  </div>
+</div>

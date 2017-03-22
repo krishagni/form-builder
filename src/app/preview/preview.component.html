@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel">
   <div class="panel-heading">
     <h4>
       <i class="fa fa-search-plus" aria-hidden="true">
@@ -14,8 +14,8 @@
         <a class="col" *ngFor="let control of controlsRow;"
           (click)="changeSelectedControl(control)"
           [class.active]="selectedControl == control">
-          <fb-control-preview [control]="control" [parentGroup]="mainForm">
-          </fb-control-preview>
+          <fb-control [control]="control" [parentGroup]="mainForm">
+          </fb-control>
         </a>
       </div>
     </form>

@@ -1,9 +1,0 @@
-<div *ngIf="properties">
-  <form [formGroup]="propertiesForm" (ngSubmit)="onSubmit()">
-    <fb-general-properties [properties]="properties" [propertiesForm]="propertiesForm">
-    </fb-general-properties>
-    <button type="submit" class="btn btn-primary" [disabled]="propertiesForm.invalid">
-      Save
-    </button>
-  </form>
-</div>

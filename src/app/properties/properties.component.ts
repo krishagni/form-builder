@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Control } from '../model/control';
+import { Control } from '../model';
 
 @Component({
   selector: 'fb-properties',

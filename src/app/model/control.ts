@@ -1,5 +1,3 @@
-import { GeneralProperties } from './general-properties';
-
 export abstract class Control {
 
   type: string;
@@ -35,16 +33,14 @@ export abstract class Control {
     this.showInGrid = !!control.showInGrid;
   }
 
-  public abstract getCustomProperties(): any;
-
-  public getProperties(): any {
-    var properties = GeneralProperties.getGeneralProperties(this);
-    var customProperties = this.getCustomProperties();
-    for (var key in customProperties) {
-      properties[key] = customProperties[key];
+  public concatProps(genProps, customProps) {
+    for (var key in customProps) {
+      genProps[key] = customProps[key];
     }
-    return properties;
+    return genProps;
   }
+
+  public abstract getProps(): any;
 
   public abstract serialize(type): any;
 

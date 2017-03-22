@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Control } from './model/control';
-import { RegistryService } from './config/registry.service';
+import { Control } from './model';
+import { RegistryService } from './providers';
 
 @Component({
   selector: 'fb-root',
@@ -23,6 +23,8 @@ export class AppComponent implements OnInit {
 
   selectedControl: Control;
 
+  paletteControlDeselect: boolean = false;
+
   constructor(private registryService: RegistryService) {
   }
 
@@ -32,6 +34,7 @@ export class AppComponent implements OnInit {
 
   private onPaletteControlSelect(selectedPaletteControl) {
     this.selectedPaletteControl = selectedPaletteControl;
+    this.paletteControlDeselect = false;
   }
 
   private addControlToForm() {
@@ -39,6 +42,8 @@ export class AppComponent implements OnInit {
       this.form.controls = this.form.controls.concat(
         [[this.selectedPaletteControl.modelClass.getInstance(++this.form.counter)]]
       );
+      this.paletteControlDeselect = true;
+      this.selectedPaletteControl = undefined;
     }
   }
 

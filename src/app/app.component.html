@@ -1,49 +1,48 @@
-<div class="page-wrapper">
-  <div class="fb-header">
+<div class="jumbotron jumbotron-fluid align-items-center justify-content-center">
+  <div class="col-7 offset-2">
     <div class="row">
-      <div class="col-7 offset-2">
-        <div class="row">
-          <div class="col form-group">
-            <label>
-              Display Name
-            </label>
-            <input class="form-control" type="text" [value]="form.caption"/>
-          </div>
-          <div class="col form-group">
-            <label>
-              Form Name
-            </label>
-            <input class="form-control" type="text" [value]="form.name"/>
-          </div>
-        </div>
+      <div class="col-6 form-group">
+        <label>
+          Display Name
+        </label>
+        <input class="form-control" type="text" [value]="form.caption"/>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-7 offset-2">
-        <div class="row justify-content-between">
-          <div class="col-4">
-            <button type="button" class="btn btn-primary" (click)="addControlToForm()">
-              <i class="fa fa-plus-circle" aria-hidden="true">
-              </i>
-              <span>
-                Add Control
-              </span>
-            </button>
-          </div>
-          <div class="col-4">
-            <button type="button" class="btn btn-primary">
-              <span>
-                Save Form
-              </span>
-            </button>
-          </div>
-        </div>
+      <div class="col-6 form-group">
+        <label>
+          Form Name
+        </label>
+        <input class="form-control" type="text" [value]="form.name"/>
       </div>
     </div>
   </div>
-  <div class="row fb-body">
+  <div class="col-7 offset-2">
+    <div class="row">
+      <div class="col-6">
+        <button type="button" class="btn btn-primary" (click)="addControlToForm()">
+          <i class="fa fa-plus-circle" aria-hidden="true">
+          </i>
+          <span>
+            Add Control to Form
+          </span>
+        </button>
+      </div>
+      <div class="col-6">
+        <button type="button" class="btn btn-primary">
+          <i class="fa fa-floppy-o" aria-hidden="true">
+          </i>
+          <span>
+            Save Form
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
     <div class="col-2 panel-container">
-      <fb-palette [paletteControls]="paletteControls" 
+      <fb-palette [paletteControls]="paletteControls"
+        [paletteControlDeselect]="paletteControlDeselect"
         (onControlSelect)="onPaletteControlSelect($event)">
       </fb-palette>
     </div>

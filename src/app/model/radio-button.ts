@@ -1,4 +1,5 @@
 import { Control } from './control';
+import { GeneralProps } from './general-props';
 
 export class RadioButton extends Control {
 
@@ -39,8 +40,9 @@ export class RadioButton extends Control {
     });
   }
 
-  public getCustomProperties(): any {
-    return {};
+  public getProps(): any {
+    var customProps = {};
+    return this.concatProps(GeneralProps.getGeneralProps(this), customProps);
   }
 
   public serialize(type): any {

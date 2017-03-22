@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { Control } from '../model/control';
+import { Control } from '../model';
 
 @Component({
   selector: 'fb-preview',
@@ -23,7 +23,9 @@ export class PreviewComponent implements OnInit, OnChanges {
 
   private initForm() {
     this.mainForm = new FormGroup({});
-    if(this.controls) {
+    if(this.controls.length>0) {
+      this.selectedControl = this.controls[this.controls.length-1][0];
+      this.onControlSelect.emit(this.selectedControl);
       this.controls.forEach(controlsRow => {
         controlsRow.forEach(control => {
           this.mainForm.addControl(

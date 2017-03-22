@@ -3,16 +3,12 @@ html, body, .panel {
     height: 100%;
 }
 
-.panel {
-    margin-bottom: 0px !important;
-}
-
 .panel-heading {
-    height: 60px;;
+    height: 40px;
 }
 
 .panel-body {
-    height: calc(100% - 60px );
+    height: calc(100% - 40px);
     overflow: auto;
 }
 
@@ -23,4 +19,14 @@ i {
 a {
     cursor: pointer !important;
     border: solid 2px white;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.row {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
