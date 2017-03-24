@@ -28,7 +28,29 @@
 </div>
 <div class="row">
   <div class="col">
+    <fb-single-select [control]="props.labelPosition.model" [parentGroup]="propsForm">
+    </fb-single-select>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <fb-single-checkbox [control]="props.phi.model" [parentGroup]="propsForm">
+    </fb-single-checkbox>
+  </div>
+  <div class="col">
+    <fb-single-checkbox [control]="props.mandatory.model" [parentGroup]="propsForm">
+    </fb-single-checkbox>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
     <fb-textbox [control]="props.width.model" [parentGroup]="propsForm">
     </fb-textbox>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <fb-single-checkbox [control]="props.showInGrid.model" [parentGroup]="propsForm">
+    </fb-single-checkbox>
   </div>
 </div>

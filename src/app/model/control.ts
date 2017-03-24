@@ -10,6 +10,8 @@ export abstract class Control {
 
   udn: string;
 
+  labelPosition: string;
+
   value: any;
 
   phi: boolean;
@@ -26,7 +28,8 @@ export abstract class Control {
     this.caption = control.caption || '';
     this.toolTip = control.toolTip || '';
     this.udn = control.udn || '';
-    this.value = control.value || '';
+    this.labelPosition = control.labelPosition || '';
+    this.value = control.value==undefined?'':control.value;
     this.phi = !!control.phi;
     this.mandatory = !!control.mandatory;
     this.width = control.width || '';

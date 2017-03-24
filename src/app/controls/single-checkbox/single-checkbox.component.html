@@ -1,0 +1,7 @@
+<div [formGroup]="parentGroup">
+  <input type="checkbox" [name]="control.name" [value]="control.value"
+      [formControlName]="control.name"/>
+  <label [title]="control.toolTip">
+    {{ control.caption }}
+  </label>
+</div>

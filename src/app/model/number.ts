@@ -1,5 +1,4 @@
-import { Control } from './control';
-import { GeneralProps } from './general-props';
+import { Control, GeneralProps } from '.';
 
 export class Number extends Control {
 

@@ -1,6 +1,6 @@
 import { Validators } from '@angular/forms';
 
-import { Textbox } from './textbox';
+import { Textbox, SingleCheckbox, SingleSelect } from '.';
 
 export class GeneralProps {
 
@@ -71,12 +71,53 @@ export class GeneralProps {
           maxlength: "Maximum 25 characters"
         }
       },
+      labelPosition: {
+        model: new SingleSelect({
+          type: "singleSelect",
+          name: "labelPosition",
+          caption: "Label Position",
+          pvs: [
+            "LEFT_SIDE",
+            "RIGHT_SIDE",
+            "CENTER"
+          ],
+          value: control.labelPosition
+        }),
+        validations: []
+      },
+      phi: {
+        model: new SingleCheckbox({
+          type: "singleCheckbox",
+          name: "phi",
+          caption: "PHI",
+          value: control.phi
+        }),
+        validations: []
+      },
+      mandatory: {
+        model: new SingleCheckbox({
+          type: "singleCheckbox",
+          name: "mandatory",
+          caption: "Mandatory",
+          value: control.mandatory
+        }),
+        validations: []
+      },
       width: {
         model: new Textbox({
           type: "textbox",
           name: "width",
           caption: "Width",
           value: control.width
+        }),
+        validations: []
+      },
+      showInGrid: {
+        model: new SingleCheckbox({
+          type: "singleCheckbox",
+          name: "showInGrid",
+          caption: "Show In Grid",
+          value: control.showInGrid
         }),
         validations: []
       }

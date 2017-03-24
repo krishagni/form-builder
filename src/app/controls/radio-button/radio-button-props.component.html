@@ -1,1 +1,20 @@
-
+<div class="row">
+  <div class="col">
+    <fb-radio-button [control]="props.pvOrdering.model" [parentGroup]="propsForm">
+    </fb-radio-button>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <fb-number [control]="props.optionsPerRow.model" [parentGroup]="propsForm">
+    </fb-number>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <fb-single-select [control]="props.dataType.model" [parentGroup]="propsForm">
+    </fb-single-select>
+  </div>
+</div>
+<fb-pv [pvs]="props.pvs.model.value" [propsForm]="propsForm">
+</fb-pv>

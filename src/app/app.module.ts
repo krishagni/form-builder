@@ -9,9 +9,12 @@ import { PreviewComponent } from './preview/preview.component';
 import { PropertiesComponent } from './properties/properties.component';
 import { RegistryService, UtilService } from './providers';
 import { ControlComponent, ControlPropsComponent, GeneralPropsComponent } from './controls';
+import { PvComponent } from './controls/pv';
 import { TextboxComponent, TextboxPropsComponent } from './controls/textbox';
 import { RadioButtonComponent, RadioButtonPropsComponent } from './controls/radio-button';
 import { NumberComponent, NumberPropsComponent } from './controls/number';
+import { SingleCheckboxComponent, SingleCheckboxPropsComponent } from './controls/single-checkbox';
+import { SingleSelectComponent } from './controls/single-select';
 
 @NgModule({
   
@@ -23,12 +26,16 @@ import { NumberComponent, NumberPropsComponent } from './controls/number';
     ControlComponent,
     ControlPropsComponent,
     GeneralPropsComponent,
+    PvComponent,
     TextboxComponent,
     TextboxPropsComponent,
     RadioButtonComponent,
     RadioButtonPropsComponent,
     NumberComponent,
-    NumberPropsComponent
+    NumberPropsComponent,
+    SingleCheckboxComponent,
+    SingleCheckboxPropsComponent,
+    SingleSelectComponent
   ],
 
   imports: [
@@ -42,12 +49,16 @@ import { NumberComponent, NumberPropsComponent } from './controls/number';
     ControlComponent,
     ControlPropsComponent,
     GeneralPropsComponent,
+    PvComponent,
     TextboxComponent,
     TextboxPropsComponent,
     RadioButtonComponent,
     RadioButtonPropsComponent,
     NumberComponent,
-    NumberPropsComponent
+    NumberPropsComponent,
+    SingleCheckboxComponent,
+    SingleCheckboxPropsComponent,
+    SingleSelectComponent
   ],
 
   providers: [

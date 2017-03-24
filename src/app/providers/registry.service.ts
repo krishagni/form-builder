@@ -1,9 +1,8 @@
 import { Injectable, Type, Component } from '@angular/core';
 
-import { Textbox, RadioButton, Number } from '../model';
+import { Textbox, RadioButton } from '../model';
 import { TextboxComponent, TextboxPropsComponent } from '../controls/textbox';
 import { RadioButtonComponent, RadioButtonPropsComponent } from '../controls/radio-button';
-import { NumberComponent, NumberPropsComponent } from '../controls/number';
 
 @Injectable()
 export class RegistryService {
@@ -27,13 +26,6 @@ export class RegistryService {
       iconClass: "fa fa-list",
       controlComponent: RadioButtonComponent,
       propsComponent: RadioButtonPropsComponent
-    },
-    "number": {
-      modelClass: Number,
-      label: "Number",
-      iconClass: "fa fa-text-width",
-      controlComponent: NumberComponent,
-      propsComponent: NumberPropsComponent
     }
   };
 

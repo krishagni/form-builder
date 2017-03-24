@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy, ComponentRef, ViewChild,
 import { FormGroup } from '@angular/forms';
 
 import { Control } from '../model';
-import { IControlData } from './control-data';
+import { IControlData } from '.';
 import { RegistryService, UtilService } from '../providers';
 
 @Component({
@@ -21,16 +21,11 @@ export class ControlComponent implements OnInit, OnDestroy {
 
   componentRef: ComponentRef<Component>;
   
-  isViewInitialized: boolean = false;
-
   constructor(private registryService: RegistryService,
     private utilService: UtilService) {
   }
 
   private updateComponent() {
-    if (!this.isViewInitialized) {
-      return;
-    }
     this.componentRef = this.utilService.createComponent(
       this.componentRef, this.target,
       this.registryService.getControlComponent(this.control.type));
@@ -41,7 +36,6 @@ export class ControlComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.control) {
-      this.isViewInitialized = true;
       this.updateComponent();
     }
   }

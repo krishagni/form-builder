@@ -1,6 +1,4 @@
-import { Control } from './control';
-import { Number } from './number';
-import { GeneralProps } from './general-props';
+import { Control, GeneralProps, Number, SingleCheckbox } from '.';
 
 export class Textbox extends Control {
 
@@ -8,10 +6,16 @@ export class Textbox extends Control {
 
   maxLength: number;
 
+  url: boolean;
+
+  password: boolean;
+
   constructor(textbox) {
     super(textbox);
     this.minLength = textbox.minLength;
     this.maxLength = textbox.maxLength;
+    this.url = !!textbox.url;
+    this.password = !!textbox.password;
   }
 
   public static getInstance(counter): Textbox {
@@ -20,7 +24,8 @@ export class Textbox extends Control {
       type: "textbox",
       name: "textbox" + counter,
       caption: "Textbox Label",
-      udn: "textboxLabel" + counter
+      udn: "textboxLabel" + counter,
+      labelPosition: "LEFT_SIDE"
     });
   }
 
@@ -54,6 +59,24 @@ export class Textbox extends Control {
           value: this.maxLength,
           minValue: 5,
           maxValue: 25
+        }),
+        validations: []
+      },
+      url: {
+        model: new SingleCheckbox({
+          type: "singleCheckbox",
+          name: "url",
+          caption: "URL",
+          value: this.url
+        }),
+        validations: []
+      },
+      password: {
+        model: new SingleCheckbox({
+          type: "singleCheckbox",
+          name: "password",
+          caption: "Password",
+          value: this.password
         }),
         validations: []
       }

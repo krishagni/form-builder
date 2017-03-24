@@ -3,7 +3,7 @@ import { Component, OnInit, OnChanges, OnDestroy, ComponentRef, ViewChild,
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { Control } from '../model';
-import { IControlPropsData } from './control-props-data';
+import { IControlPropsData } from '.';
 import { RegistryService, UtilService } from '../providers';
 
 @Component({

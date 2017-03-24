@@ -6,6 +6,16 @@
 </div>
 <div class="row">
   <div class="col">
+    <fb-single-checkbox [control]="props.url.model" [parentGroup]="propsForm">
+    </fb-single-checkbox>
+  </div>
+  <div class="col">
+    <fb-single-checkbox [control]="props.password.model" [parentGroup]="propsForm">
+    </fb-single-checkbox>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
     <fb-number [control]="props.minLength.model" [parentGroup]="propsForm">
     </fb-number>
   </div>

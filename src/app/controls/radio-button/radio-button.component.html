@@ -3,11 +3,11 @@
     {{control.caption}}
   </label>
   <div>
-    <label *ngFor="let pv of control.permissibleValues; let pvIdx = index" 
-      [title]="control.toolTip" [ngStyle]="{'width': 100/control.optionsPerRow + '%'}">
-      <input type="radio" [name]="control.name" [formControlName]="control.name"
-        [value]="pv.value"/>
-      {{ pv.value }}
+    <label *ngFor="let pv of control.pvs" [title]="control.toolTip"
+      [ngStyle]="{'width': 100/control.optionsPerRow + '%'}">
+      <input type="radio" [formControlName]="control.name"
+        [value]="pv"/>
+      {{ pv }}
     </label>
   </div>
 </div>
