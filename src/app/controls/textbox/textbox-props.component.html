@@ -2,6 +2,11 @@
   <div class="col">
     <fb-textbox [control]="props.value.model" [parentGroup]="propsForm">
     </fb-textbox>
+    <div *ngFor="let errorKey of props.value.errorKeys;">
+      <div class="error" *ngIf="propsForm.get('value').hasError(errorKey)">
+        {{ props.value.errorMessages[errorKey] }}
+      </div>
+    </div>
   </div>
 </div>
 <div class="row">

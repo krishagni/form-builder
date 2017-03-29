@@ -17,19 +17,16 @@ export class GeneralProps {
         }),
         validations: [
           Validators.required,
-          Validators.pattern("^[a-zA-Z0-9\\-\\s]+$"),
           Validators.minLength(5),
           Validators.maxLength(25)
         ],
         errorKeys: [
           "required",
-          "pattern",
           "minlength",
           "maxlength"
         ],
         errorMessages: {
           required: "Field Name is required",
-          pattern: "Field Name must contain alphanumeric characters",
           minlength: "Minimum 5 characters",
           maxlength: "Maximum 25 characters"
         }

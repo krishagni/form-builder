@@ -3,6 +3,6 @@
     {{control.caption}}
   </label>
   <input class="form-control" type="text" [title]="control.toolTip" 
-    [name]="control.name" [value]="control.value"
-    [formControlName]="control.name"/>
+    [name]="control.name" [value]="control.value" [minlength]="control.minLength"
+    [maxlength]="control.maxLength" [formControlName]="control.name"/>
 </div>

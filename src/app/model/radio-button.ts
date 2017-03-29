@@ -101,10 +101,30 @@ export class RadioButton extends Control {
     return this.concatProps(GeneralProps.getGeneralProps(this), customProps);
   }
 
-  public serialize(type): any {
+  public serialize(): any {
+    var radio = this.commonSerialize();
+    radio["pvOrdering"] = this.pvOrdering;
+    radio["dataType"] = this.dataType;
+    radio["pvs"] = [];
+    this.pvs.forEach(pv => {
+      radio["pvs"].push({
+        "value": pv
+      });
+    });
+    radio["optionsPerRow"] = this.optionsPerRow;
+    return radio;
   }
 
-  public deserialize(type): any {
+  public deserialize(radioMetadata): any {
+    var radio = this.commonDeserialize(radioMetadata);
+    radio["pvOrdering"] = radioMetadata.pvOrdering;
+    radio["dataType"] = radioMetadata.dataType;
+    radio["pvs"] = [];
+    radioMetadata.pvs.forEach(pv => {
+      radio["pvs"].push(pv.value);
+    });
+    radio["optionsPerRow"] = radioMetadata.optionsPerRow;
+    return new RadioButton(radio);
   }
   
 }

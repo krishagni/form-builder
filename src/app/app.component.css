@@ -3,7 +3,7 @@
 }
 
 .container-fluid {
-    height: calc(100% - 175px );
+    height: calc(100% - 200px );
 }
 
 .container-fluid>.row {

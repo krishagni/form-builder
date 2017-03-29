@@ -57,10 +57,10 @@ export class Number extends Control {
     return this.concatProps(GeneralProps.getGeneralProps(this), customProps);
   }
 
-  public serialize(type): any {
+  public serialize(): any {
   }
 
-  public deserialize(type): any {
+  public deserialize(metadata): any {
   }
   
 }

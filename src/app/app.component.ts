@@ -30,6 +30,63 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.paletteControls = this.registryService.getPaletteControls();
+    var formMetadata = {
+      "name":"demoForm",
+      "caption":"Demo Form",
+      "rows":[
+        [ // start of row
+          {
+            "type":"textbox",
+            "validationRules":[
+              {
+                "name":"required",
+                "params":{}
+              },
+              {
+                "name":"textLength",
+                "params": {
+                  "min": 5,
+                  "max": 32
+                }
+              }
+            ],
+            "defaultValue":"",
+            "toolTip":"",
+            "caption":"Given Name",
+            "url":false,
+            "password":false,
+            "labelPosition":"LEFT_SIDE",
+            "name":"ST7",
+            "udn":"givenName",
+            "width": 8
+          }
+        ], // end of row
+        [
+          {
+            "type":"radioButton",
+            "pvOrdering":"NONE",
+            "validationRules":[
+              {
+                "name": "required",
+                "params": {}
+              }
+            ],
+            "dataType":"STRING",
+            "toolTip":"",
+            "caption":"Do you smoke?",
+            "pvs":[
+              {"value":"Yes"},
+              {"value":"No"}
+            ],
+            "optionsPerRow":3,
+            "labelPosition":"LEFT_SIDE",
+            "name":"RB3",
+            "udn":"doYouSmoke"
+          }
+        ]
+      ]
+    };
+    this.constructForm(formMetadata);
   }
 
   private onPaletteControlSelect(selectedPaletteControl) {
@@ -51,23 +108,37 @@ export class AppComponent implements OnInit {
     this.selectedControl = selectedControl;
   }
 
-  private writeForm(type): any {
-    //TODO
-    /*
-      Here controls array will be iterated and on each control its
-      serialize method will be called to get its json or xml representation.
-      After iterating all controls json or xml representation of form
-      will be returned.
-    */
+  private writeForm(): any {
+    var formMetadata = {};
+    formMetadata["caption"] = this.form.caption;
+    formMetadata["name"] = this.form.name;
+    formMetadata["rows"] = [];
+    this.form.controls.forEach(controlRow => {
+      var row = [];
+      controlRow.forEach(control => {
+        row.push(control.serialize());
+      });
+      formMetadata["rows"].push(row);
+    });
+    console.log(formMetadata);
   }
 
-  private constructForm(type): any {
-    // TODO
-    /*
-      Here received form object will parsed to set name, caption & controls of the form.
-      While parsing each form control, names of controls will be parsed to get max count 
-      value, this max count will be counter for the form builder app
-    */
+  private constructForm(formMetadata): any {
+    this.form.caption = formMetadata.caption;
+    this.form.name = formMetadata.name;
+    formMetadata.rows.forEach(row => {
+      var controlRow = [];
+      row.forEach( controlMetadata => {
+        var counter = parseInt(controlMetadata.name.match(/(\d+)$/)[0], 10);
+        if (counter > this.form.counter) {
+          this.form.counter = counter;
+        }
+        var controlClass = this.registryService.getModel(controlMetadata.type);
+        var control  = controlClass.prototype.deserialize(controlMetadata);
+        controlRow.push(control);
+      });
+      this.form.controls.push(controlRow);
+    });
   }
   
 }

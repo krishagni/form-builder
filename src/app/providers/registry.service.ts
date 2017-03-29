@@ -61,4 +61,10 @@ export class RegistryService {
     }
   }
 
+  public getModel(type) {
+    if (this.paletteControls.hasOwnProperty(type)) {
+      return this.paletteControls[type].modelClass;
+    }
+  }
+
 }

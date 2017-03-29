@@ -1,3 +1,5 @@
+import { Validators } from '@angular/forms';
+
 import { Control, GeneralProps, Number, SingleCheckbox } from '.';
 
 export class Textbox extends Control {
@@ -36,9 +38,22 @@ export class Textbox extends Control {
           type: "textbox",
           name: "value",
           caption: "Default Value",
-          value: this.value
+          value: this.value,
+          minLength: this.minLength,
+          maxLength: this.maxLength
         }),
-        validations: []
+        validations: [
+          Validators.minLength(this.minLength),
+          Validators.maxLength(this.maxLength)
+        ],
+        errorKeys: [
+          "minlength",
+          "maxlength"
+        ],
+        errorMessages: {
+          minlength: "Minimum " + this.minLength + " characters",
+          maxlength: "Maximum " + this.maxLength + " characters"
+        }
       },
       minLength: {
         model: new Number({
@@ -46,8 +61,7 @@ export class Textbox extends Control {
           name: "minLength",
           caption: "Min Length",
           value: this.minLength,
-          minValue: 5,
-          maxValue: 25
+          minValue: 0
         }),
         validations: []
       },
@@ -57,8 +71,7 @@ export class Textbox extends Control {
           name: "maxLength",
           caption: "Max Length",
           value: this.maxLength,
-          minValue: 5,
-          maxValue: 25
+          minValue: 0
         }),
         validations: []
       },
@@ -84,10 +97,41 @@ export class Textbox extends Control {
     return this.concatProps(GeneralProps.getGeneralProps(this), customProps);
   }
 
-  public serialize(type): any {
+  public serialize(): any {
+    var textbox = this.commonSerialize();
+    textbox["defaultValue"] = this.value;
+    textbox["url"] = this.url || false;
+    textbox["password"] = this.password || false;
+    if (this.minLength || this.maxLength) {
+      var textLength = {
+        "name":"textLength",
+        "params": {}
+      };
+      if (this.minLength) {
+        textLength.params["min"] = this.minLength;
+      }
+      if (this.maxLength) {
+        textLength.params["max"] = this.maxLength;
+      }
+      textbox.validationRules.push(textLength);
+    }
+    return textbox;
   }
 
-  public deserialize(type): any {
+  public deserialize(textboxMetadata): any {
+    var textbox = this.commonDeserialize(textboxMetadata);
+    textbox["value"] = textboxMetadata.defaultValue;
+    textbox["url"] = textboxMetadata.url;
+    textbox["password"] = textboxMetadata.password;
+    textboxMetadata.validationRules.forEach(validationRule => {
+      switch (validationRule.name) {
+        case "textLength":
+          textbox["minLength"] = validationRule.params.min;
+          textbox["maxLength"] = validationRule.params.max;
+          break;
+      }
+    });
+    return new Textbox(textbox);
   }
   
 }
