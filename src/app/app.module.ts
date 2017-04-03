@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { DndModule } from 'ng2-dnd';
 
 import { AppComponent } from './app.component';
 import { PaletteComponent } from './palette/palette.component';
@@ -42,7 +43,8 @@ import { SingleSelectComponent } from './controls/single-select';
     BrowserModule,
     FormsModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DndModule.forRoot()
   ],
 
   entryComponents: [

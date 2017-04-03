@@ -19,11 +19,7 @@ export class AppComponent implements OnInit {
 
   paletteControls: any[];
 
-  selectedPaletteControl: any;
-
   selectedControl: Control;
-
-  paletteControlDeselect: boolean = false;
 
   constructor(private registryService: RegistryService) {
   }
@@ -59,9 +55,7 @@ export class AppComponent implements OnInit {
             "name":"ST7",
             "udn":"givenName",
             "width": 8
-          }
-        ], // end of row
-        [
+          },
           {
             "type":"radioButton",
             "pvOrdering":"NONE",
@@ -83,25 +77,33 @@ export class AppComponent implements OnInit {
             "name":"RB3",
             "udn":"doYouSmoke"
           }
+        ],
+        [
+          {
+            "type":"radioButton",
+            "pvOrdering":"NONE",
+            "validationRules":[
+              {
+                "name": "required",
+                "params": {}
+              }
+            ],
+            "dataType":"STRING",
+            "toolTip":"",
+            "caption":"Gender",
+            "pvs":[
+              {"value":"Male"},
+              {"value":"Female"}
+            ],
+            "optionsPerRow":3,
+            "labelPosition":"LEFT_SIDE",
+            "name":"RB15",
+            "udn":"gender"
+          }
         ]
       ]
     };
     this.constructForm(formMetadata);
-  }
-
-  private onPaletteControlSelect(selectedPaletteControl) {
-    this.selectedPaletteControl = selectedPaletteControl;
-    this.paletteControlDeselect = false;
-  }
-
-  private addControlToForm() {
-    if (this.selectedPaletteControl) {
-      this.form.controls = this.form.controls.concat(
-        [[this.selectedPaletteControl.modelClass.getInstance(++this.form.counter)]]
-      );
-      this.paletteControlDeselect = true;
-      this.selectedPaletteControl = undefined;
-    }
   }
 
   private onControlSelect(selectedControl) {

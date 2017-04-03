@@ -10,8 +10,7 @@
   </div>
   <div class="panel-body">
     <div class="row" *ngFor="let paletteControl of paletteControls;">
-      <a class="col" (click)="changeSelectedControl(paletteControl)" 
-        [class.active]="selectedControl == paletteControl">
+      <a class="col" dnd-draggable [dragEnabled]="true" [dragData]="paletteControl">
         <label>
           <i [class]="paletteControl.iconClass" aria-hidden="true">
           </i>

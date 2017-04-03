@@ -10,14 +10,30 @@
   </div>
   <div class="panel-body">
     <form [formGroup]="mainForm">
-      <div class="row" *ngFor="let controlsRow of controls;">
-        <a class="col" *ngFor="let control of controlsRow;"
-          (click)="changeSelectedControl(control)"
-          [class.active]="selectedControl == control">
-          <fb-control [control]="control" [parentGroup]="mainForm">
-          </fb-control>
-        </a>
+      <div dnd-droppable class="row droppable-row"
+        (onDropSuccess)="controlDroppedOnEmptyRow($event, 0)">
       </div>
+      <ng-container *ngFor="let controlsRow of controls; let row=index;">
+        <div class="row">
+          <div dnd-droppable class="droppable-col"
+            (onDropSuccess)="controlDroppedInsideRow($event, row, 0)">
+          </div>
+          <ng-container *ngFor="let control of controlsRow; let col=index;">
+            <a class="col" (click)="changeSelectedControl(control)"
+              [class.active]="selectedControl == control"
+              dnd-draggable [dragEnabled]="true" [dragData]="row + '-' + col">
+              <fb-control [control]="control" [parentGroup]="mainForm">
+              </fb-control>
+            </a>
+            <div dnd-droppable class="droppable-col"
+              (onDropSuccess)="controlDroppedInsideRow($event, row, (col+1))">
+            </div>
+          </ng-container>
+        </div>
+        <div dnd-droppable class="row droppable-row"
+          (onDropSuccess)="controlDroppedOnEmptyRow($event, (row+1))">
+        </div>
+      </ng-container>
     </form>
   </div>
 </div>

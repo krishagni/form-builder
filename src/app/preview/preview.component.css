@@ -6,3 +6,11 @@
 .panel-body > .row > .col {
     padding-top: 5px;
 }
+
+.droppable-row {
+    height: 15px;
+}
+
+.droppable-col {
+    width: 15px;
+}
