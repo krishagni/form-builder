@@ -5,8 +5,7 @@ import { Control } from '../../model';
 
 @Component({
   selector: 'fb-number',
-  templateUrl: './number.component.html',
-  styleUrls: ['./number.component.css']
+  templateUrl: './number.component.html'
 })
 export class NumberComponent implements OnInit {
 

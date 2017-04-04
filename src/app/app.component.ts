@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { Control } from './model';
-import { RegistryService } from './providers';
+import { Control, Textbox } from './model';
+import { RegistryService, UtilService } from './providers';
 
 @Component({
   selector: 'fb-root',
@@ -21,12 +22,17 @@ export class AppComponent implements OnInit {
 
   selectedControl: Control;
 
-  constructor(private registryService: RegistryService) {
+  mainForm: FormGroup;
+
+  mainFormControls: any;
+
+  constructor(private registryService: RegistryService,
+    private utilService: UtilService) {
   }
 
   ngOnInit() {
     this.paletteControls = this.registryService.getPaletteControls();
-    var formMetadata = {
+    let formMetadata = {
       "name":"demoForm",
       "caption":"Demo Form",
       "rows":[
@@ -69,8 +75,8 @@ export class AppComponent implements OnInit {
             "toolTip":"",
             "caption":"Do you smoke?",
             "pvs":[
-              {"value":"Yes"},
-              {"value":"No"}
+              { "value":"Yes" },
+              { "value":"No" }
             ],
             "optionsPerRow":3,
             "labelPosition":"LEFT_SIDE",
@@ -92,18 +98,93 @@ export class AppComponent implements OnInit {
             "toolTip":"",
             "caption":"Gender",
             "pvs":[
-              {"value":"Male"},
-              {"value":"Female"}
+              { "value":"Male" },
+              { "value":"Female" }
             ],
             "optionsPerRow":3,
             "labelPosition":"LEFT_SIDE",
-            "name":"RB15",
+            "name":"RB",
             "udn":"gender"
           }
         ]
       ]
     };
     this.constructForm(formMetadata);
+    this.initForm();
+  }
+
+  private initForm() {
+    this.mainForm = new FormGroup({});
+    this.mainFormControls = this.getMainFormControls();
+    if (this.mainFormControls) {
+      for (let key in this.mainFormControls) {
+        this.mainForm.addControl(
+          this.mainFormControls[key].model.name,
+          new FormControl(
+            this.mainFormControls[key].model.value,
+            this.mainFormControls[key].validations
+          )
+        );
+      }
+    }
+  }
+
+  private getMainFormControls() {
+    return {
+      caption: {
+        model: new Textbox({
+          type: "textbox",
+          name: "caption",
+          caption: "Display Name",
+          value: this.form.caption,
+          minLength: 5,
+          maxLength: 25
+        }),
+        validations: [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(25)
+        ],
+        errorKeys: [
+          "required",
+          "minlength",
+          "maxlength"
+        ],
+        errorMessages: {
+          required: "Display Name is required",
+          minlength: "Minimum 5 characters",
+          maxlength: "Maximum 25 characters"
+        }
+      },
+      name: {
+        model: new Textbox({
+          type: "textbox",
+          name: "name",
+          caption: "Form Name",
+          value: this.form.name,
+          minLength: 5,
+          maxLength: 25
+        }),
+        validations: [
+          Validators.required,
+          Validators.pattern("[a-zA-Z0-9]*"),
+          Validators.minLength(5),
+          Validators.maxLength(25)
+        ],
+        errorKeys: [
+          "required",
+          "pattern",
+          "minlength",
+          "maxlength"
+        ],
+        errorMessages: {
+          required: "Form Name is required",
+          pattern: "Form Name must contain alphanumeric characters only",
+          minlength: "Minimum 5 characters",
+          maxlength: "Maximum 25 characters"
+        }
+      }
+    };
   }
 
   private onControlSelect(selectedControl) {
@@ -111,12 +192,13 @@ export class AppComponent implements OnInit {
   }
 
   private writeForm(): any {
-    var formMetadata = {};
+    Object.assign(this.form, this.mainForm.value);
+    let formMetadata = {};
     formMetadata["caption"] = this.form.caption;
     formMetadata["name"] = this.form.name;
     formMetadata["rows"] = [];
     this.form.controls.forEach(controlRow => {
-      var row = [];
+      let row = [];
       controlRow.forEach(control => {
         row.push(control.serialize());
       });
@@ -128,16 +210,15 @@ export class AppComponent implements OnInit {
   private constructForm(formMetadata): any {
     this.form.caption = formMetadata.caption;
     this.form.name = formMetadata.name;
-    formMetadata.rows.forEach(row => {
-      var controlRow = [];
+    formMetadata.rows.forEach( row => {
+      let controlRow = [];
       row.forEach( controlMetadata => {
-        var counter = parseInt(controlMetadata.name.match(/(\d+)$/)[0], 10);
+        let parsedControlName = (controlMetadata.name.match(/(\d+)$/));
+        let counter = parsedControlName != null? parseInt(parsedControlName[0], 10): 0;
         if (counter > this.form.counter) {
           this.form.counter = counter;
         }
-        var controlClass = this.registryService.getModel(controlMetadata.type);
-        var control  = controlClass.prototype.deserialize(controlMetadata);
-        controlRow.push(control);
+        controlRow.push(this.utilService.createControl(controlMetadata));
       });
       this.form.controls.push(controlRow);
     });

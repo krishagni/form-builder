@@ -5,8 +5,7 @@ import { Control } from '../../model';
 
 @Component({
   selector: 'fb-radio-button',
-  templateUrl: './radio-button.component.html',
-  styleUrls: ['./radio-button.component.css']
+  templateUrl: './radio-button.component.html'
 })
 export class RadioButtonComponent implements OnInit {
 

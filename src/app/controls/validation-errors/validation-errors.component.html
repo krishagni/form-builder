@@ -1,0 +1,5 @@
+<div *ngFor="let errorKey of prop.errorKeys;">
+  <div class="error" *ngIf="propsForm.get(prop.model.name).hasError(errorKey)">
+    {{ prop.errorMessages[errorKey] }}
+  </div>
+</div>

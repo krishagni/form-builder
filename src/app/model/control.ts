@@ -37,7 +37,7 @@ export abstract class Control {
   }
 
   public concatProps(genProps, customProps) {
-    for (var key in customProps) {
+    for (let key in customProps) {
       genProps[key] = customProps[key];
     }
     return genProps;
@@ -45,12 +45,8 @@ export abstract class Control {
 
   public abstract getProps(): any;
 
-  public abstract serialize(): any;
-
-  public abstract deserialize(metadata): any;
-
-  public commonSerialize(): any {
-    var controlMetadata = {};
+  public serialize(): any {
+    let controlMetadata = {};
     controlMetadata["type"] = this.type;
     controlMetadata["name"] = this.name;
     controlMetadata["caption"] = this.caption;
@@ -67,11 +63,21 @@ export abstract class Control {
 			  "params":{}
 			});
     }
+    let customMetadata = this.customSerialize();
+    for (let key in customMetadata) {
+      if (key == "validationRules") {
+        controlMetadata[key] = controlMetadata[key].concat(customMetadata[key]);
+      } else {
+        controlMetadata[key] = customMetadata[key];
+      }
+    }
     return controlMetadata;
   }
 
-  public commonDeserialize(controlMetadata): any {
-    var control = {};
+  public abstract customSerialize(): any;
+
+  public static deserialize(controlMetadata): any {
+    let control = {};
     control["type"] = controlMetadata.type;
     control["name"] = controlMetadata.name;
     control["caption"] = controlMetadata.caption;
@@ -88,7 +94,9 @@ export abstract class Control {
           break;
       }
     });
-    return control;
+    return this.prototype.customDeserialize(control, controlMetadata);
   }
+
+  public abstract customDeserialize(control, controlMetadata): any;
   
 }

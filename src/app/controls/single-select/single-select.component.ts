@@ -5,8 +5,7 @@ import { Control } from '../../model';
 
 @Component({
   selector: 'fb-single-select',
-  templateUrl: './single-select.component.html',
-  styleUrls: ['./single-select.component.css']
+  templateUrl: './single-select.component.html'
 })
 export class SingleSelectComponent implements OnInit {
 

@@ -3,13 +3,11 @@ import { Component, OnInit, OnDestroy, ComponentRef, ViewChild,
 import { FormGroup } from '@angular/forms';
 
 import { Control } from '../model';
-import { IControlData } from '.';
 import { RegistryService, UtilService } from '../providers';
 
 @Component({
   selector: 'fb-control',
-  templateUrl: './control.component.html',
-  styleUrls: ['./control.component.css']
+  templateUrl: './control.component.html'
 })
 export class ControlComponent implements OnInit, OnDestroy {
 
@@ -25,15 +23,6 @@ export class ControlComponent implements OnInit, OnDestroy {
     private utilService: UtilService) {
   }
 
-  private updateComponent() {
-    this.componentRef = this.utilService.createComponent(
-      this.componentRef, this.target,
-      this.registryService.getControlComponent(this.control.type));
-    let component = (<IControlData>this.componentRef.instance);
-    component.control = this.control;
-    component.parentGroup = this.parentGroup;
-  }
-
   ngOnInit() {
     if (this.control) {
       this.updateComponent();
@@ -41,9 +30,17 @@ export class ControlComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.componentRef) {
-      this.componentRef.destroy();
-    }
+    this.utilService.destroyComponent(this.componentRef);
+  }
+
+  private updateComponent() {
+    this.utilService.destroyComponent(this.componentRef);
+    let componentInputs = {};
+    componentInputs["control"] = this.control;
+    componentInputs["parentGroup"] = this.parentGroup;
+    this.componentRef = this.utilService.createComponent(
+      this.registryService.getControlComponent(this.control.type),
+      this.target, componentInputs);
   }
 
 }

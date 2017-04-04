@@ -63,7 +63,7 @@ export class GeneralProps {
         ],
         errorMessages: {
           required: "Attribute Name is required",
-          pattern: "Attribute Name must contain alphanumeric characters",
+          pattern: "Attribute Name must contain alphanumeric characters only",
           minlength: "Minimum 5 characters",
           maxlength: "Maximum 25 characters"
         }

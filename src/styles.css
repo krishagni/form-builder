@@ -21,11 +21,6 @@ a {
     border: solid 2px white;
 }
 
-.error {
-    color: red;
-    margin-bottom: 10px;
-}
-
 .row {
     margin-left: 0px !important;
     margin-right: 0px !important;

@@ -5,8 +5,7 @@ import { Control } from '../../model';
 
 @Component({
   selector: 'fb-single-checkbox',
-  templateUrl: './single-checkbox.component.html',
-  styleUrls: ['./single-checkbox.component.css']
+  templateUrl: './single-checkbox.component.html'
 })
 export class SingleCheckboxComponent implements OnInit {
 

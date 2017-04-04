@@ -18,7 +18,7 @@ export class SingleCheckbox extends Control {
   }
 
   public getProps(): any {
-    var customProps = {
+    let customProps = {
       value: {
         model: new SingleCheckbox({
           type: "singleCheckbox",
@@ -32,10 +32,10 @@ export class SingleCheckbox extends Control {
     return this.concatProps(GeneralProps.getGeneralProps(this), customProps);
   }
 
-  public serialize(): any {
+  public customSerialize(): any {
   }
 
-  public deserialize(metadata): any {
+  public customDeserialize(singleCheckbox, singleCheckboxMetadata): any {
   }
   
 }

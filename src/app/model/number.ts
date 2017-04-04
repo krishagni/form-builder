@@ -23,7 +23,7 @@ export class Number extends Control {
   }
 
   public getProps(): any {
-    var customProps = {
+    let customProps = {
       value: {
         model: new Number({
           type: "number",
@@ -57,10 +57,10 @@ export class Number extends Control {
     return this.concatProps(GeneralProps.getGeneralProps(this), customProps);
   }
 
-  public serialize(): any {
+  public customSerialize(): any {
   }
 
-  public deserialize(metadata): any {
+  public customDeserialize(number, numberMetadata): any {
   }
   
 }

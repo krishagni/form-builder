@@ -3,13 +3,11 @@ import { Component, OnInit, OnChanges, OnDestroy, ComponentRef, ViewChild,
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { Control } from '../model';
-import { IControlPropsData } from '.';
 import { RegistryService, UtilService } from '../providers';
 
 @Component({
   selector: 'fb-control-props',
-  templateUrl: './control-props.component.html',
-  styleUrls: ['./control-props.component.css']
+  templateUrl: './control-props.component.html'
 })
 export class ControlPropsComponent implements OnInit, OnChanges, OnDestroy {
 
@@ -22,37 +20,11 @@ export class ControlPropsComponent implements OnInit, OnChanges, OnDestroy {
   propsForm: FormGroup;
 
   componentRef: ComponentRef<Component>;
+
+  isPropsFormSaved: boolean = false;
   
   constructor(private registryService: RegistryService,
     private utilService: UtilService) {
-  }
-
-  private updateComponent() {
-    if (this.control) {
-      this.initPropsForm();
-      this.componentRef = this.utilService.createComponent(
-        this.componentRef, this.target,
-        this.registryService.getPropsComponent(this.control.type));
-      let component = (<IControlPropsData>this.componentRef.instance);
-      component.props = this.props;
-      component.propsForm = this.propsForm;
-    }
-  }
-
-  private initPropsForm() {
-    this.props = this.control.getProps();
-    this.propsForm = new FormGroup({});
-    if (this.props) {
-      for (var key in this.props) {
-        this.propsForm.addControl(
-          this.props[key].model.name,
-          new FormControl(
-            this.props[key].model.value,
-            this.props[key].validations
-          )
-        );
-      }
-    }
   }
 
   ngOnInit() {
@@ -64,13 +36,49 @@ export class ControlPropsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.componentRef) {
-      this.componentRef.destroy();
+    this.utilService.destroyComponent(this.componentRef);
+  }
+
+  private updateComponent() {
+    this.isPropsFormSaved = false;
+    if (this.control) {
+      this.initPropsForm();
+      this.utilService.destroyComponent(this.componentRef);
+      let componentInputs = {};
+      componentInputs["props"] = this.props;
+      componentInputs["propsForm"] = this.propsForm;
+      this.componentRef = this.utilService.createComponent(
+        this.registryService.getPropsComponent(this.control.type),
+        this.target, componentInputs);
+    }
+  }
+
+  private initPropsForm() {
+    this.props = this.control.getProps();
+    this.propsForm = new FormGroup({});
+    if (this.props) {
+      for (let key in this.props) {
+        this.propsForm.addControl(
+          this.props[key].model.name,
+          new FormControl(
+            this.props[key].model.value,
+            this.props[key].validations
+          )
+        );
+      }
     }
   }
 
   private onSubmit() {
     Object.assign(this.control, this.propsForm.value);
+    if (this.propsForm.value.hasOwnProperty('pvs')) {
+      this.control['pvs'] = JSON.parse(JSON.stringify(this.propsForm.value['pvs']));
+    }
+    this.isPropsFormSaved = true;
+  }
+
+  private hideSuccessAlert() {
+    this.isPropsFormSaved = false;
   }
 
 }

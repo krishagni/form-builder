@@ -23,6 +23,14 @@ export class PreviewComponent implements OnInit, OnChanges {
   constructor() {
   }
 
+  ngOnInit() {
+    this.initForm();
+  }
+
+  ngOnChanges() {
+    this.initForm();
+  }
+
   private initForm() {
     this.mainForm = new FormGroup({});
     if(this.controls.length>0) {
@@ -38,14 +46,6 @@ export class PreviewComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit() {
-    this.initForm();
-  }
-
-  ngOnChanges() {
-    this.initForm();
-  }
-
   private changeSelectedControl(selectedControl) {
     if (this.selectedControl != selectedControl) {
       this.selectedControl = selectedControl;
@@ -54,8 +54,8 @@ export class PreviewComponent implements OnInit, OnChanges {
   }
 
   private getDraggedControl(dragData) {
-    var draggedControlIndexes = dragData.split("-");
-    var draggedControl = {};
+    let draggedControlIndexes = dragData.split("-");
+    let draggedControl = {};
     draggedControl["row"] = parseInt(draggedControlIndexes[0], 10);
     draggedControl["col"]= parseInt(draggedControlIndexes[1], 10);
     draggedControl["control"] = this.controls[draggedControlIndexes[0]][draggedControlIndexes[1]];
@@ -65,8 +65,8 @@ export class PreviewComponent implements OnInit, OnChanges {
   private controlDroppedOnEmptyRow(event, droppedRow) {
     if (typeof event.dragData === "string") {
       // Re-arrangement of control on canvas
-      var draggedControl = this.getDraggedControl(event.dragData);
-      var controlRow = [];
+      let draggedControl = this.getDraggedControl(event.dragData);
+      let controlRow = [];
       controlRow.push(draggedControl["control"]);
       if (this.controls[draggedControl["row"]].length > 1) {
         this.controls[draggedControl["row"]].splice(draggedControl["col"], 1);
@@ -88,7 +88,7 @@ export class PreviewComponent implements OnInit, OnChanges {
   private controlDroppedInsideRow(event, droppedRow, droppedCol) {
     if (typeof event.dragData === "string") {
       // Re-arrangement of control on canvas
-      var draggedControl = this.getDraggedControl(event.dragData);
+      let draggedControl = this.getDraggedControl(event.dragData);
       if (this.controls[draggedControl["row"]].length > 1) {
         this.controls[droppedRow].splice(droppedCol, 0, draggedControl["control"]);
         if (droppedRow == draggedControl["row"]) {
@@ -113,7 +113,7 @@ export class PreviewComponent implements OnInit, OnChanges {
   }
 
   private addControlToForm(paletteControl, droppedRow, droppedCol) {
-    var control = paletteControl.modelClass.getInstance(++this.counter);
+    let control = paletteControl.modelClass.getInstance(++this.counter);
     if (droppedCol != undefined) {
       this.controls[droppedRow].splice(droppedCol, 0, control);
     } else {

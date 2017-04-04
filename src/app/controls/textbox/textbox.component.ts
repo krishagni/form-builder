@@ -5,8 +5,7 @@ import { Control } from '../../model';
 
 @Component({
   selector: 'fb-textbox',
-  templateUrl: './textbox.component.html',
-  styleUrls: ['./textbox.component.css']
+  templateUrl: './textbox.component.html'
 })
 export class TextboxComponent implements OnInit {
 

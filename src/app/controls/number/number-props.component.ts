@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'fb-number-props',
-  templateUrl: './number-props.component.html',
-  styleUrls: ['./number-props.component.css']
+  templateUrl: './number-props.component.html'
 })
 export class NumberPropsComponent implements OnInit {
 

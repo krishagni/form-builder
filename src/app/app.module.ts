@@ -11,6 +11,7 @@ import { PropertiesComponent } from './properties/properties.component';
 import { RegistryService, UtilService } from './providers';
 import { ControlComponent, ControlPropsComponent, GeneralPropsComponent } from './controls';
 import { PvComponent } from './controls/pv';
+import { ValidationErrorsComponent } from './controls/validation-errors';
 import { TextboxComponent, TextboxPropsComponent } from './controls/textbox';
 import { RadioButtonComponent, RadioButtonPropsComponent } from './controls/radio-button';
 import { NumberComponent, NumberPropsComponent } from './controls/number';
@@ -28,6 +29,7 @@ import { SingleSelectComponent } from './controls/single-select';
     ControlPropsComponent,
     GeneralPropsComponent,
     PvComponent,
+    ValidationErrorsComponent,
     TextboxComponent,
     TextboxPropsComponent,
     RadioButtonComponent,

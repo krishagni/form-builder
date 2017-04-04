@@ -53,7 +53,7 @@ export class PvComponent implements OnInit, ControlValueAccessor {
   }
 
   private addPv() {
-    this.pvs.push("Option");
+    this.pvs.push({ text: "Option", value: "Option" });
   }
 
   private deletePv(pvIdx) {
@@ -61,19 +61,22 @@ export class PvComponent implements OnInit, ControlValueAccessor {
   }
 
   private optionTextEdited(pvIdx, event) {
-    this.pvs[pvIdx] = event.currentTarget.value;
+    this.pvs[pvIdx].text = event.currentTarget.value;
+    this.pvs[pvIdx].value = event.currentTarget.value;
   }
 
   private uploadPvsFromFile() {
-    var pvsFile = this.pvsFileInput.nativeElement.files[0];
+    let pvsFile = this.pvsFileInput.nativeElement.files[0];
     if (pvsFile) {
-      var reader = new FileReader();
+      let reader = new FileReader();
       reader.onload = (event) => {
-        var fileContents = reader.result;
-        var lines = fileContents.split('\n');
+        let fileContents = reader.result;
+        let lines = fileContents.replace(/\r\n|\r(?!\n)/g, '\n').split('\n');
         lines.forEach(line => {
           if (line.length > 0) {
-            this.pvs.push(line);
+            line.split('\r').forEach( pv => {
+              this.pvs.push({ text: pv, value: pv });
+            });
           }
         });
       }

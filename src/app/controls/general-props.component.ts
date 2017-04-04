@@ -3,8 +3,7 @@ import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'fb-general-props',
-  templateUrl: './general-props.component.html',
-  styleUrls: ['./general-props.component.css']
+  templateUrl: './general-props.component.html'
 })
 export class GeneralPropsComponent implements OnInit {
 

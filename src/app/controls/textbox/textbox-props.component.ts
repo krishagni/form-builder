@@ -3,8 +3,7 @@ import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'fb-textbox-props',
-  templateUrl: './textbox-props.component.html',
-  styleUrls: ['./textbox-props.component.css']
+  templateUrl: './textbox-props.component.html'
 })
 export class TextboxPropsComponent implements OnInit {
 

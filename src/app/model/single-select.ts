@@ -24,11 +24,11 @@ export class SingleSelect extends Control {
       udn: "singleSelectLabel" + counter,
       dataType: "STRING",
       pvs: [
-        "Option 1",
-        "Option 2",
-        "Option 3",
-        "Option 4",
-        "Option 5"
+        { text: "Option 1", value: "Option 1" },
+        { text: "Option 2", value: "Option 2" },
+        { text: "Option 3", value: "Option 3" },
+        { text: "Option 4", value: "Option 4" },
+        { text: "Option 5", value: "Option 5" }
       ],
       value: "Option 1",
       pvOrdering: "NONE"
@@ -36,14 +36,14 @@ export class SingleSelect extends Control {
   }
 
   public getProps(): any {
-    var customProps = {};
+    let customProps = {};
     return this.concatProps(GeneralProps.getGeneralProps(this), customProps);
   }
 
-  public serialize(): any {
+  public customSerialize(): any {
   }
 
-  public deserialize(metadata): any {
+  public customDeserialize(singleSelect, singleSelectMetadata): any {
   }
   
 }

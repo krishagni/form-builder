@@ -4,8 +4,7 @@ import { Control } from '../model';
 
 @Component({
   selector: 'fb-properties',
-  templateUrl: './properties.component.html',
-  styleUrls: ['./properties.component.css']
+  templateUrl: './properties.component.html'
 })
 export class PropertiesComponent implements OnInit {
 

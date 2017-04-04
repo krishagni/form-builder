@@ -1,18 +1,31 @@
 import { Injectable, ComponentRef, Component, ComponentFactoryResolver } from '@angular/core';
 
+import { RegistryService } from '.';
+
 @Injectable()
 export class UtilService {
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) {
+  constructor(private componentFactoryResolver: ComponentFactoryResolver,
+    private registryService: RegistryService) {
   }
 
-  public createComponent(componentRef, target, componentType): ComponentRef<Component> {
+  public createComponent(componentType, target, componentInputs): ComponentRef<Component> {
+    let factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
+    let componentRef = target.createComponent(factory);
+    Object.assign(componentRef.instance, componentInputs);
+    return componentRef;
+  }
+
+  public destroyComponent(componentRef) {
     if (componentRef) {
       componentRef.destroy();
     }
-    let factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
-    componentRef = target.createComponent(factory);
-    return componentRef;
+  }
+
+  public createControl(controlMetadata) {
+    let controlClass = this.registryService.getModel(controlMetadata.type);
+    let control  = controlClass.deserialize(controlMetadata);
+    return control;
   }
 
 }

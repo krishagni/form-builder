@@ -4,5 +4,6 @@
   </label>
   <input class="form-control" type="text" [title]="control.toolTip" 
     [name]="control.name" [value]="control.value" [minlength]="control.minLength"
-    [maxlength]="control.maxLength" [formControlName]="control.name"/>
+    [maxlength]="control.maxLength" [formControlName]="control.name"
+    [style.-webkit-text-security]="control.password ? 'disc': 'initial'"/>
 </div>

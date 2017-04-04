@@ -8,6 +8,8 @@
   <div class="col">
     <fb-number [control]="props.optionsPerRow.model" [parentGroup]="propsForm">
     </fb-number>
+    <fb-validation-errors [prop]="props.optionsPerRow" [propsForm]="propsForm">
+    </fb-validation-errors>
   </div>
 </div>
 <div class="row">

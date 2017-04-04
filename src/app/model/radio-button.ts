@@ -1,3 +1,5 @@
+import { Validators } from '@angular/forms';
+
 import { Control, GeneralProps, Number, SingleSelect } from '.';
 
 export class RadioButton extends Control {
@@ -27,11 +29,11 @@ export class RadioButton extends Control {
       udn: "radioButtonLabel" + counter,
       dataType: "STRING",
       pvs: [
-        "Option 1",
-        "Option 2",
-        "Option 3",
-        "Option 4",
-        "Option 5"
+        { text: "Option 1", value: "Option 1" },
+        { text: "Option 2", value: "Option 2" },
+        { text: "Option 3", value: "Option 3" },
+        { text: "Option 4", value: "Option 4" },
+        { text: "Option 5", value: "Option 5" }
       ],
       value: "Option 1",
       optionsPerRow: 2,
@@ -41,7 +43,7 @@ export class RadioButton extends Control {
   }
 
   public getProps(): any {
-    var customProps = {
+    let customProps = {
       pvOrdering: {
         model: new RadioButton({
           type: "radioButton",
@@ -49,9 +51,9 @@ export class RadioButton extends Control {
           caption: "PV Ordering",
           dataType: "STRING",
           pvs: [
-            "NONE",
-            "ASC",
-            "DESC"
+            { text: "None", value: "NONE" },
+            { text: "Ascending", value: "ASC" },
+            { text: "Descending", value: "DESC" }
           ],
           optionsPerRow: 3,
           value: this.pvOrdering
@@ -66,12 +68,20 @@ export class RadioButton extends Control {
           value: this.optionsPerRow,
           minValue: 1
         }),
-        validations: []
+        validations: [
+          Validators.pattern("[0-9]*")
+        ],
+        errorKeys: [
+          "pattern"
+        ],
+        errorMessages: {
+          pattern: "Invalid Options Per Row"
+        }
       },
       pvs: {
         model: {
           name: "pvs",
-          value: this.pvs
+          value: JSON.parse(JSON.stringify(this.pvs))
         },
         validations: []
       },
@@ -88,10 +98,10 @@ export class RadioButton extends Control {
           name: "dataType",
           caption: "Data Type",
           pvs: [
-            "STRING",
-            "INTEGER",
-            "FLOAT",
-            "BOOLEAN"
+            { text: "String", value: "STRING" },
+            { text: "Integer", value: "INTEGER" },
+            { text: "Float", value: "FLOAT" },
+            { text: "Boolean", value: "BOOLEAN" }
           ],
           value: this.dataType
         }),
@@ -101,27 +111,26 @@ export class RadioButton extends Control {
     return this.concatProps(GeneralProps.getGeneralProps(this), customProps);
   }
 
-  public serialize(): any {
-    var radio = this.commonSerialize();
+  public customSerialize(): any {
+    let radio = {};
     radio["pvOrdering"] = this.pvOrdering;
     radio["dataType"] = this.dataType;
     radio["pvs"] = [];
     this.pvs.forEach(pv => {
       radio["pvs"].push({
-        "value": pv
+        value: pv.value
       });
     });
     radio["optionsPerRow"] = this.optionsPerRow;
     return radio;
   }
 
-  public deserialize(radioMetadata): any {
-    var radio = this.commonDeserialize(radioMetadata);
+  public customDeserialize(radio, radioMetadata): any {
     radio["pvOrdering"] = radioMetadata.pvOrdering;
     radio["dataType"] = radioMetadata.dataType;
     radio["pvs"] = [];
     radioMetadata.pvs.forEach(pv => {
-      radio["pvs"].push(pv.value);
+      radio["pvs"].push({ text: pv.value, value: pv.value });
     });
     radio["optionsPerRow"] = radioMetadata.optionsPerRow;
     return new RadioButton(radio);

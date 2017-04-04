@@ -29,7 +29,8 @@ export class RegistryService {
     }
   };
 
-  constructor() { }
+  constructor() {
+  }
 
   public register(type, paletteControl) {
     this.paletteControls[type] = paletteControl;
@@ -42,8 +43,8 @@ export class RegistryService {
   }
 
   public getPaletteControls() {
-    var paletteControls: any[] = [];
-    for (var key in this.paletteControls) {
+    let paletteControls: any[] = [];
+    for (let key in this.paletteControls) {
       paletteControls.push(this.paletteControls[key]);
     }
     return paletteControls;

@@ -1,3 +1,10 @@
 #uploadBtn {
     margin-top: 5px;
 }
+
+.pvs-holder {
+    height: 200px;
+    background-color: #eee;
+    overflow: auto;
+    padding: 5px;
+}

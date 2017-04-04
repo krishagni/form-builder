@@ -32,7 +32,7 @@ export class Textbox extends Control {
   }
 
   public getProps(): any {
-    var customProps = {
+    let customProps = {
       value: {
         model: new Textbox({
           type: "textbox",
@@ -63,7 +63,15 @@ export class Textbox extends Control {
           value: this.minLength,
           minValue: 0
         }),
-        validations: []
+        validations: [
+          Validators.pattern("[0-9]*")
+        ],
+        errorKeys: [
+          "pattern"
+        ],
+        errorMessages: {
+          pattern: "Invalid Min length"
+        }
       },
       maxLength: {
         model: new Number({
@@ -73,7 +81,15 @@ export class Textbox extends Control {
           value: this.maxLength,
           minValue: 0
         }),
-        validations: []
+        validations: [
+          Validators.pattern("[0-9]*")
+        ],
+        errorKeys: [
+          "pattern"
+        ],
+        errorMessages: {
+          pattern: "Invalid Max length"
+        }
       },
       url: {
         model: new SingleCheckbox({
@@ -97,13 +113,14 @@ export class Textbox extends Control {
     return this.concatProps(GeneralProps.getGeneralProps(this), customProps);
   }
 
-  public serialize(): any {
-    var textbox = this.commonSerialize();
+  public customSerialize(): any {
+    let textbox = {};
     textbox["defaultValue"] = this.value;
     textbox["url"] = this.url || false;
     textbox["password"] = this.password || false;
+    textbox["validationRules"] = [];
     if (this.minLength || this.maxLength) {
-      var textLength = {
+      let textLength = {
         "name":"textLength",
         "params": {}
       };
@@ -113,13 +130,12 @@ export class Textbox extends Control {
       if (this.maxLength) {
         textLength.params["max"] = this.maxLength;
       }
-      textbox.validationRules.push(textLength);
+      textbox["validationRules"].push(textLength);
     }
     return textbox;
   }
 
-  public deserialize(textboxMetadata): any {
-    var textbox = this.commonDeserialize(textboxMetadata);
+  public customDeserialize(textbox, textboxMetadata): any {
     textbox["value"] = textboxMetadata.defaultValue;
     textbox["url"] = textboxMetadata.url;
     textbox["password"] = textboxMetadata.password;

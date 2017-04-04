@@ -6,8 +6,8 @@
     <label *ngFor="let pv of control.pvs" [title]="control.toolTip"
       [ngStyle]="{'width': 100/control.optionsPerRow + '%'}">
       <input type="radio" [formControlName]="control.name"
-        [value]="pv"/>
-      {{ pv }}
+        [value]="pv.value"/>
+      {{ pv.text }}
     </label>
   </div>
 </div>

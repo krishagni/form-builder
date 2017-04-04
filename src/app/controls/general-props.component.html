@@ -2,11 +2,8 @@
   <div class="col">
     <fb-textbox [control]="props.caption.model" [parentGroup]="propsForm">
     </fb-textbox>
-    <div *ngFor="let errorKey of props.caption.errorKeys;">
-      <div class="error" *ngIf="propsForm.get('caption').hasError(errorKey)">
-        {{ props.caption.errorMessages[errorKey] }}
-      </div>
-    </div>
+    <fb-validation-errors [prop]="props.caption" [propsForm]="propsForm">
+    </fb-validation-errors>
   </div>
 </div>
 <div class="row">
@@ -19,11 +16,8 @@
   <div class="col">
     <fb-textbox [control]="props.udn.model" [parentGroup]="propsForm">
     </fb-textbox>
-    <div *ngFor="let errorKey of props.udn.errorKeys;">
-      <div class="error" *ngIf="propsForm.get('udn').hasError(errorKey)">
-        {{ props.udn.errorMessages[errorKey] }}
-      </div>
-    </div>
+    <fb-validation-errors [prop]="props.udn" [propsForm]="propsForm">
+    </fb-validation-errors>
   </div>
 </div>
 <div class="row">

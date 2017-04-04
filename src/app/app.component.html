@@ -1,36 +1,25 @@
 <div class="jumbotron jumbotron-fluid align-items-center justify-content-center">
-  <form novalidate #f="ngForm" (ngSubmit)="writeForm()">
+  <form [formGroup]="mainForm" (ngSubmit)="writeForm()">
     <div class="col-7 offset-2">
       <div class="row">
         <div class="col-6 form-group">
-          <label>
-            Display Name
-          </label>
-          <input class="form-control" type="text" name="caption"
-            #caption="ngModel" [(ngModel)]="form.caption" required/>
-          <div *ngIf="caption.errors?.required" class="error">
-            Display Name is required
-          </div>
+          <fb-textbox [control]="mainFormControls.caption.model" [parentGroup]="mainForm">
+          </fb-textbox>
+          <fb-validation-errors [prop]="mainFormControls.caption" [propsForm]="mainForm">
+          </fb-validation-errors>
         </div>
         <div class="col-6 form-group">
-          <label>
-            Form Name
-          </label>
-          <input class="form-control" type="text" name="name"
-            #name="ngModel" [(ngModel)]="form.name" required pattern="[a-zA-Z0-9]*"/>
-          <div *ngIf="name.errors?.required" class="error">
-            Form Name is required
-          </div>
-          <div *ngIf="name.errors?.pattern" class="error">
-            Form Name must contain alphanumeric characters only
-          </div>
+          <fb-textbox [control]="mainFormControls.name.model" [parentGroup]="mainForm">
+          </fb-textbox>
+          <fb-validation-errors [prop]="mainFormControls.name" [propsForm]="mainForm">
+          </fb-validation-errors>
         </div>
       </div>
     </div>
     <div class="col-7 offset-2">
       <div class="row">
         <div class="col-6">
-          <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+          <button type="submit" class="btn btn-primary" [disabled]="mainForm.invalid">
             <i class="fa fa-floppy-o" aria-hidden="true">
             </i>
             <span>

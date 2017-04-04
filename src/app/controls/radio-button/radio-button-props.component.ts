@@ -3,8 +3,7 @@ import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'fb-radio-button-props',
-  templateUrl: './radio-button-props.component.html',
-  styleUrls: ['./radio-button-props.component.css']
+  templateUrl: './radio-button-props.component.html'
 })
 export class RadioButtonPropsComponent implements OnInit {
 
