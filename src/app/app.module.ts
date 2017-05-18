@@ -14,6 +14,7 @@ import { PvComponent } from './controls/pv';
 import { ValidationErrorsComponent } from './controls/validation-errors';
 import { TextboxComponent, TextboxPropsComponent } from './controls/textbox';
 import { RadioButtonComponent, RadioButtonPropsComponent } from './controls/radio-button';
+import { DropdownComponent, DropdownPropsComponent } from './controls/dropdown';
 import { NumberComponent, NumberPropsComponent } from './controls/number';
 import { SingleCheckboxComponent, SingleCheckboxPropsComponent } from './controls/single-checkbox';
 import { SingleSelectComponent } from './controls/single-select';
@@ -34,6 +35,8 @@ import { SingleSelectComponent } from './controls/single-select';
     TextboxPropsComponent,
     RadioButtonComponent,
     RadioButtonPropsComponent,
+    DropdownComponent,
+    DropdownPropsComponent,
     NumberComponent,
     NumberPropsComponent,
     SingleCheckboxComponent,
@@ -58,6 +61,8 @@ import { SingleSelectComponent } from './controls/single-select';
     TextboxPropsComponent,
     RadioButtonComponent,
     RadioButtonPropsComponent,
+    DropdownComponent,
+    DropdownPropsComponent,
     NumberComponent,
     NumberPropsComponent,
     SingleCheckboxComponent,

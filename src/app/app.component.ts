@@ -10,7 +10,6 @@ import { RegistryService, UtilService } from './providers';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
   form = {
     counter: 0,
     caption: "",
@@ -63,6 +62,38 @@ export class AppComponent implements OnInit {
             "width": 8
           },
           {
+            "type":"dropdown",
+            "validationRules":[
+              {
+                "name":"required",
+                "params":{}
+              },
+              {
+                "name":"textLength",
+                "params": {
+                  "min": 5,
+                  "max": 32
+                }
+              }
+            ],
+            "defaultValue":"",
+            "toolTip":"",
+            "caption":"Hobbies",
+            "pvs":[
+              { "value":"Sports" },
+              { "value":"Gaming" },
+              { "value":"Programming" }
+            ],
+            "url":false,
+            "password":false,
+            "labelPosition":"LEFT_SIDE",
+            "name":"ST7",
+            "udn":"hobbies",
+            "width": 8
+          }
+        ],
+        [
+          {
             "type":"radioButton",
             "pvOrdering":"NONE",
             "validationRules":[
@@ -82,9 +113,7 @@ export class AppComponent implements OnInit {
             "labelPosition":"LEFT_SIDE",
             "name":"RB3",
             "udn":"doYouSmoke"
-          }
-        ],
-        [
+          },
           {
             "type":"radioButton",
             "pvOrdering":"NONE",

@@ -1,8 +1,9 @@
 import { Injectable, Type, Component } from '@angular/core';
 
-import { Textbox, RadioButton } from '../model';
+import { Textbox, RadioButton, Dropdown } from '../model';
 import { TextboxComponent, TextboxPropsComponent } from '../controls/textbox';
 import { RadioButtonComponent, RadioButtonPropsComponent } from '../controls/radio-button';
+import { DropdownComponent, DropdownPropsComponent } from '../controls/dropdown';
 
 @Injectable()
 export class RegistryService {
@@ -26,6 +27,13 @@ export class RegistryService {
       iconClass: "fa fa-list",
       controlComponent: RadioButtonComponent,
       propsComponent: RadioButtonPropsComponent
+    },
+    "dropdown": {
+      modelClass: Dropdown,
+      label: "Drop Down",
+      iconClass: "fa fa-list",
+      controlComponent: DropdownComponent,
+      propsComponent: DropdownPropsComponent
     }
   };
 
