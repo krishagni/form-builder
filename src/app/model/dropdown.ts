@@ -1,6 +1,6 @@
 import { Validators } from '@angular/forms';
 
-import { Control, GeneralProps, Number, SingleCheckbox } from '.';
+import { Control, GeneralProps, Number, SingleCheckbox, RadioButton, SingleSelect } from '.';
 
 export class Dropdown extends Control {
 
@@ -14,6 +14,8 @@ export class Dropdown extends Control {
 
   pvs: any[];
 
+  pvOrdering: string;
+
   constructor(dropdown) {
     super(dropdown);
     this.minLength = dropdown.minLength;
@@ -26,14 +28,56 @@ export class Dropdown extends Control {
   public static getInstance(counter): Dropdown {
     // TODO: integrate i18n
     return new Dropdown({
-      type: "dropDown",
+      type: "dropdown",
       name: "dropdown" + counter,
       caption: "Dropdown Label",
       udn: "dropdownLabel" + counter,
+      pvs: [
+        { value: "Option 1" },
+        { value: "Option 2" },
+        { value: "Option 3" }
+      ],
+      value: "Option 1",
       labelPosition: "LEFT_SIDE"
     });
   }
 
+  public getProps(): any {
+    let customProps = {
+      pvOrdering: {
+        model: new RadioButton({
+          type: "radioButton",
+          name: "pvOrdering",
+          caption: "PV Ordering",
+          dataType: "STRING",
+          pvs: [
+            { text: "None", value: "NONE" },
+            { text: "Ascending", value: "ASC" },
+            { text: "Descending", value: "DESC" }
+          ],
+          optionsPerRow: 3,
+          value: this.pvOrdering
+        }),
+        validations: []
+      },
+      pvs: {
+        model: {
+          name: "pvs",
+          value: JSON.parse(JSON.stringify(this.pvs))
+        },
+        validations: []
+      },
+      value: {
+        model: {
+          name: "value",
+          value: this.value
+        },
+        validations: []
+      }
+    };
+    return this.concatProps(GeneralProps.getGeneralProps(this), customProps);
+  }
+/*
   public getProps(): any {
     let customProps = {
       value: {
@@ -115,7 +159,7 @@ export class Dropdown extends Control {
     };
     return this.concatProps(GeneralProps.getGeneralProps(this), customProps);
   }
-
+*/
   public customSerialize(): any {
     let dropdown = {};
     dropdown["defaultValue"] = this.value;
