@@ -74,9 +74,9 @@ export class GeneralProps {
           name: "labelPosition",
           caption: "Label Position",
           pvs: [
-            "LEFT_SIDE",
-            "RIGHT_SIDE",
-            "CENTER"
+            { value: "LEFT_SIDE" },
+            { value: "RIGHT_SIDE" },
+            { value: "CENTER" }
           ],
           value: control.labelPosition
         }),

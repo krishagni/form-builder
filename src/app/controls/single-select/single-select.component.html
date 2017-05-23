@@ -5,7 +5,7 @@
   <select class="form-control" [name]="control.name"
     [title]="control.toolTip" [formControlName]="control.name">
     <option *ngFor="let pv of control.pvs" [value]="pv.value">
-        {{ pv }}
+        {{ pv.value }}
     </option>
   </select>
 </div>

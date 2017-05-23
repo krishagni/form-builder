@@ -109,6 +109,7 @@ export class AppComponent implements OnInit {
               { "value":"Yes" },
               { "value":"No" }
             ],
+            "value": "Yes",
             "optionsPerRow":3,
             "labelPosition":"LEFT_SIDE",
             "name":"RB3",
@@ -127,9 +128,10 @@ export class AppComponent implements OnInit {
             "toolTip":"",
             "caption":"Gender",
             "pvs":[
-              { "value":"Male" },
-              { "value":"Female" }
+              { text: "Male", "value":"Male" },
+              { text: "Female", "value":"Female" }
             ],
+            "value": "Male",
             "optionsPerRow":3,
             "labelPosition":"LEFT_SIDE",
             "name":"RB",

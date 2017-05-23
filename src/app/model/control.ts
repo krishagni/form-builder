@@ -55,6 +55,7 @@ export abstract class Control {
     controlMetadata["labelPosition"] = this.labelPosition;
     controlMetadata["phi"] = this.phi;
     controlMetadata["width"] = this.width;
+    controlMetadata["value"] = this.value;
     controlMetadata["showInGrid"] = this.showInGrid;
     controlMetadata["validationRules"] = [];
     if (this.mandatory) {
@@ -86,6 +87,7 @@ export abstract class Control {
     control["labelPosition"] = controlMetadata.labelPosition;
     control["phi"] = controlMetadata.phi;
     control["width"] = controlMetadata.width;
+    control["value"] = controlMetadata.value;
     control["showInGrid"] = controlMetadata.showInGrid;
     controlMetadata.validationRules.forEach(validationRule => {
       switch (validationRule.name) {

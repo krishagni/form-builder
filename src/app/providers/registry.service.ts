@@ -31,7 +31,7 @@ export class RegistryService {
     "dropdown": {
       modelClass: Dropdown,
       label: "Drop Down",
-      iconClass: "fa fa-list",
+      iconClass: "fa fa-caret-down",
       controlComponent: DropdownComponent,
       propsComponent: DropdownPropsComponent
     }
