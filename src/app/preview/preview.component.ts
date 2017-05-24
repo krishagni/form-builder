@@ -46,10 +46,22 @@ export class PreviewComponent implements OnInit, OnChanges {
     }
   }
 
-  private changeSelectedControl(selectedControl) {
+  private changeSelectedControl(selectedControl, row, col) {
     if (this.selectedControl != selectedControl) {
       this.selectedControl = selectedControl;
       this.onControlSelect.emit(this.selectedControl);
+    }
+
+
+
+    this.controls.forEach(controlsRow => {
+      controlsRow.forEach(control => {
+        control.clicked = false;
+      });
+    });
+
+    if(row != null && col != null) {
+      this.controls[row][col].clicked = true;
     }
   }
 
@@ -120,7 +132,7 @@ export class PreviewComponent implements OnInit, OnChanges {
       this.controls.splice(droppedRow, 0, [control]);
     }
     this.initForm();
-    this.changeSelectedControl(control);
+    this.changeSelectedControl(control, droppedRow, 0);
   }
   
 }

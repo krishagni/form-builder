@@ -25,3 +25,18 @@ a {
     margin-left: 0px !important;
     margin-right: 0px !important;
 }
+
+.collapse.in{
+    display:block;
+}
+
+.accordion-expand{
+    background-color: #ee;
+    border: 1px solid;
+    border-radius: 2px;
+
+}
+
+.float-right{
+    float:right;
+}

@@ -19,11 +19,21 @@
             (onDropSuccess)="controlDroppedInsideRow($event, row, 0)">
           </div>
           <ng-container *ngFor="let control of controlsRow; let col=index;">
-            <a class="col" (click)="changeSelectedControl(control)"
+            <a class="col" (click)="changeSelectedControl(control, row, col)"
               [class.active]="selectedControl == control"
               dnd-draggable [dragEnabled]="true" [dragData]="row + '-' + col">
               <fb-control [control]="control" [parentGroup]="mainForm">
               </fb-control>
+
+              <div *ngIf="control.clicked" class="accordion-expand"  data-toggle="collapse" [attr.data-target]="'#'+row"
+                href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <span>Field Options</span>
+                <span class="fa fa-caret-down float-right"></span>
+                <div class="container collapse" [attr.id]="row">
+                  <fb-control-props [control]="control">
+                  </fb-control-props>
+                </div>
+              </div>
             </a>
             <div dnd-droppable class="droppable-col"
               (onDropSuccess)="controlDroppedInsideRow($event, row, (col+1))">
