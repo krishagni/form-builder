@@ -6,3 +6,4 @@ export * from './number';
 export * from './single-checkbox';
 export * from './single-select';
 export * from './dropdown';
+export * from './multi-select';

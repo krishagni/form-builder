@@ -15,12 +15,13 @@ import { ValidationErrorsComponent } from './controls/validation-errors';
 import { TextboxComponent, TextboxPropsComponent } from './controls/textbox';
 import { RadioButtonComponent, RadioButtonPropsComponent } from './controls/radio-button';
 import { DropdownComponent, DropdownPropsComponent } from './controls/dropdown';
+import { MultiSelectComponent, MultiSelectPropsComponent } from './controls/multi-select';
 import { NumberComponent, NumberPropsComponent } from './controls/number';
 import { SingleCheckboxComponent, SingleCheckboxPropsComponent } from './controls/single-checkbox';
 import { SingleSelectComponent } from './controls/single-select';
+import { AngularMultiSelectModule } from '../../node_modules/angular2-multiselect-dropdown/src/app/angular2-multiselect-dropdown/multiselect.component';
 
 @NgModule({
-  
   declarations: [
     AppComponent,
     PaletteComponent,
@@ -37,6 +38,8 @@ import { SingleSelectComponent } from './controls/single-select';
     RadioButtonPropsComponent,
     DropdownComponent,
     DropdownPropsComponent,
+    MultiSelectComponent,
+    MultiSelectPropsComponent,
     NumberComponent,
     NumberPropsComponent,
     SingleCheckboxComponent,
@@ -49,6 +52,7 @@ import { SingleSelectComponent } from './controls/single-select';
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
+    AngularMultiSelectModule,
     DndModule.forRoot()
   ],
 
@@ -63,6 +67,8 @@ import { SingleSelectComponent } from './controls/single-select';
     RadioButtonPropsComponent,
     DropdownComponent,
     DropdownPropsComponent,
+    MultiSelectComponent,
+    MultiSelectPropsComponent,
     NumberComponent,
     NumberPropsComponent,
     SingleCheckboxComponent,

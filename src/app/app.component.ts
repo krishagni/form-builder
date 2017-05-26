@@ -137,6 +137,38 @@ export class AppComponent implements OnInit {
             "name":"RB",
             "udn":"gender"
           }
+        ],
+        [
+          {
+             "type":"multiSelect",
+             "validationRules":[
+               {
+                 "name":"required",
+                 "params":{}
+               },
+               {
+                 "name":"textLength",
+                 "params": {
+                   "min": 5,
+                   "max": 32
+                 }
+               }
+             ],
+             "defaultValue":"",
+             "toolTip":"",
+             "caption":"Hobbies",
+             "pvs":[
+               { id: "Option 1", itemName: "Option 1", text: "Option 1", value: "Option 1" },
+               { id: "Option 2", itemName: "Option 2", text: "Option 2", value: "Option 2" },
+               { id: "Option 3", itemName: "Option 3", text: "Option 3", value: "Option 3" }
+             ],
+             "url":false,
+             "password":false,
+             "labelPosition":"LEFT_SIDE",
+             "name":"ST7",
+             "udn":"hobbies",
+             "width": 8
+                    }
         ]
       ]
     };
