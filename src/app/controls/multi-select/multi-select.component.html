@@ -1,13 +1,1 @@
-<!--div class="form-group" [formGroup]="parentGroup">
-  <label>
-    {{control.caption}}
-  </label>
-  <select class="form-control" [name]="control.name" [title]="control.toolTip" [formControlName]="control.name">
-    <option *ngFor="let pv of control.pvs" [value]="pv.value">
-      <a onChange="select(pv)">{{ pv.value }}</a>
-    </option>
-  </select>
-</div-->
-
-
-<angular2-multiselect [data]="control.pvs" displayValue="name" [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)"></angular2-multiselect>
+<angular2-multiselect [data]="control.pvs" [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)"></angular2-multiselect>

@@ -21,7 +21,7 @@ export class MultiSelectComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.changeFormat();
+    this.changeFormat(this.control);
     this.dropdownSettings = {
       singleSelection: false,
       text:"Select Hobbies",
@@ -31,10 +31,11 @@ export class MultiSelectComponent implements OnInit {
     };
   }
 
-  changeFormat() {
-    //this.control.pvs.forEach(controlsRow => {
-      //control.clicked = false;
-    //});
+  changeFormat(control) {
+    control.pvs.forEach(pv => {
+      pv.id = pv.text;
+      pv.itemName = pv.text;
+    });
   }
 
   onItemSelect(item){

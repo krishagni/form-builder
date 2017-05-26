@@ -33,9 +33,9 @@ export class MultiSelect extends Control {
       caption: "Multi Select Label",
       udn: "multiSelectLabel" + counter,
       pvs: [
-        { id: "Option 1", itemName: "Option 1", text: "Option 1", value: "Option 1" },
-        { id: "Option 2", itemName: "Option 2", text: "Option 2", value: "Option 2" },
-        { id: "Option 3", itemName: "Option 3", text: "Option 3", value: "Option 3" }
+        { text: "Option 1", value: "Option 1" },
+        { text: "Option 2", value: "Option 2" },
+        { text: "Option 3", value: "Option 3" }
       ],
       value: "Option 1",
       labelPosition: "LEFT_SIDE"
