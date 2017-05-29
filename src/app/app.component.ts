@@ -179,9 +179,9 @@ export class AppComponent implements OnInit {
                 "params":{}
               }
             ],
-            "defaultValue":"",
+            "defaultValue":"2017-05-20",
             "toolTip":"",
-            "caption":"Hobbies",
+            "caption":"Dates",
             "name":"ST7",
             "udn":"dates",
             "width": 8

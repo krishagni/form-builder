@@ -4,6 +4,7 @@ import { Control, GeneralProps, Number, SingleCheckbox, RadioButton, SingleSelec
 
 export class Date extends Control {
 
+
   constructor(date) {
     super(date);
   }
@@ -15,26 +16,25 @@ export class Date extends Control {
       name: "date" + counter,
       caption: "Date Label",
       udn: "dateLabel" + counter,
+      labelPosition: "LEFT_SIDE"
     });
   }
 
   public getProps(): any {
     let customProps = {
-      pvOrdering: {
-        model: new RadioButton({
-          type: "radioButton",
-          name: "pvOrdering",
-          caption: "PV Ordering",
-          dataType: "STRING",
-        }),
-        validations: []
-      },
+      value: {
+        model: {
+          name: "value",
+          value: this.value
+        }
+      }
     };
     return this.concatProps(GeneralProps.getGeneralProps(this), customProps);
   }
 
   public customSerialize(): any {
     let date = {};
+    date["defaultValue"] = this.value;
     return date;
   }
 
@@ -42,4 +42,5 @@ export class Date extends Control {
     date["value"] = dateMetadata.defaultValue;
     return new Date(date);
   }
+
 }
