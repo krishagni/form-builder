@@ -186,6 +186,40 @@ export class AppComponent implements OnInit {
             "udn":"dates",
             "width": 8
           }
+        ],
+        [
+          {
+            "type":"multiCheckbox",
+            "validationRules":[
+              {
+                "name":"required",
+                "params":{}
+              },
+              {
+                "name":"textLength",
+                "params": {
+                  "min": 5,
+                  "max": 32
+                }
+              }
+            ],
+            "defaultValue":"",
+            "toolTip":"",
+            "caption":"Hobbies",
+            "pvs":[
+              { text: "Sports", value: "Sports" },
+              { text: "Gaming", value: "Gaming" },
+              { text: "Programming", value: "Programming" }
+            ],
+            "value": "Sports",
+            "optionsPerRow":3,
+            "url":false,
+            "password":false,
+            "labelPosition":"LEFT_SIDE",
+            "name":"ST7",
+            "udn":"hobbies",
+            "width": 8
+          }
         ]
       ]
     };

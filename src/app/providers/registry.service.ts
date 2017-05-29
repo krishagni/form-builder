@@ -1,6 +1,8 @@
+import { MultiCheckboxPropsComponent } from './../controls/multi-checkbox/multi-checkbox-props.component';
+import { MultiCheckboxComponent } from './../controls/multi-checkbox/multi-checkbox.component';
 import { Injectable, Type, Component } from '@angular/core';
 
-import { Textbox, RadioButton, Dropdown, MultiSelect, Date } from '../model';
+import { Textbox, RadioButton, Dropdown, MultiSelect, Date, MultiCheckbox } from '../model';
 import { TextboxComponent, TextboxPropsComponent } from '../controls/textbox';
 import { RadioButtonComponent, RadioButtonPropsComponent } from '../controls/radio-button';
 import { DropdownComponent, DropdownPropsComponent } from '../controls/dropdown';
@@ -50,6 +52,13 @@ export class RegistryService {
       iconClass: "fa fa-calendar",
       controlComponent: DateComponent,
       propsComponent: DatePropsComponent
+    },
+    "multiCheckbox": {
+      modelClass: MultiCheckbox,
+      label: "MultiCheckbox",
+      iconClass: "fa fa-list",
+      controlComponent: MultiCheckboxComponent,
+      propsComponent: MultiCheckboxPropsComponent
     }
   };
 
