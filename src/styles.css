@@ -25,3 +25,8 @@ a {
     margin-left: 0px !important;
     margin-right: 0px !important;
 }
+
+.dropdown-list {
+    z-index: 1;
+    background-color: #eee;
+}

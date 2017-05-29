@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
             "url":false,
             "password":false,
             "labelPosition":"LEFT_SIDE",
-            "name":"ST7",
+            "name":"ST",
             "udn":"givenName",
             "width": 8
           },
@@ -80,14 +80,14 @@ export class AppComponent implements OnInit {
             "toolTip":"",
             "caption":"Hobbies",
             "pvs":[
-              { "value":"Sports" },
-              { "value":"Gaming" },
-              { "value":"Programming" }
+              { text: "Option 1", value: "Option 1" },
+              { text: "Option 2", value: "Option 2" },
+              { text: "Option 3", value: "Option 3" }
             ],
             "url":false,
             "password":false,
             "labelPosition":"LEFT_SIDE",
-            "name":"ST7",
+            "name":"DD",
             "udn":"hobbies",
             "width": 8
           }
@@ -106,8 +106,8 @@ export class AppComponent implements OnInit {
             "toolTip":"",
             "caption":"Do you smoke?",
             "pvs":[
-              { "value":"Yes" },
-              { "value":"No" }
+              { text: "Yes", "value":"Yes" },
+              { text: "No", "value":"No" }
             ],
             "value": "Yes",
             "optionsPerRow":3,
@@ -165,7 +165,7 @@ export class AppComponent implements OnInit {
              "url":false,
              "password":false,
              "labelPosition":"LEFT_SIDE",
-             "name":"ST7",
+             "name":"MS",
              "udn":"hobbies",
              "width": 8
                     }
@@ -182,7 +182,7 @@ export class AppComponent implements OnInit {
             "defaultValue":"2017-05-20",
             "toolTip":"",
             "caption":"Dates",
-            "name":"ST7",
+            "name":"D",
             "udn":"dates",
             "width": 8
           }
@@ -213,10 +213,8 @@ export class AppComponent implements OnInit {
             ],
             "value": "Sports",
             "optionsPerRow":3,
-            "url":false,
-            "password":false,
             "labelPosition":"LEFT_SIDE",
-            "name":"ST7",
+            "name":"MCB",
             "udn":"hobbies",
             "width": 8
           }

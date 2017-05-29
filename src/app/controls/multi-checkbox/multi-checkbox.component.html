@@ -7,9 +7,7 @@
     <label *ngFor="let pv of control.pvs" [ngStyle]="{'width': 100/control.optionsPerRow + '%'}" [title]="control.toolTip">
       <input type="checkbox" [name]="control.name" [value]="control.value"
         [formControlName]="control.name"/>
-      <label>
         {{ pv.value }}
-      </label>
     </label>
   </div>
 </div>
