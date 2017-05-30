@@ -2,7 +2,7 @@
   <label>
     {{control.caption}}
   </label>
-  <input class="form-control" type="text" [title]="control.toolTip" 
+  <input class="form-control" [type]="control.url ? 'url' : 'text'" [title]="control.toolTip"
     [name]="control.name" [value]="control.value" [minlength]="control.minLength"
     [maxlength]="control.maxLength" [formControlName]="control.name"
     [style.-webkit-text-security]="control.password ? 'disc': 'initial'"/>

@@ -1,0 +1,7 @@
+<div class="form-group" [formGroup]="parentGroup">
+  <label>
+    {{control.caption}}
+  </label>
+  <input class="form-control" type="date" [title]="control.toolTip"
+    [name]="control.name" [value]="control.value" [formControlName]="control.name"/>
+</div>

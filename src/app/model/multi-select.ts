@@ -2,7 +2,7 @@ import { Validators } from '@angular/forms';
 
 import { Control, GeneralProps, Number, SingleCheckbox, RadioButton, SingleSelect } from '.';
 
-export class Dropdown extends Control {
+export class MultiSelect extends Control {
 
   minLength: number;
 
@@ -16,26 +16,26 @@ export class Dropdown extends Control {
 
   pvOrdering: string;
 
-  constructor(dropdown) {
-    super(dropdown);
-    this.minLength = dropdown.minLength;
-    this.maxLength = dropdown.maxLength;
-    this.url = !!dropdown.url;
-    this.password = !!dropdown.password;
-    this.pvs = dropdown.pvs || [];
+  constructor(multiSelect) {
+    super(multiSelect);
+    this.minLength = multiSelect.minLength;
+    this.maxLength = multiSelect.maxLength;
+    this.url = !!multiSelect.url;
+    this.password = !!multiSelect.password;
+    this.pvs = multiSelect.pvs || [];
   }
 
-  public static getInstance(counter): Dropdown {
+  public static getInstance(counter): MultiSelect {
     // TODO: integrate i18n
-    return new Dropdown({
-      type: "dropdown",
-      name: "dropdown" + counter,
-      caption: "Dropdown Label",
-      udn: "dropdownLabel" + counter,
+    return new MultiSelect({
+      type: "multiSelect",
+      name: "multiSelect" + counter,
+      caption: "Multi Select Label",
+      udn: "multiSelectLabel" + counter,
       pvs: [
-        { value: "Option 1" },
-        { value: "Option 2" },
-        { value: "Option 3" }
+        { text: "Option 1", value: "Option 1" },
+        { text: "Option 2", value: "Option 2" },
+        { text: "Option 3", value: "Option 3" }
       ],
       value: "Option 1",
       labelPosition: "LEFT_SIDE"
@@ -79,11 +79,11 @@ export class Dropdown extends Control {
   }
 
   public customSerialize(): any {
-    let dropdown = {};
-    dropdown["defaultValue"] = this.value;
-    dropdown["url"] = this.url || false;
-    dropdown["password"] = this.password || false;
-    dropdown["validationRules"] = [];
+    let multiSelect = {};
+    multiSelect["defaultValue"] = this.value;
+    multiSelect["url"] = this.url || false;
+    multiSelect["password"] = this.password || false;
+    multiSelect["validationRules"] = [];
     if (this.minLength || this.maxLength) {
       let textLength = {
         "name":"textLength",
@@ -95,25 +95,25 @@ export class Dropdown extends Control {
       if (this.maxLength) {
         textLength.params["max"] = this.maxLength;
       }
-      dropdown["validationRules"].push(textLength);
+      multiSelect["validationRules"].push(textLength);
     }
-    return dropdown;
+    return multiSelect;
   }
 
-  public customDeserialize(dropdown, dropdownMetadata): any {
-    dropdown["value"] = dropdownMetadata.defaultValue;
-    dropdown["url"] = dropdownMetadata.url;
-    dropdown["password"] = dropdownMetadata.password;
-    dropdown["pvs"] = dropdownMetadata.pvs;
-    dropdownMetadata.validationRules.forEach(validationRule => {
+  public customDeserialize(multiSelect, multiSelectMetadata): any {
+    multiSelect["value"] = multiSelectMetadata.defaultValue;
+    multiSelect["url"] = multiSelectMetadata.url;
+    multiSelect["password"] = multiSelectMetadata.password;
+    multiSelect["pvs"] = multiSelectMetadata.pvs;
+    multiSelectMetadata.validationRules.forEach(validationRule => {
       switch (validationRule.name) {
         case "textLength":
-          dropdown["minLength"] = validationRule.params.min;
-          dropdown["maxLength"] = validationRule.params.max;
+          multiSelect["minLength"] = validationRule.params.min;
+          multiSelect["maxLength"] = validationRule.params.max;
           break;
       }
     });
-    return new Dropdown(dropdown);
+    return new MultiSelect(multiSelect);
   }
 
 }

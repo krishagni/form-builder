@@ -1,0 +1,13 @@
+
+<div class="form-group" [formGroup]="parentGroup">
+  <label>
+    {{control.caption}}
+  </label>
+  <div>
+    <label *ngFor="let pv of control.pvs" [ngStyle]="{'width': 100/control.optionsPerRow + '%'}" [title]="control.toolTip">
+      <input type="checkbox" [name]="control.name" [value]="control.value"
+        [formControlName]="control.name"/>
+        {{ pv.value }}
+    </label>
+  </div>
+</div>

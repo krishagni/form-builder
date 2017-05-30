@@ -15,12 +15,15 @@ import { ValidationErrorsComponent } from './controls/validation-errors';
 import { TextboxComponent, TextboxPropsComponent } from './controls/textbox';
 import { RadioButtonComponent, RadioButtonPropsComponent } from './controls/radio-button';
 import { DropdownComponent, DropdownPropsComponent } from './controls/dropdown';
+import { MultiSelectComponent, MultiSelectPropsComponent } from './controls/multi-select';
+import { DateComponent, DatePropsComponent } from './controls/date';
 import { NumberComponent, NumberPropsComponent } from './controls/number';
 import { SingleCheckboxComponent, SingleCheckboxPropsComponent } from './controls/single-checkbox';
+import { MultiCheckboxComponent, MultiCheckboxPropsComponent } from './controls/multi-checkbox';
 import { SingleSelectComponent } from './controls/single-select';
+import { AngularMultiSelectModule } from '../../node_modules/angular2-multiselect-dropdown/src/app/angular2-multiselect-dropdown/multiselect.component';
 
 @NgModule({
-  
   declarations: [
     AppComponent,
     PaletteComponent,
@@ -37,10 +40,16 @@ import { SingleSelectComponent } from './controls/single-select';
     RadioButtonPropsComponent,
     DropdownComponent,
     DropdownPropsComponent,
+    MultiSelectComponent,
+    MultiSelectPropsComponent,
+    DateComponent,
+    DatePropsComponent,
     NumberComponent,
     NumberPropsComponent,
     SingleCheckboxComponent,
     SingleCheckboxPropsComponent,
+    MultiCheckboxComponent,
+    MultiCheckboxPropsComponent,
     SingleSelectComponent
   ],
 
@@ -49,6 +58,7 @@ import { SingleSelectComponent } from './controls/single-select';
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
+    AngularMultiSelectModule,
     DndModule.forRoot()
   ],
 
@@ -63,10 +73,16 @@ import { SingleSelectComponent } from './controls/single-select';
     RadioButtonPropsComponent,
     DropdownComponent,
     DropdownPropsComponent,
+    MultiSelectComponent,
+    MultiSelectPropsComponent,
+    DateComponent,
+    DatePropsComponent,
     NumberComponent,
     NumberPropsComponent,
     SingleCheckboxComponent,
     SingleCheckboxPropsComponent,
+    MultiCheckboxComponent,
+    MultiCheckboxPropsComponent,
     SingleSelectComponent
   ],
 
