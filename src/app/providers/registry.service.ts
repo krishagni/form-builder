@@ -20,14 +20,14 @@ export class RegistryService {
   paletteControls: any = {
     "textbox": {
       modelClass: Textbox,
-      label: "Textbox",
+      label: "Single Line Text",
       iconClass: "fa fa-text-width",
       controlComponent: TextboxComponent,
       propsComponent: TextboxPropsComponent
     },
     "radioButton": {
       modelClass: RadioButton,
-      label: "Radio Button",
+      label: "Radio Buttons",
       iconClass: "fa fa-list",
       controlComponent: RadioButtonComponent,
       propsComponent: RadioButtonPropsComponent
@@ -41,7 +41,7 @@ export class RegistryService {
     },
     "multiSelect": {
       modelClass: MultiSelect,
-      label: "Multi Select",
+      label: "Multiple Select",
       iconClass: "fa fa-caret-down",
       controlComponent: MultiSelectComponent,
       propsComponent: MultiSelectPropsComponent
@@ -55,7 +55,7 @@ export class RegistryService {
     },
     "multiCheckbox": {
       modelClass: MultiCheckbox,
-      label: "MultiCheckbox",
+      label: "Checkboxes",
       iconClass: "fa fa-list",
       controlComponent: MultiCheckboxComponent,
       propsComponent: MultiCheckboxPropsComponent

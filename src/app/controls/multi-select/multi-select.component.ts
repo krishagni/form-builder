@@ -24,7 +24,7 @@ export class MultiSelectComponent implements OnInit {
     this.changeFormat(this.control);
     this.dropdownSettings = {
       singleSelection: false,
-      text:"Select Hobbies",
+      text:"Select Options",
       selectAllText:'Select All',
       unSelectAllText:'UnSelect All',
       enableSearchFilter: true

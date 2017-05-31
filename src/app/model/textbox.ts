@@ -25,7 +25,7 @@ export class Textbox extends Control {
     return new Textbox({
       type: "textbox",
       name: "textbox" + counter,
-      caption: "Textbox Label",
+      caption: "Single Line Text",
       udn: "textboxLabel" + counter,
       labelPosition: "LEFT_SIDE"
     });

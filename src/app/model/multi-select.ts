@@ -30,7 +30,7 @@ export class MultiSelect extends Control {
     return new MultiSelect({
       type: "multiSelect",
       name: "multiSelect" + counter,
-      caption: "Multi Select Label",
+      caption: "Multiple Select",
       udn: "multiSelectLabel" + counter,
       pvs: [
         { text: "Option 1", value: "Option 1" },

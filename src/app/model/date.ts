@@ -14,7 +14,7 @@ export class Date extends Control {
     return new Date({
       type: "date",
       name: "date" + counter,
-      caption: "Date Label",
+      caption: "Date",
       udn: "dateLabel" + counter,
       labelPosition: "LEFT_SIDE"
     });

@@ -30,7 +30,7 @@ export class Dropdown extends Control {
     return new Dropdown({
       type: "dropdown",
       name: "dropdown" + counter,
-      caption: "Dropdown Label",
+      caption: "Dropdown",
       udn: "dropdownLabel" + counter,
       pvs: [
         { value: "Option 1" },

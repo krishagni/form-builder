@@ -25,15 +25,12 @@ export class RadioButton extends Control {
     return new RadioButton({
       type: "radioButton",
       name: "radioButton" + counter,
-      caption: "Radio Button Label",
+      caption: "Radio Buttons",
       udn: "radioButtonLabel" + counter,
       dataType: "STRING",
       pvs: [
         { text: "Option 1", value: "Option 1" },
-        { text: "Option 2", value: "Option 2" },
-        { text: "Option 3", value: "Option 3" },
-        { text: "Option 4", value: "Option 4" },
-        { text: "Option 5", value: "Option 5" }
+        { text: "Option 2", value: "Option 2" }
       ],
       value: "Option 1",
       optionsPerRow: 2,

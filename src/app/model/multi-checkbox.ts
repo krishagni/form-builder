@@ -25,7 +25,7 @@ export class MultiCheckbox extends Control {
     return new MultiCheckbox({
       type: "multiCheckbox",
       name: "multiCheckbox" + counter,
-      caption: "Multi Checkbox Label",
+      caption: "Checkboxes",
       udn: "multiCheckboxLabel" + counter,
       dataType: "STRING",
       pvs: [
