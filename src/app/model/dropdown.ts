@@ -16,6 +16,8 @@ export class Dropdown extends Control {
 
   pvOrdering: string;
 
+  counter: number;
+
   constructor(dropdown) {
     super(dropdown);
     this.minLength = dropdown.minLength;
@@ -23,6 +25,8 @@ export class Dropdown extends Control {
     this.url = !!dropdown.url;
     this.password = !!dropdown.password;
     this.pvs = dropdown.pvs || [];
+    this.counter = dropdown.counter;
+
   }
 
   public static getInstance(counter): Dropdown {
@@ -38,7 +42,8 @@ export class Dropdown extends Control {
         { value: "Option 3" }
       ],
       value: "Option 1",
-      labelPosition: "LEFT_SIDE"
+      labelPosition: "LEFT_SIDE",
+      counter: counter
     });
   }
 

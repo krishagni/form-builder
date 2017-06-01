@@ -12,12 +12,15 @@ export class Textbox extends Control {
 
   password: boolean;
 
+  counter: number;
+
   constructor(textbox) {
     super(textbox);
     this.minLength = textbox.minLength;
     this.maxLength = textbox.maxLength;
     this.url = !!textbox.url;
     this.password = !!textbox.password;
+    this.counter = textbox.counter;
   }
 
   public static getInstance(counter): Textbox {
@@ -27,7 +30,7 @@ export class Textbox extends Control {
       name: "textbox" + counter,
       caption: "Single Line Text",
       udn: "textboxLabel" + counter,
-      labelPosition: "LEFT_SIDE"
+      labelPosition: "LEFT_SIDE",
     });
   }
 

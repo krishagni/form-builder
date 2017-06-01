@@ -12,12 +12,15 @@ export class RadioButton extends Control {
   
   pvOrdering: string;
 
+  counter: number;
+
   constructor(radioButton) {
     super(radioButton);
     this.optionsPerRow = radioButton.optionsPerRow || 2;
     this.dataType = radioButton.dataType || '';
     this.pvs = radioButton.pvs || [];
     this.pvOrdering = radioButton.pvOrdering || "NONE";
+    this.counter = radioButton.counter;
   }
 
   public static getInstance(counter): RadioButton {
@@ -35,7 +38,8 @@ export class RadioButton extends Control {
       value: "Option 1",
       optionsPerRow: 2,
       pvOrdering: "NONE",
-      labelPosition: "LEFT_SIDE"
+      labelPosition: "LEFT_SIDE",
+      counter: counter
     });
   }
 

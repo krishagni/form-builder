@@ -12,12 +12,15 @@ export class MultiCheckbox extends Control {
   
   pvOrdering: string;
 
+  counter: number;
+
   constructor(radioButton) {
     super(radioButton);
     this.optionsPerRow = radioButton.optionsPerRow || 2;
     this.dataType = radioButton.dataType || '';
     this.pvs = radioButton.pvs || [];
     this.pvOrdering = radioButton.pvOrdering || "NONE";
+    this.counter = radioButton.counter;
   }
 
   public static getInstance(counter): MultiCheckbox {
@@ -36,7 +39,8 @@ export class MultiCheckbox extends Control {
       value: "Option 1",
       optionsPerRow: 3,
       pvOrdering: "NONE",
-      labelPosition: "LEFT_SIDE"
+      labelPosition: "LEFT_SIDE",
+      counter: counter
     });
   }
 

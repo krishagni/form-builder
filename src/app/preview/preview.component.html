@@ -24,13 +24,13 @@
               dnd-draggable [dragEnabled]="true" [dragData]="row + '-' + col">
               <fb-control [control]="control" [parentGroup]="mainForm">
               </fb-control>
-              <div *ngIf="control.clicked" class="accordion-expand"  data-toggle="collapse" [attr.data-target]="'#'+row"
-                href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                <span>Field Options</span>
-                <span class="fa fa-caret-down float-right"></span>
-              </div>
-              <div class="container collapse" [attr.id]="row">
-                <div class="accordion-expand">
+              <div *ngIf="control.clicked">
+                <div class="accordion-expand"  data-toggle="collapse" [attr.data-target]="'#'+row"
+                  href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  <span class="field-options">Field Options (ID {{control.counter}})</span>
+                  <span class="fa fa-caret-down float-right"></span>
+                </div>
+                <div class="container collapse accordion-expand" [attr.id]="row">
                   <fb-control-props [control]="control">
                   </fb-control-props>
                 </div>

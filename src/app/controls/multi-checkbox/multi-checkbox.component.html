@@ -1,5 +1,8 @@
 
 <div class="form-group" [formGroup]="parentGroup">
+  <span *ngIf="control.mandatory">
+    *
+  </span>
   <label>
     {{control.caption}}
   </label>

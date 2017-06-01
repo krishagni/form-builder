@@ -4,9 +4,11 @@ import { Control, GeneralProps, Number, SingleCheckbox, RadioButton, SingleSelec
 
 export class Date extends Control {
 
+counter: number;
 
   constructor(date) {
     super(date);
+    this.counter = date.counter;
   }
 
   public static getInstance(counter): Date {
@@ -16,7 +18,8 @@ export class Date extends Control {
       name: "date" + counter,
       caption: "Date",
       udn: "dateLabel" + counter,
-      labelPosition: "LEFT_SIDE"
+      labelPosition: "LEFT_SIDE",
+      counter: counter
     });
   }
 

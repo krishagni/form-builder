@@ -16,6 +16,8 @@ export class MultiSelect extends Control {
 
   pvOrdering: string;
 
+  counter: number;
+
   constructor(multiSelect) {
     super(multiSelect);
     this.minLength = multiSelect.minLength;
@@ -23,6 +25,7 @@ export class MultiSelect extends Control {
     this.url = !!multiSelect.url;
     this.password = !!multiSelect.password;
     this.pvs = multiSelect.pvs || [];
+    this.counter = multiSelect.counter;
   }
 
   public static getInstance(counter): MultiSelect {
@@ -38,7 +41,8 @@ export class MultiSelect extends Control {
         { text: "Option 3", value: "Option 3" }
       ],
       value: "Option 1",
-      labelPosition: "LEFT_SIDE"
+      labelPosition: "LEFT_SIDE",
+      counter: counter
     });
   }
 

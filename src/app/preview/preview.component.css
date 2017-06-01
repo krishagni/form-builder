@@ -1,6 +1,7 @@
 .active {
-    border: dashed 2px #337ab7;
-    background-color: #eee;
+    border: 1px solid #5b9dd9;
+    background-color: #fbfdff;
+    padding-bottom: 5px;
 }
 
 .panel-body > .row > .col {
@@ -12,5 +13,30 @@
 }
 
 .droppable-col {
-    width: 15px;
+}
+
+.collapse.in {
+    display:block;
+}
+
+.accordion-expand {
+    background-color: #fafafa;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    padding-left: 1px;
+}
+
+.float-right{
+    float:right;
+}
+
+.fa-caret-down {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.field-options {
+    margin-left: 10px;
 }

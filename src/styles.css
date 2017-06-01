@@ -26,21 +26,16 @@ a {
     margin-right: 0px !important;
 }
 
-.collapse.in{
-    display:block;
-}
-
-.accordion-expand{
-    background-color: #ee;
-    border: 1px solid;
-    border-radius: 2px;
-}
-
-.float-right{
-    float:right;
-}
-
 .dropdown-list {
-    z-index: 1;
-    background-color: #eee;
+    z-index: 5;
+    background-color: #fafafa;
+}
+
+.selected-list {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
 }
