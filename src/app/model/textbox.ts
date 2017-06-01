@@ -14,6 +14,8 @@ export class Textbox extends Control {
 
   counter: number;
 
+  placeHolder: string;
+
   constructor(textbox) {
     super(textbox);
     this.minLength = textbox.minLength;
@@ -21,6 +23,7 @@ export class Textbox extends Control {
     this.url = !!textbox.url;
     this.password = !!textbox.password;
     this.counter = textbox.counter;
+    this.placeHolder = textbox.placeHolder;
   }
 
   public static getInstance(counter): Textbox {

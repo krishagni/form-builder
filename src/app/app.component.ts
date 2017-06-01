@@ -66,7 +66,8 @@ export class AppComponent implements OnInit {
           caption: "Display Name",
           value: this.form.caption,
           minLength: 5,
-          maxLength: 25
+          maxLength: 25,
+          placeHolder: "Enter Form Name"
         }),
         validations: [
           Validators.required,
