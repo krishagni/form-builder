@@ -70,6 +70,9 @@ export class ControlPropsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private onSubmit() {
+    if(this.control.type == "multiSelect") {
+      this.changePvFormat(this.propsForm.value);
+    }
     Object.assign(this.control, this.propsForm.value);
     if (this.propsForm.value.hasOwnProperty('pvs')) {
       this.control['pvs'] = JSON.parse(JSON.stringify(this.propsForm.value['pvs']));
@@ -79,6 +82,13 @@ export class ControlPropsComponent implements OnInit, OnChanges, OnDestroy {
 
   private hideSuccessAlert() {
     this.isPropsFormSaved = false;
+  }
+
+  private changePvFormat(control) {
+    control.pvs.forEach(pv => {
+      pv.id = pv.text;
+      pv.itemName = pv.text;
+    });
   }
 
 }

@@ -53,7 +53,7 @@ export class PvComponent implements OnInit, ControlValueAccessor {
   }
 
   private addPv() {
-    this.pvs.push({ id: "Option", itemName: "Option", text: "Option", value: "Option" });
+    this.pvs.push({ text: "Option", value: "Option" });
   }
 
   private deletePv(pvIdx) {
@@ -61,8 +61,6 @@ export class PvComponent implements OnInit, ControlValueAccessor {
   }
 
   private optionTextEdited(pvIdx, event) {
-    this.pvs[pvIdx].id = event.currentTarget.value;
-    this.pvs[pvIdx].itemName = event.currentTarget.value;
     this.pvs[pvIdx].text = event.currentTarget.value;
     this.pvs[pvIdx].value = event.currentTarget.value;
   }
@@ -77,7 +75,7 @@ export class PvComponent implements OnInit, ControlValueAccessor {
         lines.forEach(line => {
           if (line.length > 0) {
             line.split('\r').forEach( pv => {
-              this.pvs.push({ id: pv, itemName: pv, text: pv, value: pv });
+              this.pvs.push({ text: pv, value: pv });
             });
           }
         });
