@@ -2,7 +2,7 @@
   <span *ngIf="control.mandatory">
     *
   </span>
-  <label>
+  <label *ngIf="control.caption">
     {{control.caption}}
   </label>
   <input class="form-control" [type]="control.url ? 'url' : 'text'" [title]="control.toolTip"

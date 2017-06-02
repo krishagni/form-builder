@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
         model: new Textbox({
           type: "textbox",
           name: "caption",
-          caption: "Display Name",
+          caption: "",
           value: this.form.caption,
           minLength: 5,
           maxLength: 25,
@@ -89,7 +89,7 @@ export class AppComponent implements OnInit {
         model: new Textbox({
           type: "textbox",
           name: "name",
-          caption: "Form Name",
+          caption: "",
           value: this.form.name,
           minLength: 5,
           maxLength: 25

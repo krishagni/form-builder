@@ -5,13 +5,22 @@
         <h5 class="col-12">
           Build New Form
         </h5>
-        <div class="col-6 form-group">
+        <div class="col-12 form-group">
           <fb-textbox [control]="mainFormControls.caption.model" [parentGroup]="mainForm">
           </fb-textbox>
           <fb-validation-errors [prop]="mainFormControls.caption" [propsForm]="mainForm">
           </fb-validation-errors>
         </div>
-        <div class="col-6 form-group">
+      </div>
+      <div class="row">
+        <div class="col-7">
+        </div>
+        <div class="col-2">
+          <label>
+            Form Name
+          </label>
+        </div>
+        <div class="col-3">
           <fb-textbox [control]="mainFormControls.name.model" [parentGroup]="mainForm">
           </fb-textbox>
           <fb-validation-errors [prop]="mainFormControls.name" [propsForm]="mainForm">
