@@ -3,7 +3,6 @@ import { Validators } from '@angular/forms';
 import { Control, GeneralProps, Number, SingleSelect, RadioButton } from '.';
 
 export class MultiCheckbox extends Control {
-
   optionsPerRow: number;
 
   dataType: string;
@@ -114,28 +113,27 @@ export class MultiCheckbox extends Control {
   }
 
   public customSerialize(): any {
-    let radio = {};
-    radio["pvOrdering"] = this.pvOrdering;
-    radio["dataType"] = this.dataType;
-    radio["pvs"] = [];
+    let multiCheckbox = {};
+    multiCheckbox["pvOrdering"] = this.pvOrdering;
+    multiCheckbox["dataType"] = this.dataType;
+    multiCheckbox["pvs"] = [];
     this.pvs.forEach(pv => {
-      radio["pvs"].push({
+      multiCheckbox["pvs"].push({
         value: pv.value
       });
     });
-    radio["optionsPerRow"] = this.optionsPerRow;
-    return radio;
+    multiCheckbox["optionsPerRow"] = this.optionsPerRow;
+    return multiCheckbox;
   }
 
-  public customDeserialize(radio, radioMetadata): any {
-    radio["pvOrdering"] = radioMetadata.pvOrdering;
-    radio["dataType"] = radioMetadata.dataType;
-    radio["pvs"] = [];
-    radioMetadata.pvs.forEach(pv => {
-      radio["pvs"].push({ text: pv.value, value: pv.value });
+  public customDeserialize(multiCheckbox, multiCheckboxMetadata): any {
+    multiCheckbox["pvOrdering"] = multiCheckboxMetadata.pvOrdering;
+    multiCheckbox["dataType"] = multiCheckboxMetadata.dataType;
+    multiCheckbox["pvs"] = [];
+    multiCheckboxMetadata.pvs.forEach(pv => {
+      multiCheckbox["pvs"].push({ text: pv.value, value: pv.value });
     });
-    radio["optionsPerRow"] = radioMetadata.optionsPerRow;
-    return new MultiCheckbox(radio);
+    multiCheckbox["optionsPerRow"] = multiCheckboxMetadata.optionsPerRow;
+    return new MultiCheckbox(multiCheckbox);
   }
-  
 }

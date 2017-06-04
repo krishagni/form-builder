@@ -3,28 +3,19 @@ import { Validators } from '@angular/forms';
 import { Control, GeneralProps, Number, SingleCheckbox, RadioButton, SingleSelect } from '.';
 
 export class Dropdown extends Control {
-
-  minLength: number;
-
-  maxLength: number;
-
-  url: boolean;
-
-  password: boolean;
+  dataType: string;
 
   pvs: any[];
-
+  
   pvOrdering: string;
-
+  
   counter: number;
 
   constructor(dropdown) {
     super(dropdown);
-    this.minLength = dropdown.minLength;
-    this.maxLength = dropdown.maxLength;
-    this.url = !!dropdown.url;
-    this.password = !!dropdown.password;
+    this.dataType = dropdown.dataType || '';
     this.pvs = dropdown.pvs || [];
+    this.pvOrdering = dropdown.pvOrdering || "NONE";
     this.counter = dropdown.counter;
 
   }
@@ -36,12 +27,14 @@ export class Dropdown extends Control {
       name: "dropdown" + counter,
       caption: "Dropdown",
       udn: "dropdownLabel" + counter,
+      dataType: "STRING",
       pvs: [
-        { value: "Option 1" },
-        { value: "Option 2" },
-        { value: "Option 3" }
+        { text: "Option 1", value: "Option 1" },
+        { text: "Option 2", value: "Option 2" },
+        { text: "Option 3", value: "Option 3" }
       ],
       value: "Option 1",
+      pvOrdering: "NONE",
       labelPosition: "LEFT_SIDE",
       counter: counter
     });
@@ -78,6 +71,21 @@ export class Dropdown extends Control {
           value: this.value
         },
         validations: []
+      },
+      dataType: {
+        model: new SingleSelect({
+          type: "singleSelect",
+          name: "dataType",
+          caption: "Data Type",
+          pvs: [
+            { text: "String", value: "STRING" },
+            { text: "Integer", value: "INTEGER" },
+            { text: "Float", value: "FLOAT" },
+            { text: "Boolean", value: "BOOLEAN" }
+          ],
+          value: this.dataType
+        }),
+        validations: []
       }
     };
     return this.concatProps(GeneralProps.getGeneralProps(this), customProps);
@@ -85,40 +93,24 @@ export class Dropdown extends Control {
 
   public customSerialize(): any {
     let dropdown = {};
-    dropdown["defaultValue"] = this.value;
-    dropdown["url"] = this.url || false;
-    dropdown["password"] = this.password || false;
-    dropdown["validationRules"] = [];
-    if (this.minLength || this.maxLength) {
-      let textLength = {
-        "name":"textLength",
-        "params": {}
-      };
-      if (this.minLength) {
-        textLength.params["min"] = this.minLength;
-      }
-      if (this.maxLength) {
-        textLength.params["max"] = this.maxLength;
-      }
-      dropdown["validationRules"].push(textLength);
-    }
+    dropdown["pvOrdering"] = this.pvOrdering;
+    dropdown["dataType"] = this.dataType;
+    dropdown["pvs"] = [];
+    this.pvs.forEach(pv => {
+      dropdown["pvs"].push({
+        value: pv.value
+      });
+    });
     return dropdown;
   }
 
   public customDeserialize(dropdown, dropdownMetadata): any {
-    dropdown["value"] = dropdownMetadata.defaultValue;
-    dropdown["url"] = dropdownMetadata.url;
-    dropdown["password"] = dropdownMetadata.password;
-    dropdown["pvs"] = dropdownMetadata.pvs;
-    dropdownMetadata.validationRules.forEach(validationRule => {
-      switch (validationRule.name) {
-        case "textLength":
-          dropdown["minLength"] = validationRule.params.min;
-          dropdown["maxLength"] = validationRule.params.max;
-          break;
-      }
+    dropdown["pvOrdering"] = dropdownMetadata.pvOrdering;
+    dropdown["dataType"] = dropdownMetadata.dataType;
+    dropdown["pvs"] = [];
+    dropdownMetadata.pvs.forEach(pv => {
+      dropdown["pvs"].push({ text: pv.value, value: pv.value });
     });
     return new Dropdown(dropdown);
   }
-
 }

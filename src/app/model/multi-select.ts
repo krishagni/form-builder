@@ -3,28 +3,19 @@ import { Validators } from '@angular/forms';
 import { Control, GeneralProps, Number, SingleCheckbox, RadioButton, SingleSelect } from '.';
 
 export class MultiSelect extends Control {
-
-  minLength: number;
-
-  maxLength: number;
-
-  url: boolean;
-
-  password: boolean;
+  dataType: string;
 
   pvs: any[];
-
+  
   pvOrdering: string;
 
   counter: number;
 
   constructor(multiSelect) {
     super(multiSelect);
-    this.minLength = multiSelect.minLength;
-    this.maxLength = multiSelect.maxLength;
-    this.url = !!multiSelect.url;
-    this.password = !!multiSelect.password;
+    this.dataType = multiSelect.dataType || '';
     this.pvs = multiSelect.pvs || [];
+    this.pvOrdering = multiSelect.pvOrdering || "NONE";
     this.counter = multiSelect.counter;
   }
 
@@ -35,12 +26,14 @@ export class MultiSelect extends Control {
       name: "multiSelect" + counter,
       caption: "Multiple Select",
       udn: "multiSelectLabel" + counter,
+      dataType: "STRING",
       pvs: [
         { text: "Option 1", value: "Option 1" },
         { text: "Option 2", value: "Option 2" },
         { text: "Option 3", value: "Option 3" }
       ],
       value: "Option 1",
+      pvOrdering: "NONE",
       labelPosition: "LEFT_SIDE",
       counter: counter
     });
@@ -77,6 +70,21 @@ export class MultiSelect extends Control {
           value: this.value
         },
         validations: []
+      },
+      dataType: {
+        model: new SingleSelect({
+          type: "singleSelect",
+          name: "dataType",
+          caption: "Data Type",
+          pvs: [
+            { text: "String", value: "STRING" },
+            { text: "Integer", value: "INTEGER" },
+            { text: "Float", value: "FLOAT" },
+            { text: "Boolean", value: "BOOLEAN" }
+          ],
+          value: this.dataType
+        }),
+        validations: []
       }
     };
     return this.concatProps(GeneralProps.getGeneralProps(this), customProps);
@@ -84,38 +92,23 @@ export class MultiSelect extends Control {
 
   public customSerialize(): any {
     let multiSelect = {};
-    multiSelect["defaultValue"] = this.value;
-    multiSelect["url"] = this.url || false;
-    multiSelect["password"] = this.password || false;
-    multiSelect["validationRules"] = [];
-    if (this.minLength || this.maxLength) {
-      let textLength = {
-        "name":"textLength",
-        "params": {}
-      };
-      if (this.minLength) {
-        textLength.params["min"] = this.minLength;
-      }
-      if (this.maxLength) {
-        textLength.params["max"] = this.maxLength;
-      }
-      multiSelect["validationRules"].push(textLength);
-    }
+    multiSelect["pvOrdering"] = this.pvOrdering;
+    multiSelect["dataType"] = this.dataType;
+    multiSelect["pvs"] = [];
+    this.pvs.forEach(pv => {
+      multiSelect["pvs"].push({
+        value: pv.value
+      });
+    });
     return multiSelect;
   }
 
   public customDeserialize(multiSelect, multiSelectMetadata): any {
-    multiSelect["value"] = multiSelectMetadata.defaultValue;
-    multiSelect["url"] = multiSelectMetadata.url;
-    multiSelect["password"] = multiSelectMetadata.password;
-    multiSelect["pvs"] = multiSelectMetadata.pvs;
-    multiSelectMetadata.validationRules.forEach(validationRule => {
-      switch (validationRule.name) {
-        case "textLength":
-          multiSelect["minLength"] = validationRule.params.min;
-          multiSelect["maxLength"] = validationRule.params.max;
-          break;
-      }
+    multiSelect["pvOrdering"] = multiSelectMetadata.pvOrdering;
+    multiSelect["dataType"] = multiSelectMetadata.dataType;
+    multiSelect["pvs"] = [];
+    multiSelectMetadata.pvs.forEach(pv => {
+      multiSelect["pvs"].push({ text: pv.value, value: pv.value });
     });
     return new MultiSelect(multiSelect);
   }
