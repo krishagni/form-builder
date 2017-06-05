@@ -20,8 +20,9 @@ import { DateComponent, DatePropsComponent } from './controls/date';
 import { NumberComponent, NumberPropsComponent } from './controls/number';
 import { SingleCheckboxComponent, SingleCheckboxPropsComponent } from './controls/single-checkbox';
 import { MultiCheckboxComponent, MultiCheckboxPropsComponent } from './controls/multi-checkbox';
-import { SingleSelectComponent } from './controls/single-select';
+import { SingleSelectComponent, SingleSelectPropsComponent } from './controls/single-select';
 import { AngularMultiSelectModule } from '../../node_modules/angular2-multiselect-dropdown/src/app/angular2-multiselect-dropdown/multiselect.component';
+import { TextareaComponent, TextareaPropsComponent } from './controls/textarea';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,10 @@ import { AngularMultiSelectModule } from '../../node_modules/angular2-multiselec
     SingleCheckboxPropsComponent,
     MultiCheckboxComponent,
     MultiCheckboxPropsComponent,
-    SingleSelectComponent
+    SingleSelectComponent,
+    SingleSelectPropsComponent,
+    TextareaComponent,
+    TextareaPropsComponent
   ],
 
   imports: [
@@ -83,7 +87,10 @@ import { AngularMultiSelectModule } from '../../node_modules/angular2-multiselec
     SingleCheckboxPropsComponent,
     MultiCheckboxComponent,
     MultiCheckboxPropsComponent,
-    SingleSelectComponent
+    SingleSelectComponent,
+    SingleSelectPropsComponent,
+    TextareaComponent,
+    TextareaPropsComponent
   ],
 
   providers: [

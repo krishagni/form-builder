@@ -1,9 +1,11 @@
 import { Control, GeneralProps } from '.';
 
 export class SingleCheckbox extends Control {
+  counter: number;
 
   constructor(singleCheckbox) {
     super(singleCheckbox);
+    this.counter = singleCheckbox.counter;
   }
 
   public static getInstance(counter): SingleCheckbox {
@@ -13,7 +15,8 @@ export class SingleCheckbox extends Control {
       name: "singleCheckbox" + counter,
       caption: "Single Checkbox Label",
       udn: "singleCheckbox" + counter,
-      value: false
+      value: false,
+      counter: counter
     });
   }
 

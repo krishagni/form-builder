@@ -6,10 +6,13 @@ export class Number extends Control {
 
   maxValue: number;
 
+  counter: number;
+
   constructor(number) {
     super(number);
     this.minValue = number.minValue;
     this.maxValue = number.maxValue;
+    this.counter = number.counter;
   }
 
   public static getInstance(counter): Number {
@@ -18,7 +21,8 @@ export class Number extends Control {
       type: "number",
       name: "number" + counter,
       caption: "Number Label",
-      udn: "numberLabel" + counter
+      udn: "numberLabel" + counter,
+      counter: counter
     });
   }
 

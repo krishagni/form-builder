@@ -34,6 +34,7 @@ export class Textbox extends Control {
       caption: "Single Line Text",
       udn: "textboxLabel" + counter,
       labelPosition: "LEFT_SIDE",
+      counter: counter
     });
   }
 

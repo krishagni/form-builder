@@ -2,12 +2,18 @@ import { MultiCheckboxPropsComponent } from './../controls/multi-checkbox/multi-
 import { MultiCheckboxComponent } from './../controls/multi-checkbox/multi-checkbox.component';
 import { Injectable, Type, Component } from '@angular/core';
 
-import { Textbox, RadioButton, Dropdown, MultiSelect, Date, MultiCheckbox } from '../model';
+import { Textbox, RadioButton, Dropdown, MultiSelect, Date, MultiCheckbox, Number, 
+  SingleCheckbox, Textarea, SingleSelect } from '../model';
 import { TextboxComponent, TextboxPropsComponent } from '../controls/textbox';
 import { RadioButtonComponent, RadioButtonPropsComponent } from '../controls/radio-button';
 import { DropdownComponent, DropdownPropsComponent } from '../controls/dropdown';
 import { MultiSelectComponent, MultiSelectPropsComponent } from '../controls/multi-select';
 import { DateComponent, DatePropsComponent } from '../controls/date';
+import { SingleCheckboxComponent, SingleCheckboxPropsComponent } from '../controls/single-checkbox';
+import { NumberComponent, NumberPropsComponent } from '../controls/number';
+import { TextareaComponent, TextareaPropsComponent } from '../controls/textarea';
+import { SingleSelectComponent, SingleSelectPropsComponent } from '../controls/single-select';
+
 
 @Injectable()
 export class RegistryService {
@@ -32,16 +38,16 @@ export class RegistryService {
       controlComponent: RadioButtonComponent,
       propsComponent: RadioButtonPropsComponent
     },
-    "dropdown": {
-      modelClass: Dropdown,
-      label: "Dropdown",
+    "singleSelect": {
+      modelClass: SingleSelect,
+      label: "SingleSelect",
       iconClass: "fa fa-caret-down",
-      controlComponent: DropdownComponent,
-      propsComponent: DropdownPropsComponent
+      controlComponent: SingleSelectComponent,
+      propsComponent: SingleSelectPropsComponent
     },
     "multiSelect": {
       modelClass: MultiSelect,
-      label: "Multiple Select",
+      label: "Dropdown",
       iconClass: "fa fa-caret-down",
       controlComponent: MultiSelectComponent,
       propsComponent: MultiSelectPropsComponent
@@ -59,6 +65,27 @@ export class RegistryService {
       iconClass: "fa fa-list",
       controlComponent: MultiCheckboxComponent,
       propsComponent: MultiCheckboxPropsComponent
+    },
+    "number": {
+      modelClass: Number,
+      label: "Number",
+      iconClass: "fa fa-list",
+      controlComponent: NumberComponent,
+      propsComponent: NumberPropsComponent
+    },
+    "singleCheckbox": {
+      modelClass: SingleCheckbox,
+      label: "SingleCheckbox",
+      iconClass: "fa fa-list",
+      controlComponent: SingleCheckboxComponent,
+      propsComponent: SingleCheckboxPropsComponent
+    },
+    "textarea": {
+      modelClass: Textarea,
+      label: "Text Area",
+      iconClass: "fa fa-text-width",
+      controlComponent: TextareaComponent,
+      propsComponent: TextareaPropsComponent
     }
   };
 

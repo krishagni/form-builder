@@ -1,6 +1,6 @@
 import { Validators } from '@angular/forms';
 
-import { Control, GeneralProps, Number, SingleCheckbox, RadioButton, SingleSelect } from '.';
+import { Control, GeneralProps, RadioButton, SingleSelect } from '.';
 
 export class Dropdown extends Control {
   dataType: string;
