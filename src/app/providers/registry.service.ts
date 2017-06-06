@@ -3,7 +3,7 @@ import { MultiCheckboxComponent } from './../controls/multi-checkbox/multi-check
 import { Injectable, Type, Component } from '@angular/core';
 
 import { Textbox, RadioButton, Dropdown, MultiSelect, Date, MultiCheckbox, Number, 
-  SingleCheckbox, Textarea, SingleSelect } from '../model';
+  SingleCheckbox, Textarea, SingleSelect, FileUpload } from '../model';
 import { TextboxComponent, TextboxPropsComponent } from '../controls/textbox';
 import { RadioButtonComponent, RadioButtonPropsComponent } from '../controls/radio-button';
 import { DropdownComponent, DropdownPropsComponent } from '../controls/dropdown';
@@ -13,7 +13,7 @@ import { SingleCheckboxComponent, SingleCheckboxPropsComponent } from '../contro
 import { NumberComponent, NumberPropsComponent } from '../controls/number';
 import { TextareaComponent, TextareaPropsComponent } from '../controls/textarea';
 import { SingleSelectComponent, SingleSelectPropsComponent } from '../controls/single-select';
-
+import { FileUploadComponent, FileUploadPropsComponent } from '../controls/file-upload';
 
 @Injectable()
 export class RegistryService {
@@ -34,21 +34,21 @@ export class RegistryService {
     "radioButton": {
       modelClass: RadioButton,
       label: "Radio Buttons",
-      iconClass: "fa fa-list",
+      iconClass: "fa fa-dot-circle-o",
       controlComponent: RadioButtonComponent,
       propsComponent: RadioButtonPropsComponent
     },
     "singleSelect": {
       modelClass: SingleSelect,
-      label: "SingleSelect",
+      label: "Dropdown",
       iconClass: "fa fa-caret-down",
       controlComponent: SingleSelectComponent,
       propsComponent: SingleSelectPropsComponent
     },
     "multiSelect": {
       modelClass: MultiSelect,
-      label: "Dropdown",
-      iconClass: "fa fa-caret-down",
+      label: "Multiple Select",
+      iconClass: "fa fa-list",
       controlComponent: MultiSelectComponent,
       propsComponent: MultiSelectPropsComponent
     },
@@ -69,23 +69,30 @@ export class RegistryService {
     "number": {
       modelClass: Number,
       label: "Number",
-      iconClass: "fa fa-list",
+      iconClass: "fa fa-sort-numeric-asc",
       controlComponent: NumberComponent,
       propsComponent: NumberPropsComponent
     },
     "singleCheckbox": {
       modelClass: SingleCheckbox,
       label: "SingleCheckbox",
-      iconClass: "fa fa-list",
+      iconClass: "fa fa-check-square-o",
       controlComponent: SingleCheckboxComponent,
       propsComponent: SingleCheckboxPropsComponent
     },
     "textarea": {
       modelClass: Textarea,
       label: "Text Area",
-      iconClass: "fa fa-text-width",
+      iconClass: "fa fa-paragraph",
       controlComponent: TextareaComponent,
       propsComponent: TextareaPropsComponent
+    },
+    "fileUpload": {
+      modelClass: FileUpload,
+      label: "File Upload",
+      iconClass: "fa fa-file-text",
+      controlComponent: FileUploadComponent,
+      propsComponent: FileUploadPropsComponent
     }
   };
 

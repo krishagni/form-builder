@@ -1,0 +1,11 @@
+<div class="form-group" [formGroup]="parentGroup">
+  <span *ngIf="control.mandatory">
+    *
+  </span>
+  <label *ngIf="control.caption">
+    {{control.caption}}
+  </label>
+  <div class="row form-group">
+    <input #pvsFileInput type="file"/>  
+  </div>
+</div>

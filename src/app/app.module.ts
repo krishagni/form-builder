@@ -23,6 +23,7 @@ import { MultiCheckboxComponent, MultiCheckboxPropsComponent } from './controls/
 import { SingleSelectComponent, SingleSelectPropsComponent } from './controls/single-select';
 import { AngularMultiSelectModule } from '../../node_modules/angular2-multiselect-dropdown/src/app/angular2-multiselect-dropdown/multiselect.component';
 import { TextareaComponent, TextareaPropsComponent } from './controls/textarea';
+import { FileUploadComponent, FileUploadPropsComponent } from './controls/file-upload';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,9 @@ import { TextareaComponent, TextareaPropsComponent } from './controls/textarea';
     SingleSelectComponent,
     SingleSelectPropsComponent,
     TextareaComponent,
-    TextareaPropsComponent
+    TextareaPropsComponent,
+    FileUploadComponent,
+    FileUploadPropsComponent
   ],
 
   imports: [
@@ -90,7 +93,9 @@ import { TextareaComponent, TextareaPropsComponent } from './controls/textarea';
     SingleSelectComponent,
     SingleSelectPropsComponent,
     TextareaComponent,
-    TextareaPropsComponent
+    TextareaPropsComponent,
+    FileUploadComponent,
+    FileUploadPropsComponent
   ],
 
   providers: [

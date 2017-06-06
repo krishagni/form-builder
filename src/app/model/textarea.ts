@@ -3,13 +3,13 @@ import { Validators } from '@angular/forms';
 import { Control, GeneralProps, Number, SingleCheckbox } from '.';
 
 export class Textarea extends Control {
-  optionsPerRow: number;
+  numberOfRows: number;
 
   counter: number;
 
   constructor(textarea) {
     super(textarea);
-    this.optionsPerRow = textarea.optionsPerRow;
+    this.numberOfRows = textarea.numberOfRows;
     this.counter = textarea.counter;
   }
 
@@ -21,7 +21,7 @@ export class Textarea extends Control {
       caption: "Text Area",
       udn: "textareaLabel" + counter,
       labelPosition: "LEFT_SIDE",
-      optionsPerRow: 3,
+      numberOfRows: 3,
       counter: counter
     });
   }
@@ -41,12 +41,12 @@ export class Textarea extends Control {
         errorMessages: {
         }
       },
-      optionsPerRow: {
+      numberOfRows: {
         model: new Number({
           type: "number",
-          name: "optionsPerRow",
-          caption: "Options Per Row",
-          value: this.optionsPerRow,
+          name: "numberOfRows",
+          caption: "Number of Rows",
+          value: this.numberOfRows,
           minValue: 1
         }),
         validations: [
@@ -66,13 +66,13 @@ export class Textarea extends Control {
   public customSerialize(): any {
     let textarea = {};
     textarea["defaultValue"] = this.value;
-    textarea["optionsPerRow"] = this.optionsPerRow;
+    textarea["numberOfRows"] = this.numberOfRows;
     return textarea;
   }
 
   public customDeserialize(textarea, textareaMetadata): any {
     textarea["value"] = textareaMetadata.defaultValue;
-    textarea["optionsPerRow"] = textareaMetadata.optionsPerRow;
+    textarea["numberOfRows"] = textareaMetadata.numberOfRows;
     return new Textarea(textarea);
   }
 }

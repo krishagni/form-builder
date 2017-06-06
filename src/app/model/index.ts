@@ -10,3 +10,4 @@ export * from './multi-select';
 export * from './date';
 export * from './multi-checkbox';
 export * from './textarea';
+export * from './file-upload';
